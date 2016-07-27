@@ -1,0 +1,91 @@
+script(type="text/ng-template" id="customTemplate.html")
+  a(id='search-{{match.model.searchKey}}')
+   .label(ng-class="{'label-primary': match.model.searchType == 'personnel', 'label-warning': match.model.searchType == 'job'}")
+     span {{ match.model.searchType.charAt(0).toUpperCase() }}
+   span &nbsp;&nbsp;
+   strong {{ match.model.type }}:
+   span &nbsp; {{ query }}
+  
+.row
+  .col-md-12
+      br
+      div(ng-class="{'col-md-7': personnelQuery[0].searchType || jobQuery, 'col-md-12': !personnelQuery[0].searchType && !jobQuery}")
+        label.control-label(for='searchTerms')
+          h3 Who are you looking for? 
+        .input-group
+          input.form-control(name='searchTerms', auto-focus='', ng-model='form.searchTerms', type='text', typeahead="r.type for r in searchTypeAhead",
+            typeahead-template-url="customTemplate.html", typeahead-on-select='updateQuery($item, $model, $label)')
+          span.input-group-btn
+            button.btn.btn-primary(type="submit", ng-click='showAllPersonnel()') Show All Personnel
+            button.btn.btn-primary(type="submit", ng-click='clearSearch()') Clear
+            
+      .col-md-1(ng-show='personnelQuery[0].searchType', style='padding:0px')
+        label.control-label(for='jobButton')
+          h3 &nbsp;
+        button.btn.btn-primary(name='jobButton', type="submit", ng-click='createJob()') Add to Job
+               
+      .col-md-4(ng-show='personnelQuery[0].searchType')
+        h3 Current Search ({{ matchingPersonnel.length }} results)
+        .label.label-primary.animated.fadeInRight(ng-repeat='term in personnelQuery', style='margin: 5px; display:inline-block') 
+          span {{term.searchType}}: {{term.searchTerm}} &nbsp;
+          a(ng-click='deleteSearchTerm(term)')
+            i.fa.fa-times    
+            
+      .col-md-4(ng-show='jobQuery')
+        h3 Current Search ({{matchingJobs.length}} results)
+        .label.label-primary.animated.fadeInRight(style='margin: 5px; display:inline-block') 
+          span Job: {{ jobQuery }} &nbsp;
+
+.ibox(ng-if="matchingPersonnel.length <= 0 && matchingJobs.length <= 0", style='margin: 10px')
+  .ibox-content There are no search results...
+
+.ibox.float-e-margins(ng-if="searchType === 'personnel' && matchingPersonnel.length > 0", style='margin: 10px')
+  .ibox-content
+    .row
+      .col-md-12
+        table.table(st-safe-src="matchingPersonnel", st-table="displayedPersonnel")
+          thead
+            th(st-sort="surname", st-sort-default='true') Surname
+            th(st-sort="name") First name
+            th(st-sort="occupation") Occupation
+            th Contact Details
+            th Current Role
+          tbody
+            tr(st-select-row="row", st-select-mode="single", ng-repeat="row in displayedPersonnel", ng-click="showPersonnelSlider()")
+              td {{ row.surname }} &nbsp;
+                i.fa.fa-check-circle(style='color: #23c6c8;' ng-show='row.validated')
+                
+              td {{ row.name }}
+              td {{ row.occupation }}
+              td
+                p(ng-if="row.hcmobile")
+                  i.fa.fa-mobile &nbsp; 
+                  span {{ row.hcmobile }}
+                p(ng-if="row.hchomephone")
+                  i.fa.fa-phone &nbsp;
+                  span {{ row.hchomephone }}
+                p(ng-if="row.hcemail")
+                  i.fa.fa-envelope-square &nbsp;
+                  span {{ row.hcemail }}
+              td {{row.currentRole.roleName}}
+          tfoot
+            tr
+              td.text-center(colspan='3')
+                div(st-pagination="", st-items-by-page="20", st-displayed-pages="7")
+                
+.ibox.float-e-margins(ng-if="searchType === 'job' && matchingJobs.length > 0", style='margin: 10px')
+  .ibox-content
+    .row
+      .col-md-12
+        table.table(st-safe-src="matchingJobs", st-table="displayedJobs")
+          thead
+            th(st-sort="client", st-sort-default='true') Client
+            th(st-sort="position") Position
+          tbody
+            tr(st-select-row="row", st-select-mode="single", ng-repeat="row in displayedJobs", ng-click="showJobSlider()")
+              td {{ row.company }}
+              td {{ row.position }}
+          tfoot
+            tr
+              td.text-center(colspan='3')
+                div(st-pagination="", st-items-by-page="20", st-displayed-pages="7")

@@ -1,0 +1,48 @@
+div(ng-controller="InterviewRequestCtrl")
+  .row
+    .col-md-3
+      h5 Interview Requested? {{shortcutKeyInterview}}
+    .col-md-3
+      h5 Follow up on Submission
+    .col-md-3(ng-if="personnelWorkflow.interviewRequested === 'Yes'")
+      h5 Interview Date
+
+  .row
+    .col-md-3
+      .btn-group
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.interviewRequested", btn-radio="'Yes'", name="interview.yes", ng-mouseenter="hoverInInterview('(y)')", ng-mouseleave="hoverOut()") Yes
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.interviewRequested", btn-radio="'No'", name="interview.no", ng-mouseenter="hoverInInterview('(n)')", ng-mouseleave="hoverOut()") No
+    .col-md-3
+      .dropdown
+        a.dropdown-toggle#dropdown2(role="button", data-toggle="dropdown", data-target="#", href="#")
+          .input-group
+            input.form-control(type="text", ng-model="personnelWorkflow.submissionDate", data-date-time-input="DD-MM-YYYY HH:mm")
+            span.input-group-addon
+              i.fa.fa-calendar
+        ul.dropdown-menu(role="menu")
+          datetimepicker(ng-model="personnelWorkflow.submissionDate")
+    .col-md-3(ng-if="personnelWorkflow.interviewRequested === 'Yes'")
+      .dropdown
+        a.dropdown-toggle#dropdown2(role="button", data-toggle="dropdown", data-target="#", href="#")
+          .input-group
+            input.form-control(type="text", data-ng-model="personnelWorkflow.interviewDate", data-date-time-input="DD-MM-YYYY HH:mm")
+            span.input-group-addon
+              i.fa.fa-calendar
+        ul.dropdown-menu(role="menu")
+          datetimepicker(data-ng-model="personnelWorkflow.interviewDate")
+    .col-md-3(ng-if="personnelWorkflow.interviewRequested === 'Yes'")
+      button.form-control.btn.btn-primary(ng-click="sendDetails()", href="", ng-mouseenter="hoverInSendDetails('(s)')", ng-mouseleave="hoverOut()") Send Details {{shortcutKeySendDetails}}
+
+  div(collapse="personnelWorkflow.interviewRequested !== 'Yes'")
+    .row
+      .col-md-6
+        h5 Location
+          i.icon-refresh(ng-show="loadingAddress")
+      .col-md-6
+        h5 Report To
+
+    .row
+      .col-md-6
+        input.form-control(ng-model='personnelWorkflow.interviewLocation', type='text', name='personnelWorkflow.interviewLocation', typeahead="address.name for address in getAddress($viewValue) | filter:$viewValue", typeahead-loading="loadingAddress", autocomplete="off")
+      .col-md-6
+        input.form-control(type="text", ng-model="personnelWorkflow.interviewReportTo", name="personnelWorkflow.interviewReportTo")

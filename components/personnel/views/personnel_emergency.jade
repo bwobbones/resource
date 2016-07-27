@@ -1,0 +1,64 @@
+.panel-body
+  .col-md-12
+    h4 Emergency Contact 1
+    .well
+      .row
+        .form-group
+          label.col-md-2.control-label(for='form.emergency1.name') Name
+          .col-md-4
+            input.form-control(ng-model='form.emergency1.name', type='text', name='form.emergency1.name')
+          label.col-md-2.control-label(for='form.emergency1.relationship') Relationship
+          .col-md-4
+            input.form-control(ng-model='form.emergency1.relationship', type='text', name='form.emergency1.relationship')
+
+        .form-group
+          label.col-md-2.control-label(for='form.emergency1.phone') Phone
+          .col-md-4
+            input.form-control(ng-model='form.emergency1.phone', type='text', name='form.emergency1.phone')
+          label.col-md-2.control-label(for='form.emergency1.mobile') Mobile
+          .col-md-4
+            input.form-control(ng-model='form.emergency1.mobile', type='text', name='form.emergency1.mobile')
+
+        .form-group
+          label.col-md-2.control-label(for='form.emergency1.email') Email
+          .col-md-4
+            .input-group
+              input.form-control(ng-model='form.emergency1.email', type='text', name='form.emergency1.email')
+              span.input-group-btn
+                button.btn.btn-primary(type='button', ng-click='sendMail()')
+                  i.fa.fa-envelope
+          label.col-md-2.control-label(for='form.emergency1.address') Address
+          .col-md-4
+            input.form-control(ng-model='form.emergency1.address', type='text', name='form.emergency1.address')
+
+    h4 Emergency Contact 2
+    .well
+      .row
+
+        .form-group
+          label.col-md-2.control-label(for='form.emergency2.name') Name
+          .col-md-4
+            input.form-control(ng-model='form.emergency2.name', type='text', name='form.emergency2.name')
+          label.col-md-2.control-label(for='form.emergency2.relationship') Relationship
+          .col-md-4
+            input.form-control(ng-model='form.emergency2.relationship', type='text', name='form.emergency2.relationship')
+
+        .form-group
+          label.col-md-2.control-label(for='form.emergency2.phone') Phone
+          .col-md-4
+            input.form-control(ng-model='form.emergency2.phone', type='text', name='form.emergency2.phone')
+          label.col-md-2.control-label(for='form.emergency2.mobile') Mobile
+          .col-md-4
+            input.form-control(ng-model='form.emergency2.mobile', type='text', name='form.emergency2.mobile')
+
+        .form-group
+          label.col-md-2.control-label(for='form.emergency2.email') Email
+          .col-md-4
+            .input-group
+              input.form-control(ng-model='form.emergency2.email', type='text', name='form.emergency2.email')
+              span.input-group-btn
+                button.btn.btn-primary(type='button', ng-click='sendMail()')
+                  i.fa.fa-envelope
+          label.col-md-2.control-label(for='form.emergency2.address') Address
+          .col-md-4
+            input.form-control(ng-model='form.emergency2.address', type='text', name='form.emergency2.address')

@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Delete Training
+  .modal-body
+    p Are you sure you want to delete {{trainingName}}?
+  .modal-footer
+    button.btn.btn-primary.okDeleteTraining#deleteTrainingButton(ng-click="deleteTraining()") Ok
+    button.btn.btn-warning.cancelDeleteTraining(ng-click="cancel()") Cancel

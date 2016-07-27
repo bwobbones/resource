@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Unsaved
+  .modal-body
+    p You have unsaved data for this personnel, are you sure you want to leave?
+  .modal-footer
+    button.btn.btn-primary#okDirtyPersonnel(ng-click="discardPersonnel()") Ok
+    button.btn.btn-warning#cancelDirtyPersonnel(ng-click="cancel()") Cancel

@@ -1,0 +1,23 @@
+div
+  .modal-header
+    .row
+      .col-md-12
+        h3 Affiliations for {{personnelName}}
+  .modal-body
+
+    .row
+      .col-md-4
+        h5 Name of Body
+      .col-md-4
+        h5 Affiliation Level
+
+    .row
+      .col-md-4
+        input.form-control(ng-model='affiliation.name', type='text', name='affiliation.name')
+      .col-md-4
+        input.form-control(ng-model='affiliation.level', type='text', name='affiliation.level')
+
+  .modal-footer
+    button.btn.btn-primary.saveAndNewButton(ng-click="saveAndNew()") Save & New
+    button.btn.btn-primary.okAffiliationDone(ng-click="ok()") Ok
+    button.btn.btn-warning(ng-click="cancel()") Cancel

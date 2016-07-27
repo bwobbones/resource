@@ -1,0 +1,16 @@
+// when multiple profiles are created
+db.personnels.find({$and:[{name: 'Allan', surname: 'Thisguard Andersen'}, { _id: { $ne: ObjectId('53f69f57e0f3deead4b29757')}}]})
+
+// find duplicate names
+db.personnels.aggregate([
+  { $group: {
+    _id: { surname: "$surname", firstname: '$name' },   // replace `name` here twice
+    //uniqueIds: { $addToSet: "$_id" },
+    count: { $sum: 1 }
+  } },
+  { $match: {
+    count: { $gte: 2 }
+  } },
+  { $sort : { count : -1} },
+  { $limit : 10 }
+]);

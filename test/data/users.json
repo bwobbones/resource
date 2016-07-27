@@ -1,0 +1,2 @@
+[{ "_id" : { "$oid" : "554a29c3d4c6cbaffeb783a8" }, "username" : "greg", "password" : "greg", "fullname" : "Greg Lucas-Smith" },
+{ "_id" : { "$oid" : "554a29c3d4c6cbaffeb783a9" }, "username" : "dylan", "password" : "dylan", "fullname" : "Dylan Watson" }]

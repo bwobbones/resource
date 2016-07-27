@@ -1,0 +1,27 @@
+.row
+  .col-md-6
+    h3 Qualification Expiry Report ({{form.qualificationData.length}})
+  .col-md-offset-4.col-md-2
+    button.btn.btn-primary.btn-block.btn-sm#downloadCsvButton(type="submit", ng-click="downloadCsv()") Download
+
+.row
+  .table-responsive
+    table.table.table-bordered.table-hover.table-condensed
+      thead
+        tr
+          th Qualification Name
+          th Personnel Name
+          th Certificate #
+          th Institution
+          th Expiry Date
+      tbody
+        tr(ng-repeat="qualification in form.qualificationData")
+          td
+            span.badge.badge-important(ng-show="hasExpired(qualification.expiryDate)") Expired
+            span.badge.badge-warning(ng-show="isNearExpiry(qualification.expiryDate)") Nearing Expiry
+            span &nbsp;
+            span {{qualification.qualificationName}}
+          td {{qualification.personnelName}}
+          td {{qualification.certificateNumber}}
+          td {{qualification.institution}}
+          td {{qualification.expiryDate}}

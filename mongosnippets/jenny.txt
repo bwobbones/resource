@@ -1,0 +1,294 @@
+{
+    "_id" : ObjectId("53faee97e0f3deead4b355ee"),
+    "files" : [ 
+        {
+            "fileId" : "53faf2dba01f34674b000038",
+            "fileName" : "130326_Jennifer Langridge_CV.doc",
+            "fileType" : "application/msword",
+            "documentationType" : "cv"
+        }, 
+        {
+            "fileId" : "53faf2dba01f34674b000039",
+            "fileName" : "130326_Jennifer Langridge_CV.pdf",
+            "fileType" : "application/pdf",
+            "documentationType" : "cv"
+        }, 
+        {
+            "fileId" : "53faf2dba01f34674b00003a",
+            "fileName" : "130916_EPC_JL.doc",
+            "fileType" : "application/msword",
+            "documentationType" : "cv"
+        }, 
+        {
+            "fileId" : "53faf2dba01f34674b00003b",
+            "fileName" : "130916_EPC_JL.pdf",
+            "fileType" : "application/pdf",
+            "documentationType" : "cv"
+        }, 
+        {
+            "fileId" : "53faf2dba01f34674b00003c",
+            "fileName" : "Langridge, Jennifer - CV.pdf",
+            "fileType" : "application/pdf",
+            "documentationType" : "cv"
+        }, 
+        {
+            "fileId" : "53faf2dba01f34674b00003d",
+            "fileName" : "Langridge, Jennifer - Position description.pdf",
+            "fileType" : "application/pdf",
+            "documentationType" : "cv"
+        }
+    ],
+    "name" : "Jennifer",
+    "surname" : "Langridge",
+    "dateofbirth" : "10/10/1950",
+    "hcaddress" : "8A Cobble Court, Bibra Lake WA 6163, Australia",
+    "homeLocation" : {
+        "lat" : -32.1011123,
+        "lng" : 115.8376108
+    },
+    "hchomephone" : "94148696",
+    "hcmobile" : "0447681010",
+    "hcemail" : "jlangridge8@bigpond.com",
+    "nearestairport" : "Perth, WA",
+    "nationality" : "Australian",
+    "citizenship" : "Australian",
+    "passportnumber" : "M4005245",
+    "passportexpiry" : "17/11/2014",
+    "emergency1" : {
+        "name" : "Dana Ruth Langridge",
+        "relationship" : "Daughter",
+        "phone" : "94148696",
+        "mobile" : "0405241211",
+        "email" : "danalangridge@hotmail.com",
+        "address" : "8a Cobble Court, Bibra Lake WA 6163"
+    },
+    "emergency2" : {
+        "name" : "Brett William",
+        "relationship" : "Langridge",
+        "email" : "brettlangridge@hotmail.com",
+        "mobile" : "0414282887",
+        "phone" : "0891734491",
+        "address" : "Port Hedland"
+    },
+    "preferredname" : "Jenny",
+    "roles" : [ 
+        {
+            "useGoogle" : true,
+            "roleName" : "Freelance Journalist",
+            "startDate" : "16/1/1991",
+            "endDate" : "16/10/1994",
+            "_id" : {
+                "timestamp" : 1408954668,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 45
+            },
+            "yearsPerformed" : "4 years",
+            "newProject" : "DEET",
+            "projects" : [ 
+                {
+                    "id" : "Curtin University Tutor",
+                    "text" : "Curtin University Tutor"
+                }, 
+                {
+                    "id" : "Perth Edition Arts Review",
+                    "text" : "Perth Edition Arts Review"
+                }, 
+                {
+                    "id" : "Mandurah Mail",
+                    "text" : "Mandurah Mail"
+                }, 
+                {
+                    "id" : "TAFE",
+                    "text" : "TAFE"
+                }
+            ]
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "HR Consultant (Logistics)",
+            "client" : "Maersk FPSOs",
+            "startDate" : "10/3/2010",
+            "endDate" : "30/9/2012",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Ngujima-Yin",
+                    "text" : "Ngujima-Yin",
+                    "location" : {
+                        "name" : "Perth, Western Australia"
+                    },
+                    "projectExperience" : [ 
+                        "onOG"
+                    ],
+                    "phaseExperience" : [ 
+                        "administration"
+                    ]
+                }
+            ],
+            "_id" : {
+                "timestamp" : 1408954990,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 52
+            },
+            "yearsPerformed" : "3 years",
+            "responsibilities" : "Maintaining Excel spread sheets for POB, Travel and Training Matrices\nLogistics and mobilisation of 120 POB roster on FPSO (with an 800 persons data base) involving Core, Project and Vendor crews\nLiaising with vendors and contractors to ensure compliance to the POB requirements\nBooking flights and arranging accommodation\nArranging training courses and the consequent travel and accommodation\nKeeping data bases on both training requirements and completions\nArranging function sites for visiting training facilitators\nArranging medicals & Govt. regulated requirements AMSA, OGUK, UKOAA, HUET/BOSIET, MSIC etc for crew \nArranging contracts (from set templates) and liaising between management and crew\nElectronic and hard copy filing of core and casual crew information\nDissemination of new information - including liaison and communication component - answering crew questions and/or enquiries re salaries, over-cycle, allowances etc and health Insurance"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Logistics & Administration",
+            "client" : "Total Marine Services",
+            "startDate" : "10/10/2007",
+            "endDate" : "30/12/2009",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "West Atlas & West Triton",
+                    "text" : "West Atlas & West Triton",
+                    "googleLocation" : {
+                        "name" : "West Perth WA 6005, Australia",
+                        "position" : {
+                            "lat" : -31.94882,
+                            "lng" : 115.8421203
+                        }
+                    },
+                    "position" : {
+                        "lat" : -31.94882,
+                        "lng" : 115.8421203
+                    },
+                    "projectExperience" : [ 
+                        "onOG"
+                    ],
+                    "phaseExperience" : [ 
+                        "administration"
+                    ]
+                }
+            ],
+            "_id" : {
+                "timestamp" : 1408955014,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 53
+            },
+            "yearsPerformed" : "2 years",
+            "responsibilities" : "Job description: Logistics\nMaintain and update spread sheets and rosters to move FIFO crew from homes throughout New Zealand and Australia to jack-up rig in Timor Sea \nMoving crew according to roster and to approved changes\nBooking flights and arranging accommodation\nAdvising crew of all travel and accommodation – both by email and phone\nMaintaining Training matrix to ensure qualifications up-to-date – and arranging training courses \nOrganising Induction courses at multiple venues – and arranging attendance of all – including travel and accommodation.\nKeeping communications channels between employee and employer open\nMaintaining current information in internal data base\nGenerating and issuing Purchase orders \n24-hour first point of contact for crew regarding issues ranging from leave to MSIC cards etc.\nHave current HUET\nLiaise with other logistic enterprises to ensure seats on helicopters, etc\nLiaise with Singapore Crew Coordinator to assist in mobilising ex-pat client crew\nOffice Administration\nAccounts and bookkeeping\nManage invoicing and petty cash \nWeekly summary of transactions to Singapore\nLiaise with Accounts Dept. in Singapore\nPersonal expenses / travel advances\nInvoicing and accounts payable\nIssuing cheques and banking\nMail / photocopying / filing\nKeeping client files up to date\nGenerating spread sheets \nBooking flights and hotels \nOrdering and maintaining stationery supplies\nCouriers/taxis/Phones/communications etc\t\nSpent one month as Purchasing officer using STAR based PO systems"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Administration, Public Relations & Marketing Manager",
+            "client" : "Euphonix Europe",
+            "startDate" : "12/2/1996",
+            "endDate" : "25/3/2007",
+            "_id" : {
+                "timestamp" : 1408955045,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 54
+            },
+            "yearsPerformed" : "11 years",
+            "responsibilities" : "Based in London performing general administrative, payroll and office duties\nSetting up exhibitions within the audio industry throughout Europe – including destinations such as Amsterdam, Copenhagen, Paris, Munich, Berlin, Barcelona, Vienna etc \nArranging logistics of equipment and personnel to attend exhibitions – including transport & accommodation \nSetting up, managing the stands and tearing down stands at exhibitions (between four and six annually)\nLiaising with local vendors for site requirements\nEvents Arrangements at studios and venues in the Greater London area\nLiaison with Headquarters in Palo Alto California USA\nLiaison with European distributors"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Logistics and Administration Coordinator",
+            "startDate" : "1/10/2012",
+            "_id" : {
+                "timestamp" : 1408954968,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 51
+            },
+            "yearsPerformed" : "01/10/2012 to current",
+            "client" : "EPC Projects",
+            "endDate" : null,
+            "newProject" : "",
+            "projects" : [],
+            "responsibilities" : "Maintaining Excel spread sheets for POB, Travel and Training Matrices\nLogistics and mobilisation of 14 crew\nBooking flights and accommodations\nArranging training courses and the consequent travel and accommodation\nArranging medicals & Govt. regulated requirements AMSA, OGUK, UKOAA, HUET/BOSIET, MSIC etc for crew \nLiaising between management and crew\nLiaising with client contacts regarding logistics\nElectronic and hard copy filing of core and casual crew information\nDaily dissemination of new information - including liaison and communication component \nVarious Administration duties including assistance with daily timesheets collation – et al"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Journalist",
+            "client" : "Local News Cottesloe",
+            "startDate" : "12/6/1993",
+            "endDate" : "12/1/1995",
+            "_id" : {
+                "timestamp" : 1408954524,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 42
+            },
+            "yearsPerformed" : "2 years"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Commissioning Coordinator",
+            "client" : "PTTEP AA",
+            "startDate" : "9/6/2013",
+            "endDate" : "30/1/2014",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Montara Venture FPSO",
+                    "text" : "Montara Venture FPSO",
+                    "location" : {
+                        "name" : "Darwin, Northern Territory"
+                    },
+                    "projectExperience" : [ 
+                        "onOG"
+                    ],
+                    "phaseExperience" : [ 
+                        "administration"
+                    ]
+                }
+            ],
+            "_id" : {
+                "timestamp" : 1408954937,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 50
+            },
+            "yearsPerformed" : "8 months"
+        }
+    ],
+    "qualifications" : [ 
+        {
+            "name" : "Bachelor of Arts (English)",
+            "dateObtained" : null,
+            "institution" : "Curtin University",
+            "_id" : {
+                "timestamp" : 1408954730,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 46
+            }
+        }, 
+        {
+            "name" : "Post Grad Dip (Journalism)",
+            "dateObtained" : null,
+            "institution" : "Curtin University",
+            "_id" : {
+                "timestamp" : 1408954763,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 47
+            }
+        }
+    ],
+    "trainings" : [ 
+        {
+            "name" : "BOSIET",
+            "dateObtained" : "21/2/2009",
+            "institution" : "ERGT",
+            "_id" : {
+                "timestamp" : 1408955077,
+                "machine" : 10493748,
+                "pid" : 26443,
+                "increment" : 55
+            }
+        }
+    ],
+    "uploadValue" : {
+        "53faf2dba01f34674b00003d" : 100
+    }
+}

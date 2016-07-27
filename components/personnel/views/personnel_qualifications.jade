@@ -1,0 +1,33 @@
+.panel-body
+  .col-md-12
+   div(ng-controller="PersonnelQualificationCtrl")
+      div.row 
+        .col-md-4.pull-left-md
+           h3 Qualifications
+        .col-md-8
+           button.btn.btn-primary.pull-right#addQualificationButton(type="submit", ng-click="addQualification()") Add Qualification
+      div.row 
+         br     
+      div.header-concat(ng-show="!hasQualifications()")
+        span#noQualifications &nbsp;&nbsp; No qualifications&nbsp;
+        br
+      div(ng-show="hasQualifications()")
+        .row
+          .table-responsive
+            table.table.table-striped.table-bordered.table-hover#qualTable
+              thead
+                tr
+                  th Name
+                  th Expiry Date
+                  th Certificate #
+                  th Institution
+                  th Delete
+              tbody
+                tr.qualificationrow(ng-repeat="qualification in form.qualifications", ng-show="!qualification.deleted")
+                  td(id="qualificationName-{{qualification.name}}", ng-click="editQualification(qualification._id)") {{qualification.name}}
+                  td(ng-click="editQualification(qualification._id)") {{qualification.expiryDate}}
+                  td(ng-click="editQualification(qualification._id)") {{qualification.certificateNumber}}
+                  td(ng-click="editQualification(qualification._id)") {{qualification.institution}}
+                  td
+                    i.fa.fa-2x.fa-times.deleteQualification(id="deleteQualificationMessageBox-{{qualification.name}}",ng-click="openDeleteQualificationMessageBox(qualification._id, qualification.name)")
+br                    

@@ -1,0 +1,29 @@
+.panel-body    
+  .col-md-12
+    div(ng-controller="PersonnelQualificationCtrl")
+         div.row 
+           .col-md-4.pull-left-md
+             h3 Affiliations
+           .col-md-8
+             button.btn.btn-primary.pull-right#addAffiliationButton(type="submit",  ng-click="addAffiliation()") Add Affiliation
+         div.row 
+           br  
+         div.header-concat(ng-show="!hasAffiliations()")
+           span#noAffiliations No affiliations&nbsp;
+           br 
+         div(ng-show="hasAffiliations()")
+           .row
+             .table-responsive
+               table.table.table-striped.table-bordered.table-hover#affiliationTable
+                 thead
+                   tr
+                     th Name of Body
+                     th Affiliation Level
+                     th Delete
+                 tbody
+                   tr(ng-repeat="affiliation in form.affiliations", ng-show="!affiliation.deleted")
+                     td(id="affiliationName-{{affiliation.name}}", ng-click="editAffiliation(affiliation._id)") {{affiliation.name}}
+                     td(ng-click="editAffiliation(affiliation._id)") {{affiliation.level}}
+                     td
+                       i.fa.fa-2x.fa-times.deleteAffiliation(id="deleteAffiliationMessageBox-{{affiliation.name}}",ng-click="openDeleteAffiliationMessageBox(affiliation._id, affiliation.name)")
+br

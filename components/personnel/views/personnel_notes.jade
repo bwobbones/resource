@@ -1,0 +1,25 @@
+.col-md-12
+  div(ng-controller="PersonnelNotesCtrl")
+    div(ng-show="!hasNotes()")
+      .panel-body
+        span#noNotes No notes have been entered
+    .col-md-12
+      br
+      br
+      .row(ng-show="hasNotes()")
+        .col-sm-12.col-sm-6.col-md-4(ng-repeat="note in form.notes", ng-mouseenter="hoverIn(note)", ng-mouseleave="hoverOut(note)")
+          .ibox.float-e-margins
+            .ibox-title
+              strong {{note.contact.fullname}} -&nbsp;
+              span {{note.dateEntered}}
+              ibox-tools.ibox-tools
+                a.collapse-link
+                  i.fa.fa-chevron-up
+                a.close-link
+                  i.fa.fa-times
+            .ibox-content
+              .row
+                .col-md-12.noteMessages(ng-bind-html="note.message")
+
+    .row
+      a.pull-right#addNoteButton(href="", ng-click="addNote()") Add a note...

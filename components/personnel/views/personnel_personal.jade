@@ -1,0 +1,112 @@
+.panel-body
+  .col-md-12
+    .row
+      .form-group
+        .col-md-2(ng-class="{'has-error': pForm.name.$error.required}")
+          label.control-label.pull-right(for='form.name') First Name
+        .col-md-4(ng-class="{'has-error': pForm.name.$error.required}")
+          input.form-control(ng-model='form.name', type='text', name='name', required='')
+          p.help-block.text-danger#noNameErrorMessage(ng-show='pForm.name.$error.required') This field is required
+        label.col-md-2.control-label(for='form.surname') Surname
+        .col-md-4
+          input.form-control(ng-model='form.surname', type='text', name='form.surname')
+
+      .form-group
+        .col-md-2(ng-class="{'has-error': pForm.availabledate.$error.validator}")
+          label.control-label.pull-right(for="form.availabledate") Available Date
+        .col-md-4(ng-class="{'has-error': pForm.availabledate.$error.validator}")
+          input.form-control(id='availabledate', name="availabledate", placeholder="dd/mm/yyyy", ng-model="form.availabledate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='pForm.availabledate.$error.validator') {{ dateValidationMessage }}
+        .col-md-2(ng-class="{'has-error': pForm.dateofbirth.$error.validator}")
+          label.control-label.pull-right(for="form.dateofbirth") Date of Birth
+        .col-md-4(ng-class="{'has-error': pForm.dateofbirth.$error.validator}")
+          input.form-control(name="dateofbirth", placeholder="dd/mm/yyyy", ng-model="form.dateofbirth", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='pForm.dateofbirth.$error.validator') {{ dateValidationMessage }}
+
+      .form-group
+        label.col-md-2.control-label(for="form.source") Source
+        .col-md-4
+          input.form-control(ng-model='form.source', type='text', name='source')
+        label.col-md-2.control-label(for="form.validated") Validated
+        .col-md-4
+          input.form-control(ng-model='form.validated', type='checkbox', name='validated')
+
+      .form-group
+        label.col-md-2.control-label(for="form.preferredname") Preferred Name
+        .col-md-4
+          input.form-control(ng-model='form.preferredname', type='text', name='preferredname')
+        label.col-md-2.control-label(for="form.referrer") Referrer
+        .col-md-4
+          input.form-control(ng-model='form.referrer', type='text', name='referrer')
+
+      .form-group
+        label.col-md-2.control-label(for="form.project") Project
+        .col-md-4
+          input.form-control(ng-model='form.project', type='text', name='project')
+        label.col-md-2.control-label(for="form.currentlyemployed") Employed?
+        .col-md-4
+          input.checkbox(ng-model='form.currentlyemployed', type='checkbox', name='currentlyemployed')
+
+      .form-group
+        label.col-md-2.control-label(for="form.noticeperiod") Notice Period
+        .col-md-4
+          input.form-control(ng-model='form.noticeperiod', type='text', name='noticeperiod')
+        label.col-md-2.control-label(for="form.rightToWork") Right to Work in Australia
+        .col-md-4
+          input.checkbox(ng-model='form.rightToWork', type='checkbox', name='rightToWork')
+
+      .form-group
+        label.col-md-2.control-label(for="form.occupation") Occupation
+        .col-md-4
+          input.form-control(ng-model='form.occupation', type='text', name='occupation')
+
+    .row
+      .form-group
+        label.col-md-2.control-label(for='form.nationality') Nationality
+        .col-md-4
+          input.form-control(ng-model='form.nationality', type='text', name='form.nationality')
+        label.col-md-2.control-label(for='form.citizenship') Citizenship
+        .col-md-4
+          input.form-control(ng-model='form.citizenship', type='text', name='form.citizenship')
+
+      .form-group
+        label.col-md-2.control-label(for='form.passportnumber') Passport #
+        .col-md-4
+          input.form-control(ng-model='form.passportnumber', type='text', name='form.passportnumber')
+        .col-md-2(ng-class="{'has-error': pForm.passportexpiry.$error.validator}")
+          label.control-label.pull-right(for="form.passportexpiry") Passport Expiry
+        .col-md-4(ng-class="{'has-error': pForm.passportexpiry.$error.validator}")
+          input.form-control(name="passportexpiry", placeholder="dd/mm/yyyy", ng-model="form.passportexpiry", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='pForm.passportexpiry.$error.validator') {{ dateValidationMessage }}
+
+      .form-group
+        label.col-md-2.control-label(for='form.holdsvisa') Holds Visa?
+        .col-md-4
+          input.checkbox(ng-model='form.holdsvisa', type='checkbox', name='form.holdsvisa')
+
+    .row(ng-show="form.holdsvisa")
+      .form-group
+        label.col-md-2.control-label(for='form.visatype') Visa Type
+        .col-md-4
+          input.form-control(ng-model='form.visatype', type='text', name='form.visatype')
+        label.col-md-2.control-label(for='form.visaholder') Visa Holder
+        .col-md-4
+          input.form-control(ng-model='form.visaholder', type='text', name='form.visaholder')
+
+      .form-group
+        .col-md-2(ng-class="{'has-error': pForm.visastartdate.$error.validator}")
+          label.control-label.pull-right(for="form.visastartdate") Visa Start Date
+        .col-md-4(ng-class="{'has-error': pForm.visastartdate.$error.validator}")
+          input.form-control(name="visastartdate", placeholder="dd/mm/yyyy", ng-model="form.visastartdate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='pForm.visastartdate.$error.validator') {{ dateValidationMessage }}
+        .col-md-2(ng-class="{'has-error': pForm.visaenddate.$error.validator}")
+          label.control-label.pull-right(for="form.visaenddate") Visa End Date
+        .col-md-4(ng-class="{'has-error': pForm.visaenddate.$error.validator}")
+          input.form-control(name="visaenddate", placeholder="dd/mm/yyyy", ng-model="form.visaenddate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='pForm.visaenddate.$error.validator') {{ dateValidationMessage }}
+
+    .row
+      .form-group
+        label.col-md-2.control-label(for="form.summary") Summary
+        .col-md-10
+          textArea(ng-model='form.summary', rows="6", style='width: 100%')

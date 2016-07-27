@@ -1,0 +1,64 @@
+.row
+  .col-md-12
+    .well
+
+      .row
+        .col-md-8.padding-left-removed
+          label.padding-left-removed.control-label(for='personnelName')
+            h3(name="personnelName") {{ selectedPersonnel.name }} {{ selectedPersonnel.surname }}
+        .col-md-4
+          span.btn-group.pull-right
+            button.btn.btn-primary.btn-sm(id='sliderEditPersonnel', type="submit", ng-click='editSelected()') Edit
+            button.btn.btn-primary.btn-sm(type="submit", ng-click='clearSelected()') Clear
+      
+      .row
+        .col-md-12
+          table.table
+          
+            tr
+              td
+                strong Email
+              td
+                p {{ selectedPersonnel.hcemail }}
+                
+            tr
+              td
+                strong Mobile
+              td
+                p {{ selectedPersonnel.hcmobile }}
+          
+            tr
+              td
+                strong Home Phone
+              td
+                p {{ selectedPersonnel.hchomephone }}
+          
+            tr
+              td
+                strong Occupation
+              td
+                p {{ selectedPersonnel.occupation }}
+      
+            tr
+              td
+                strong Home Address
+              td
+                p {{ selectedPersonnel.hcaddress }}
+      
+            tr
+              td
+                strong Roles
+              td
+                p(ng-repeat='role in selectedPersonnel.roles') {{ role.roleName }}
+      
+            tr
+              td
+                strong Qualifications
+              td
+                p(ng-repeat='qualification in selectedPersonnel.qualifications') {{ qualification.name }}
+      
+            tr
+                td
+                  strong Training
+                td
+                  p(ng-repeat='training in selectedPersonnel.training') {{ training.name }}

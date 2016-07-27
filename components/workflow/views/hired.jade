@@ -1,0 +1,31 @@
+div(ng-controller="HiredCtrl")
+
+  .row
+    .col-md-2
+      h5 Hired? {{shortcutKeyHired}}
+    .col-md-6
+      h5 Conducted By
+
+  .row
+    .col-md-2
+      .btn-group.btn-group-justified
+        .btn-group
+          button.btn.btn-default(type="button", ng-click="toggleHired()", ng-model="personnelWorkflow.hired", btn-checkbox, name="hired.yes", ng-mouseenter="hoverInHired('(h)')", ng-mouseleave="hoverOut()") {{hiredText}}
+    .col-md-6
+      input.form-control(type="text", ng-model="personnelWorkflow.hiredConductedBy")
+
+  div(collapse="!personnelWorkflow.hired")
+    .row
+      .col-md-3
+        h5(ng-class="{'text-danger': personnelWorkflowForm.hiredStartDate.$error.validator}") Start Date
+      .col-md-6
+        h5 Location
+
+    .row
+      .col-md-3.form-group(ng-class="{'has-error': personnelWorkflowForm.hiredStartDate.$error.validator}")
+        input.form-control(name="hiredStartDate", placeholder="dd/mm/yyyy", ng-model="personnelWorkflow.hiredStartDate", ui-validate=" 'validateDate($value)' ")
+        p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.hiredStartDate.$error.validator') {{ dateValidationMessage }}
+      .col-md-6
+        input.form-control(ng-model='personnelWorkflow.roleLocation', type='text', name='personnelWorkflow.roleLocation', typeahead="address.name for address in getAddress($viewValue) | filter:$viewValue", typeahead-loading="loadingAddress", autocomplete="off")
+
+

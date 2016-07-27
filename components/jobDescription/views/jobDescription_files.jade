@@ -1,0 +1,62 @@
+.ibox.float-e-margins.pushtoback
+  .ibox-content(ng-controller="JobDescriptionDocumentationCtrl", ngf-drop="true", ngf-change='onFileSelect($files, "jobDescription")',
+    ngf-accept="{{ uploadableMimeTypes }}", class="drop", ngf-multiple="true",
+    ngf-drag-over-class="{ accept:'dragover-accept', reject:'dragover-reject', delay:100}")
+
+    .row(ng-repeat="file in form.files")
+      .col-md-12(ng-if="form.uploadValue[file.fileId] > 0")
+        progressbar(max="100", value="form.uploadValue[file.fileId]", ng-show="!uploadComplete" )
+          span {{ file.fileName}} - {{form.uploadValue[file.fileId]}}%
+
+    .row(ng-show="form.files.length === 0")
+      .col-md-12
+        p No documents have been uploaded
+
+    .row
+      .col-md-12
+        .row
+          .col-md-9
+            strong.pull-left File Name
+          .col-md-2
+            strong File Size
+          .col-md-1
+            strong Delete
+
+        .row
+          .col-md-12
+            hr
+
+        .row(ng-repeat="file in form.files | filter: {documentationType: 'jobDescription'}", style='line-height: 35px;')
+          .col-md-9
+            a.pull-left(download="{{file.fileName}}", href="", ng-click="downloadFile(file.fileId)") {{file.fileName}}
+          .col-md-2
+            p {{ file.fileSize }}
+          .col-md-1
+            button.btn.btn-primary(type='button', ng-click="openDeleteFileMessageBox(file.fileId)", style='margin-top: 2px;')
+                i.fa.fa-times
+
+
+
+// div(ng-controller="JobDescriptionDocumentationCtrl", ngf-drop="true", ngf-change='onFileSelect($files, "jobDescription")',
+//   ngf-accept="{{uploadableMimeTypes}}", class="drop", ngf-drag-over-class="{ accept:'dragover-accept', reject:'dragover-reject', delay:100}")
+//   .row
+//     .col-md-12(ng-show="form.files.length === 0")
+//       p No documents have been uploaded
+//     .col-md-12
+//       .row
+//         table.table.table-striped
+//           tr
+//             th File Name
+//             th File Size
+//             th Delete
+//             th Upload Progress
+//           tr(ng-repeat="file in form.files | filter: {documentationType: 'jobDescription'}")
+//             td
+//               a.pull-left(download="{{file.fileName}}", href="", ng-click="downloadFile(file.fileId)") {{file.fileName}}
+//             td {{ file.fileSize }}
+//             td
+//               a(href="")
+//                 i.fa.fa-times(ng-click="openDeleteFileMessageBox(file.fileId)")
+//             td
+//               progressbar(max="100", value="form.uploadValue[file.fileId]", ng-show="!uploadComplete" )
+//                 span {{form.uploadValue[file.fileId]}}

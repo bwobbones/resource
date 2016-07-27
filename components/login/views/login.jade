@@ -1,0 +1,19 @@
+.middle-box.text-center.animated.fadeInDown
+  div
+    div
+      img.logo-name(alt='Resource', src='/images/resource-transparent-logo.png', width='400px')
+    h3 Welcome to Resource
+    p People, beautifully
+    form.m-t(name='form', ng-submit="login()", role='form', ng-class="{'animated shake': error}")
+      div(class='form-group', ng-class="{'has-error' : error}")
+        input.form-control(ng-model='loginForm.username', ng-focus='resetError()', name='username', type='text', placeholder='Username', required='')
+      div(class='form-group', ng-class="{'has-error' : error}")
+        input.form-control(ng-model='loginForm.password', ng-focus='resetError()', ng-class="{'has-error' : error}", name='password', type='password', placeholder='Password', required='')
+      .form-group
+        input.btn.btn-primary.block.full-width.m-b#loginButton(type="submit", value="Login", ng-disabled="form.$invalid")
+
+  .middle-box.text-center
+    p Don't have an account yet? 
+    a(ui-sref='register') Register
+
+    toaster-container(toaster-options="{'time-out': 2000, 'position-class': 'toast-bottom-right'}")

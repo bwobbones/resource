@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Delete Affiliation
+  .modal-body
+    p Are you sure you want to delete {{affiliationName}}?
+  .modal-footer
+    button.btn.btn-primary.okDeletePersonnel#deleteAffiliationButton(ng-click="deleteAffiliation()") Ok
+    button.btn.btn-warning.cancelDeletePersonnel(ng-click="cancel()") Cancel

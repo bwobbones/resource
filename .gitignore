@@ -1,0 +1,11 @@
+node_modules/*
+components/bower_components/*
+
+testresults/*
+typings/*
+coverage/*
+report/*
+uploads/*
+
+performance.log
+libpeerconnection.log

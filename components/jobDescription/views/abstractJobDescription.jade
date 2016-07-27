@@ -1,0 +1,25 @@
+.row
+  .col-md-4
+    h2
+      span(ng-show="!originalJob.company && !form.company && !form.position") New Job Description
+      span(ng-show="originalJob.company || form.company") {{form.company}}
+      span(ng-show="originalJob.position || form.position") &nbsp;({{form.position}})
+      span(ng-show="pForm.$dirty" style="color: red;" title="You have unsaved changes") *
+  .col-md-8
+    br
+    .pull-right(ui-view="dataPanel")
+
+.row
+  .col-md-12
+    br
+    .tabs-container
+      ng-form.form-horizontal(name="pForm", novalidate="", role="form")
+        tabset
+          tab(id='tab_{{tabPane.url}}', ng-repeat="tabPane in tabPanes" active="tabPane.active")
+            tab-heading {{tabPane.name}}
+            .tab-pane
+              .panel-body
+                .col-md-12
+                  ng-include(src="'partials/' + tabPane.url")
+
+.row(style="height:80px;")

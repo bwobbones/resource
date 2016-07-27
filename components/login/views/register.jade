@@ -1,0 +1,18 @@
+.middle-box.text-center.animated.fadeInDown
+  div
+    div
+      img.logo-name(alt='Resource', src='/images/resource-transparent-logo.png', width='400px')
+    h3 Welcome to Resource 
+    p People, beautifully
+    form.m-t(name='form', ng-submit="register()", role='form', ng-class="{'animated shake': error}")
+      div(class='form-group')
+        input.form-control(ng-model='registrationForm.username', name='username', type='text', placeholder='Username', required='')
+      div(class='form-group')
+        input.form-control(ng-model='registrationForm.password', name='password', type='password', placeholder='Password', required='')
+      div(class='form-group')
+        input.form-control(ng-model='registrationForm.confirm', name='confirm', type='password', placeholder='Confirm Password', required='')
+      .form-group
+        input.btn.btn-primary.block.full-width.m-b#registerButton(type="submit", value="Register")
+
+    .middle-box.text-center 
+      a(ui-sref='login') Back to Login        

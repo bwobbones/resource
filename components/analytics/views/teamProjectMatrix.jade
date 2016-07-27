@@ -1,0 +1,58 @@
+.row(ng-if='showFull')
+  .p &nbsp;
+
+.row
+  .col-md-9
+    h3 Team Project Matrix
+  .col-md-3
+    label.btn.btn-primary.right-buffer.pull-right(id='personnel-{{ personnelOrder.value }}', ng-model='options.showOptions', btn-checkbox='', ng-click="collapseOptions = !collapseOptions") Show Options
+    .btn-group
+      button.btn.btn-primary(ng-if="!showFull", type="button", ng-click='fullScreenMatrix()') Full Screen
+        
+.row.no-gutter(collapse="!collapseOptions")
+  .col-md-11
+    .well
+
+      .row
+        .col-md-6
+          h5 Project Types
+          .row.no-gutter
+            .col-md-4(ng-repeat='experience in options.experience')
+              label.btn.btn-primary.btn-block(id="{{ experience.value }}", ng-model='experience.selected', btn-checkbox='') {{experience.name}}
+        .col-md-6
+          h5 Occupations
+          .row.no-gutter
+            .col-md-4(ng-repeat='occupation in options.occupations')
+              label.btn.btn-primary.btn-block(id="{{ occupation.name }}", ng-model='occupation.selected', btn-checkbox='') {{occupation.name}}
+
+      .row
+        .col-md-6
+          h5 Order Projects By
+          .row.no-gutter
+            .col-md-3(ng-repeat='order in options.orders')
+              label.btn.btn-primary.btn-block(id='project-{{ order.value }}', ng-model='options.selectedOrder', btn-radio='order.value') {{order.name}}
+
+        .col-md-6
+          h5 Order Personnel By
+          .row.no-gutter
+            .col-md-3(ng-repeat='personnelOrder in options.personnelOrders')
+              label.btn.btn-primary.btn-block(id='personnel-{{ personnelOrder.value }}', ng-model='options.selectedPersonnelOrder', btn-radio='personnelOrder.value') {{personnelOrder.name}}
+
+      .row
+        .col-md-5
+          h5 Search Projects
+          .row
+            input.form-control(ng-model='options.projectSearch', type='text', ng-model-options="{ debounce: 1000 }", name='options.projectSearch')
+        .col-md-offset-1.col-md-5
+          h5 Search Personnel
+          .row
+            input.form-control(ng-model='options.personnelSearch', type='text', ng-model-options="{ debounce: 1000 }", name='options.personnelSearch')
+
+.row
+  .col-md-12
+    p &nbsp;
+
+.row
+  .col-md-1 &nbsp;
+  .col-md-10#matrixHolder
+    team-project-matrix

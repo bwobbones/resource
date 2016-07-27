@@ -1,0 +1,44 @@
+div
+  .modal-header
+    .row
+      .col-md-12
+        h3 Training for {{personnelName}}
+  .modal-body
+
+    form(name="trainingForm", novalidate="", role="form")
+
+      .row
+        .col-md-4
+          h5 Training
+            i.icon-refresh(ng-show="loadingTraining")
+        .col-md-2
+          h5(ng-class="{'text-danger': trainingForm.dateObtained.$error.validator}") Date Obtained
+        .col-md-2
+          h5(ng-class="{'text-danger': trainingForm.expiryDate.$error.validator}") Expiry Date
+        .col-md-2
+          h5 Certificate Number
+        .col-md-2
+          h5 Institution
+            i.icon-refresh(ng-show="loadingInstitution")
+
+      .row
+        .col-md-4
+          input.form-control(ng-model='training.name', type='text', name='training.name', typeahead="t.name for t in typeAhead('training', $viewValue) | orderBy:'name'", typeahead-loading="loadingTraining", autocomplete='off')
+        .col-md-2.form-group(ng-class="{'has-error': trainingForm.dateObtained.$error.validator}")
+          input.form-control#dateObtainedPicker(name="dateObtained", placeholder="dd/mm/yyyy", ng-model="training.dateObtained", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='trainingForm.dateObtained.$error.validator') {{ dateValidationMessage }}
+        .col-md-2.form-group(ng-class="{'has-error': trainingForm.expiryDate.$error.validator}")
+          input.form-control(name="expiryDate", placeholder="dd/mm/yyyy", ng-model="training.expiryDate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='trainingForm.expiryDate.$error.validator') {{ dateValidationMessage }}
+        .col-md-2
+          input.form-control(ng-model='training.certificateNumber', type='text', name='training.certificateNumber')
+        .col-md-2
+          input.form-control(ng-model='training.institution', type='text', name='training.institution', typeahead="t.institution for t in typeAhead('institution', $viewValue) | orderBy:'institution'", typeahead-loading="loadingInstitution", autocomplete='off')
+
+    .row
+      p &nbsp;
+
+  .modal-footer
+    button.btn.btn-primary.saveAndNewButton(ng-click="saveAndNew()") Save & New
+    button.btn.btn-primary.okTrainingDone(ng-click="ok()") Ok
+    button.btn.btn-warning(ng-click="cancel()") Cancel

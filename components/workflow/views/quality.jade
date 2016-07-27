@@ -1,0 +1,30 @@
+div(ng-controller="QualityCtrl")
+  .row
+    .col-md-6
+      h5 Reference Checks
+
+  .row
+    .col-md-6
+      input.form-control(type="text", ng-model="personnelWorkflow.qualityReference1", placeholder="Referee 1")
+    .col-md-6
+      input.form-control(type="text", ng-model="personnelWorkflow.qualityReference2", placeholder="Referee 2")
+
+  .row
+    .col-md-6
+      h5 Qualifications and Training
+
+  .row
+    .col-md-12
+      input.form-control(type="text", ng-model="personnelWorkflow.qualifications")
+
+  .row
+    .col-md-6
+      h5 PI Request
+
+  .row
+    .col-md-12
+      .input-group
+        input.form-control(type="text", ng-model="personnelWorkflow.piRequestPortal")
+        .input-group-btn
+          button.btn.btn-primary(ng-click="openPIPortal()")
+            i.fa.fa-desktop

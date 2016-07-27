@@ -1,0 +1,139 @@
+div(ng-controller='ManageWorkflowCtrl')
+  .row
+    .col-md-4
+      h3 Manage Workflow
+    .col-md-8
+      button.btn.btn-primary.pull-right(type="submit", ng-click="collapseAdd = !collapseAdd") Add More Personnel
+      
+  .row(style='margin: 15px', collapse="!collapseAdd")
+    .col-md-offset-8.col-md-4.pull-right
+      input.form-control(placeholder="Type personnel names...", type="text", ng-model='personnelAdded',
+        typeahead="j.surname for j in allPersonnels | filter: {surname: $viewValue} | unique:'surname' | orderBy:'surname'", 
+        typeahead-on-select='addPersonnel($item, $model, $label)', autocomplete='off')
+    
+  
+  table.table(id='workflowTable', st-safe-src="mergedPersonnels", st-table="displayPersonnels", ng-controller="WorkflowCtrl")
+    thead
+      tr
+        th(colspan="3")
+          input.form-control(st-search="'surname'", placeholder="Surname search...", type="search")
+      tr
+        th Acceptable
+        th(st-sort="surname") Name
+        th(st-sort="currentWorkflow") Workflow Progress
+        th Contact Details
+        th(st-sort="currentRole.roleName") Current Role
+        th History Logs
+        th Followups
+    tbody.personnelRow(ng-repeat="personnel in displayPersonnels")
+      tr(ng-if="personnel.acceptable")
+        td
+          input.checkbox(ng-model='personnel.acceptable', type='checkbox', name='personnel.acceptable', id='acceptable-{{ personnel.surname }}', ng-change="addCommLog(personnel._id)")
+        td
+          a#personnelName(href="", ng-click="viewPersonnelModal(personnel)") {{personnel.surname}}, {{personnel.name}}
+        td
+          a(id="workflowProgress-{{personnel.surname}}", href="", ng-click="openCurrentWorkflowState(personnel)")
+            progressbar.progressbar(ng-if="personnel.currentWorkflow === 8", type="success", max="100", value="100/(workflowStates.length-1)*personnel.currentWorkflow")
+              span(ng-if="personnel.currentWorkflow === 0 || personnel.currentWorkflow === 1", style="color: black; white-space:nowrap;") {{ workflowStates[personnel.currentWorkflow].state }}
+              span(ng-if="personnel.currentWorkflow !== 0 && personnel.currentWorkflow !== 1", style="white-space:nowrap;") {{ workflowStates[personnel.currentWorkflow].state }}
+            progressbar.progressbar(ng-if="personnel.currentWorkflow !== 8", type="default", max="100", value="100/(workflowStates.length-1)*personnel.currentWorkflow")
+              span(ng-if="personnel.currentWorkflow === 0 || personnel.currentWorkflow === 1", style="color: black; white-space:nowrap;") {{ workflowStates[personnel.currentWorkflow].state }}
+              span(ng-if="personnel.currentWorkflow !== 0 && personnel.currentWorkflow !== 1", style="white-space:nowrap;") {{ workflowStates[personnel.currentWorkflow].state }}
+        td
+          p(ng-if="personnel.contactDetails.mobile")
+            i.fa.fa-mobile &nbsp;{{ personnel.contactDetails.mobile }}
+          p(ng-if="personnel.contactDetails.home")
+            i.fa.fa-phone &nbsp;{{ personnel.contactDetails.home }}
+          p(ng-if="personnel.contactDetails.email")
+            i.fa.fa-envelope-square &nbsp;{{ personnel.contactDetails.email }}
+        td {{personnel.currentRole.roleName}} ({{personnel.currentRole.client}})
+        td
+          button.btn.btn-sm(id="commLogButton-{{personnel.surname}}",
+            type="button",
+            ng-if="personnel.commLogCount > 0",
+            ng-click="toggleCommLogs(personnel)",
+            ng-class="{'btn-primary': commLogCollapsed !== personnel._id, 'btn-info': commLogCollapsed === personnel._id}")
+            | History Logs <span class="badge">{{personnel.commLogCount}}</span>
+        td
+          button.btn.btn-sm(id="followupButton-{{personnel.surname}}",
+            type="button",
+            ng-if="personnel.followupCount > 0",
+            ng-click="toggleFollowups(personnel)",
+            ng-class="{'btn-danger': hasOverdueFollowups(personnel), 'btn-primary': followupCollapsed !== personnel._id, 'btn-info': followupCollapsed === personnel._id}")
+              | Followups <span class="badge">{{personnel.followupCount}}</span>
+  
+      tr.fx-fade-down(ng-show="commLogCollapsed === personnel._id")
+        td(colspan="7")
+          .row
+            .col-md-offset-1.col-md-2
+              p
+                strong Date Entered
+            .col-md-9
+              strong Message
+          .row(id="commLog-{{personnel.surname}}", ng-repeat="commLog in personnel.commLog")
+            .col-md-offset-1.col-md-2
+              p {{ commLog.dateEntered }}
+            .col-md-9
+              p(ng-bind-html="commLog.message")
+          .row
+            .col-md-offset-1.col-md-11
+              p(ng-if="personnel.commLogCount > 5")
+                a(ui-sref="personnel.editPersonnel({id: personnel._id})", target="_blank") {{personnel.commLogCount-5}} more...
+  
+      tr.fx-fade-down(ng-show="followupCollapsed === personnel._id")
+        td(colspan="7")
+          .row
+  
+            .col-md-offset-1.col-md-2
+              p
+                strong Date Due
+            .col-md-2
+              strong With
+            .col-md-5
+              strong Message
+            .col-md-1
+              strong Complete?
+  
+          .row(id="followup-{{personnel.surname}}", ng-class="{'text-danger': followup.overdue}", ng-repeat="followup in personnel.followup")
+            div(ng-if="!followup.completed")
+              .col-md-offset-1.col-md-2(id="followupDate-{{ personnel.surname }}")
+                p {{ followup.dateDue }}
+              .col-md-2 {{ followup.contact.fullname }}
+              .col-md-5(ng-bind-html="followup.message")
+              .col-md-1
+                .btn-group
+                  button.btn.btn-default(id="complete-{{personnel.surname}}", type="button", ng-model="followup.completed", btn-checkbox="", ng-click="updateFollowup(personnel._id, followup._id, followup, personnel)") Complete
+          .row(id="followupClosed-{{personnel.surname}}", ng-class="{'text-danger': followup.overdue && !followup.completed, 'strike': followup.completed}", ng-repeat="followup in personnel.followup")
+            div(ng-if="followup.completed")
+              .col-md-offset-1.col-md-2.strike.text-muted(id="followupDate-{{ personnel.surname }}")
+                p {{ followup.dateDue }}
+              .col-md-2.strike.text-muted {{ followup.contact.fullname }}
+              .col-md-5.strike.text-muted(ng-bind-html="followup.message")
+              .col-md-1
+                .btn-group
+                  button.btn.btn-muted(id="complete-{{personnel.surname}}", type="button", ng-model="followup.completed", btn-checkbox="", ng-click="updateFollowup(personnel._id, followup._id, followup, personnel)") Make Incomplete
+  
+  
+  h4(ng-if="hasUnacceptable()") Unaccepted Personnel
+  
+  table.table(ng-if="hasUnacceptable()", st-safe-src="mergedPersonnels", st-table="displayPersonnels", ng-controller="WorkflowCtrl")
+    thead
+      tr
+        th Acceptable
+        th(st-sort="surname") Name
+        th Contact Details
+        th(st-sort="currentRole.roleName") Current Role
+    tbody.personnelRow(ng-repeat="personnel in displayPersonnels")
+      tr(ng-if="!personnel.acceptable")
+        td
+          input.checkbox(ng-model='personnel.acceptable', type='checkbox', name='personnel.acceptable', id='acceptable-{{ personnel.surname }}')
+        td
+          a#personnelName(href="", ng-click="viewPersonnelModal(personnel)") {{personnel.surname}}, {{personnel.name}}
+        td
+          p(ng-if="personnel.contactDetails.mobile")
+            i.fa.fa-mobile &nbsp;{{ personnel.contactDetails.mobile }}
+          p(ng-if="personnel.contactDetails.home")
+            i.fa.fa-phone &nbsp;{{ personnel.contactDetails.home }}
+          p(ng-if="personnel.contactDetails.email")
+            i.fa.fa-envelope-square &nbsp;{{ personnel.contactDetails.email }}
+        td {{personnel.currentRole.roleName}} ({{personnel.currentRole.client}})

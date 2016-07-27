@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Delete Qualification
+  .modal-body
+    p Are you sure you want to delete {{qualificationName}}?
+  .modal-footer
+    button.btn.btn-primary.okDeletePersonnel#deleteQualificationButton(ng-click="deleteQualification()") Ok
+    button.btn.btn-warning.cancelDeletePersonnel(ng-click="cancel()") Cancel

@@ -1,0 +1,58 @@
+div(ng-controller="AvailableCtrl")
+  .row
+    .col-md-1
+      h5 More{{shortcutKeyPrevious}}
+    .col-md-3
+      h5 Date Entered
+    .col-md-2
+      h5 Contact
+    .col-md-3
+      h5 Type {{shortcutKeyType}}
+    .col-md-3
+      h5 Direction {{shortcutKeyDirection}}
+
+  .row
+    .col-md-1(ng-mouseenter="hoverInPrevious('(r)')", ng-mouseleave="hoverOut()", ng-click="togglePrevious()")
+      a(href="")
+        i.fa.fa-3x.fa-tasks
+    .col-md-3
+      input.form-control(ng-model='personnelWorkflow.dateEntered', type='text', name='personnelWorkflow.dateEntered')
+    .col-md-2
+      select.form-control(chosen="", ng-model="personnelWorkflow.contact", name="personnelWorkflow.contact", ng-options="u.fullname for u in contacts")
+    .col-md-3
+      .btn-group
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.type", btn-radio="'Email'", name="personnelWorkflow.typeEmail", ng-mouseenter="hoverInType('(e)')", ng-mouseleave="hoverOut()") Email
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.type", btn-radio="'Phone'", name="personnelWorkflow.typePhone", ng-mouseenter="hoverInType('(p)')", ng-mouseleave="hoverOut()") Phone
+    .col-md-3
+      .btn-group
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.direction", btn-radio="'Incoming'", name="personnelWorkflow.directionIngoing", ng-mouseenter="hoverInDirection('(i)')", ng-mouseleave="hoverOut()") Incoming
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.direction", btn-radio="'Outgoing'", name="personnelWorkflow.directionOutgoing", ng-mouseenter="hoverInDirection('(o)')", ng-mouseleave="hoverOut()") Outgoing
+
+  div(ng-show="hasPreviousLogs()", collapse="!showPrevious")
+    .col-md-12
+      p &nbsp;
+
+    .table
+      table.table.table-striped.table-bordered.table-hover
+        thead
+          tr
+            th.col-md-3 Log Details
+            th.col-md-3 Contact
+            th.col-md-6 Message
+        tbody
+          tr(ng-repeat="previousLog in personnelWorkflow.previousLogs", ng-mouseenter="hoverIn(previousLog)", ng-mouseleave="hoverOut(previousLog)")
+            td#previousLogTable
+              span(ng-show="previousLog.type === 'Phone'", tooltip="Phone")
+                i.fa.fa-phone-square
+              span(ng-show="previousLog.type === 'Email'", tooltip="Email")
+                i.fa.fa-envelope
+              span(ng-show="previousLog.direction === 'Incoming'", tooltip="Incoming")
+                i.fa.fa-sign-in
+              span(ng-show="previousLog.direction === 'Outgoing'", tooltip="Outgoing")
+                i.fa.fa-sign-out
+              span
+                {{previousLog.dateEntered}}
+            td {{previousLog.contact.fullname}}
+            td
+              .row
+                .col-md-10.commLogMessages(ng-bind-html="previousLog.comments")

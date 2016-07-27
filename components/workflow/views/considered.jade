@@ -1,0 +1,10 @@
+div(ng-controller="ConsideredCtrl")
+  .row
+    .col-md-3
+      h5 Considered? {{shortcutKeyConsidered}}
+
+  .row
+    .col-md-3
+      .btn-group
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.considered", btn-radio="'Yes'", name="considered.yes", ng-mouseenter="hoverInConsidered('(y)')", ng-mouseleave="hoverOut()") Yes
+        button.btn.btn-default(type="button", ng-model="personnelWorkflow.considered", btn-radio="'No'", name="considered.no", ng-mouseenter="hoverInConsidered('(n)')", ng-mouseleave="hoverOut()") No

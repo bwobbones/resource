@@ -1,0 +1,14 @@
+div(ng-controller="InterviewCtrl")
+
+  .row
+    .col-md-3
+      h5(ng-class="{'text-danger': personnelWorkflowForm.interviewDate.$error.validator}") Date Conducted
+    .col-md-9
+      h5 Conducted By {{personnelWorkflowForm.$invalid}}
+
+  .row
+    .col-md-3.form-group(ng-class="{'has-error': personnelWorkflowForm.interviewDate.$error.validator}")
+      input.form-control(name="interviewDate", placeholder="dd/mm/yyyy", ng-model="personnelWorkflow.interviewDate", ui-validate=" 'validateDate($value)' ")
+      p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.interviewDate.$error.validator') {{ dateValidationMessage }}
+    .col-md-9
+      input.form-control(type="text", ng-model="personnelWorkflow.interviewConductedBy")

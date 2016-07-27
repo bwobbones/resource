@@ -1,0 +1,38 @@
+.panel-body
+  .col-md-12
+    div(ng-controller="PersonnelRoleCtrl")
+      div(ng-show="!hasRoles()")
+        span#noRoles No roles have been entered&nbsp;
+        span
+          a#addRoleButton(href="", ng-click="updateRole()", ng-show="pForm.$valid") - add a role
+      div(ng-show="hasRoles()")
+        .row
+          .table-responsive
+            table.table.table-striped.table-bordered.table-hover#roleTable
+              thead
+                tr
+                  th Job Title
+                  th Project
+                  th Period
+                  th End Date
+                  th Delete
+              tbody
+                tr(ng-repeat="role in form.roles | orderBy:sortByRoleEnd:true", ng-show="!role.deleted")
+                  td(id="roleName-{{role.roleName}}",ng-click="updateRole(role._id)") {{role.roleName}}
+                  td(ng-click="updateRole(role._id)")
+                    table.table.table-bordered
+                      tr(ng-repeat="project in role.projects")
+                        td.col-md-4
+                          span {{project.text}}
+                        td.col-md-4
+                          span(ng-repeat="projectEx in project.projectExperience track by $index")
+                            span.label.label-primary(id="{{projectEx}}", style="padding:5px;margin:5px;float:left;",tooltip-placement="top",tooltip="{{projectMappings[projectEx].fullName}}") {{projectMappings[projectEx].abbreviation}}
+                        td.col-md-4
+                          span(ng-repeat="phase in project.phaseExperience")
+                            span.label.label-info(id="{{phase}}", style="padding:5px;margin:5px;float:left;",tooltip-placement="top",tooltip="{{phaseMappings[phase].fullName}}") {{phaseMappings[phase].abbreviation}}
+                  td.yearsPerformed(ng-click="updateRole(role._id)") {{role.yearsPerformed}}
+                  td(ng-click="updateRole(role._id)") {{ role.endDate }}
+                  td
+                    i.fa.fa-2x.fa-times(id="deleteRoleMessageBox-{{role.roleName}}",ng-click="openDeleteRoleMessageBox(role._id, role.roleName)")
+        .row
+          a.pull-right#addRoleButton(href="", ng-click="updateRole()") Add more roles...

@@ -1,0 +1,46 @@
+div
+  .modal-header
+    h3#personnelModalHeader {{ personnel.surname }}, {{ personnel.name }}
+  .modal-body
+    .row
+      .col-md-12
+        .form-group
+          .col-md-2
+            strong Available Date
+          .col-md-4
+            p {{ personnel.availabledate || '&nbsp;' }}
+          .col-md-2
+            strong Date of Birth
+          .col-md-4
+            p {{ personnel.dateofbirth || '&nbsp;' }}
+
+        .form-group
+          .col-md-2
+            strong Preferred Name
+          .col-md-4
+            p {{ personnel.preferredname || '&nbsp;' }}
+          .col-md-2
+            strong Referrer
+          .col-md-4
+            p {{ personnel.referrer || '&nbsp;' }}
+
+        .form-group
+          .col-md-2
+            strong Project
+          .col-md-4
+            p {{ personnel.project || '&nbsp;' }}
+          .col-md-2
+            strong Employed?
+          .col-md-4
+            p {{ personnel.currentlyemployed ? 'Yes' : 'No' }}
+
+        .form-group
+          .col-md-2
+            strong Notice Period
+          .col-md-4
+            p {{ personnel.noticeperiod || '&nbsp;' }}
+  .modal-footer
+    a(ui-sref="personnel.editPersonnel({id: personnel._id})", target="_blank")
+      button.btn.btn-primary.editPersonnelButton(ng-click="editPersonnel()") Edit
+    span &nbsp;
+    button.btn.btn-warning.okPersonnelModal(ng-click="cancel()") Ok

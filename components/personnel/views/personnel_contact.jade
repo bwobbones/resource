@@ -1,0 +1,67 @@
+.panel-body
+  .col-md-12
+    div(ng-controller="PersonnelContactCtrl")
+      .col-md-6
+        h4 Home Contact Details
+        .well
+          .row
+            .form-group
+              label.col-md-2.control-label(for='form.hcaddress') Home Address
+              .col-md-9
+                input.form-control(id='hcaddress-typeahead' , ng-model='form.hcaddress', type='text',
+                  ng-model-options='{ debounce: 500 }', name='form.hcaddress',
+                typeahead="address.name for address in getAddress($viewValue) | filter:$viewValue",
+                typeahead-on-select="updateHomeAddress($item)", typeahead-loading="loadingAddress", autocomplete="off")
+              .col-md-1
+                i.icon-refresh(ng-show="loadingAddress")
+
+            .form-group
+              label.col-md-2.control-label(for='form.hchomephone') Home
+              .col-md-4
+                input.form-control(ng-model='form.hchomephone', type='text', name='form.hchomephone')
+              label.col-md-2.control-label(for='form.hcmobile') Mobile
+              .col-md-4
+                input.form-control(ng-model='form.hcmobile', type='text', name='form.hcmobile')
+
+            .form-group
+              label.col-md-2.control-label(for='form.hcemail') Email
+              .col-md-4
+                .input-group
+                  input.form-control(ng-model='form.hcemail', type='text', name='form.hcemail')
+                  span.input-group-btn
+                    button.btn.btn-primary(type='button', ng-click='sendMail()')
+                      i.fa.fa-envelope
+              label.col-md-2.control-label(for='form.nearestairport') Nearest Airport
+              .col-md-4
+                input.form-control(ng-model='form.nearestairport', type='text', name='form.nearestairport')
+
+            .row#homeMap(ng-if="tabPane.active && form.homeLocation && form.hcaddress !== ''")
+              .col-md-12
+                ui-gmap-google-map(control="homeMap.control", center='homeMap.center', zoom='homeMap.zoom', draggable='true')
+                  ui-gmap-marker(idKey="1", coords='homeMap.center')
+
+      .col-md-6
+        h4 Host Contact Details
+        .well
+          .row
+            .form-group
+              label.col-md-2.control-label(for='form.hsaddress') Host Address
+              .col-md-9
+                input.form-control(ng-model='form.hsaddress', ng-model-options='{ debounce: 500 }', type='text',
+                name='form.hsaddress', typeahead="address.name for address in getAddress($viewValue) | filter:$viewValue",
+                typeahead-on-select="updateHostAddress($item)", typeahead-loading="loadingAddress", autocomplete="off")
+              .col-md-1
+                i.icon-refresh(ng-show="loadingAddress")
+
+            .form-group
+              label.col-md-2.control-label(for='form.hshomephone') Home
+              .col-md-4
+                input.form-control(ng-model='form.hshomephone', type='text', name='form.hshomephone')
+              label.col-md-2.control-label(for='form.hsmobile') Mobile
+              .col-md-4
+                input.form-control(ng-model='form.hsmobile', type='text', name='form.hsmobile')
+
+            .row#hostMap(ng-if="tabPane.active && form.hostLocation && form.hsaddress !== ''")
+              .col-md-12
+                ui-gmap-google-map(control="hostMap.control", center='hostMap.center', zoom='hostMap.zoom', draggable='true')
+                  ui-gmap-marker(idKey="2", coords='hostMap.center')

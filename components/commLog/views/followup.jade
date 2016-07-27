@@ -1,0 +1,47 @@
+div
+  .modal-header
+    .row
+      .col-md-12
+        h3#commLogTitle Add a Followup
+  .modal-body
+
+    form(name="followupForm")
+
+      .row
+        .col-md-12
+          p Adding a followup for History Log at {{commLog.dateEntered}}
+          p
+            i#commLogMessage {{followupMessage}}
+
+      .row
+        .col-md-3
+          h5 Date Due
+        .col-md-3
+          h5 Contact
+        .col-md-3
+          col-md-
+            h5 Followup Type
+              col-md-(ng-show="showShortcut") ({{shortcutKey}})
+
+      .row
+        .col-md-3
+          input.form-control(ng-model='followup.dateDue', type='text', name='followup.dateDue', date-time-validation='')
+          p.text-error(ng-show="followupForm.$error.dateTimeValidation") Make sure the date format is DD/MM/YYYY HH:MM
+        .col-md-3
+          select.form-control(chosen="", ng-model="followup.contact", name="followup.contact", ng-options="u.username for u in contacts")
+        .col-md-3
+          .btn-group
+            button.btn.btn-default(type="button", ng-model="followup.type", btn-radio="'Email'", name="followup.typeEmail", ng-mouseenter="hoverIn('e')", ng-mouseleave="hoverOut()") Email
+            button.btn.btn-default(type="button", ng-model="followup.type", btn-radio="'Phone'", name="followup.typePhone", ng-mouseenter="hoverIn('p')", ng-mouseleave="hoverOut()") Phone
+
+      .row
+        .col-md-12
+          h5 Comment
+
+      .row
+        .col-md-12
+          textArea(ng-model='followup.message', name="followup.message", rows="6", style='width: 100%')
+
+  .modal-footer
+    button.btn.btn-primary.okFollowup(ng-class="{disabled: followupForm.$error.dateTimeValidation}", ng-click="addFollowupToCommLog(followupForm)") Ok
+    button.btn.btn-warning(ng-click="cancel()") Cancel

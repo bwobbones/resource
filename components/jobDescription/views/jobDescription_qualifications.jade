@@ -1,0 +1,54 @@
+.row
+
+  .form-group
+    .col-md-2
+      label(for='form.projectExperience') Project Experience
+    .col-md-4
+      select.form-control(id='jobProjectExperience', ui-select2, multiple, ng-model="form.projectExperience", name="form.projectExperience")
+        option(value="offOG") Offshore Oil & Gas
+        option(value="onOG") Onshore Oil & Gas
+        option(value="fpso") FPSO
+        option(value="lng") LNG
+        option(value="eeha") EEHA
+        option(value="other") Other
+        
+    .col-md-3 &nbsp;
+    .col-md-3
+      button.btn.btn-primary(type="button", ng-click="addQualification()") Add Qualification
+  
+  .form-group
+    .col-md-2
+      label(for='form.phaseExperience') Phase Experience
+    .col-md-4
+      select.form-control(id='jobPhaseExperience', ui-select2, multiple, ng-model="form.phaseExperience", name="form.phaseExperience")
+        option(value="administration") Administration
+        option(value="engineering") Engineering
+        option(value="procurement") Procurement
+        option(value="construction") Construction
+        option(value="installation") Installation
+        option(value="commissioning") Commissioning
+        option(value="opsmaint") Operations & Maintenance
+        option(value="decommissioning") Decommissioning
+        option(value="shutdown") Shutdown
+  
+div(ng-show="form.qualifications.length > 0")
+  .row
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead
+          tr
+            th Qualification
+            th Expiry Date
+            th Required?
+            th Remove
+        tbody
+          tr(ng-repeat="qualification in form.qualifications")
+            td
+              input.form-control(ng-model='qualification.name', type='text', name='qualification.name', typeahead="q.name for q in typeAhead('qualification', $viewValue) | orderBy:'name'", typeahead-loading="loadingQualification", autocomplete='off')
+            td(ng-class="{'has-error': dateValidationMessage}")
+              input.form-control(name="expiryDate", placeholder="dd/mm/yyyy", ng-model="qualification.expiryDate", ui-validate=" 'validateDate($value)' ")
+              p.help-block.text-danger#dateErrorMessage(ng-show='dateValidationMessage') {{ dateValidationMessage }}
+            td
+              input.checkbox(ng-model='qualification.mandatory', type='checkbox', name='qualification.mandatory')
+            td
+              i.i.fa.fa-2x.fa-times(href="", ng-click="deleteQualification(qualification.name)")

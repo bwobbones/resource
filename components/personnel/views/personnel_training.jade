@@ -1,0 +1,31 @@
+.panel-body    
+  .col-md-12
+   div(ng-controller="PersonnelQualificationCtrl")
+        div.row 
+          .col-md-4.pull-left-md
+            h3 Training
+          .col-md-8
+            button.btn.btn-primary.pull-right#addTrainingButton(type="submit", ng-click="addTraining()") Add Training
+        div.row 
+          br  
+        div.header-concat(ng-show="!hasTrainings()")
+          span#noTrainings No training&nbsp;
+        div(ng-show="hasTrainings()")
+          .row
+            .table-responsive
+              table.table.table-striped.table-bordered.table-hover#trainingTable
+                thead
+                  tr
+                    th Name
+                    th Date Obtained
+                    th Certificate #
+                    th Institution
+                    th Delete
+                tbody
+                  tr(ng-repeat="training in form.trainings", ng-show="!training.deleted")
+                    td(id="trainingName-{{training.name}}", ng-click="editTraining(training._id)") {{training.name}}
+                    td(ng-click="editTraining(training._id)") {{training.dateObtained | date: 'd/MM/yyyy'}}
+                    td(ng-click="editTraining(training._id)") {{training.certificateNumber}}
+                    td(ng-click="editTraining(training._id)") {{training.institution}}
+                    td
+                      i.fa.fa-2x.fa-times.deleteTraining(id="deleteTrainingMessageBox-{{training.name}}",ng-click="openDeleteTrainingMessageBox(training._id, training.name)")

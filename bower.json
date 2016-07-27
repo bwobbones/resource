@@ -1,0 +1,73 @@
+{
+  "name": "resource",
+  "version": "0.0.7",
+  "main": "app.js",
+  "authors": [
+    "Greg Lucas-Smith"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "angular": "1.3.10",
+    "angular-animate": "1.3.10",
+    "angular-mocks": "1.3.10",
+    "angular-scenario": "1.3.10",
+    "angular-sanitize": "1.3.10",
+    "angular-bootstrap": "0.12.1",
+    "angular-ui-router": "0.2.13",
+    "angular-ui-utils": "0.2.1",
+    "angular-toastr": "1.6.0",
+    "bootstrap": "3.3.1",
+    "bootswatch": "3.3.1",
+    "fontawesome": "4.2.0",
+    "d3": "3.3.13",
+    "file-saver": "latest",
+    "moment": "2.9.0",
+    "ng-file-upload": "9.0.13",
+    "ObjectId.js": "https://github.com/justaprogrammer/ObjectId.js.git",
+    "underscore": "1.5.2",
+    "angular-google-maps": "2.0.12",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
+    "angular-chosen-localytics": "~1.0.6",
+    "angular-ui-select2": "~0.0.5",
+    "ng-Fx": "1.0.5",
+    "angular-loading-bar": "~0.6.0",
+    "select2-bootstrap-css": "1.3.1",
+    "lodash": "3.5.0",
+    "angular-bootstrap-datetimepicker": "~0.3.8",
+    "angular-date-time-input": "~0.1.0",
+    "angular-smart-table": "~1.4.5",
+    "angular-local-storage": "~0.2.2",
+    "metisMenu": "~2.0.3",
+    "angular-aside": "~1.1.3",
+    "open-sans": "~1.1.0",
+    "angular-jwt": "~0.0.9"
+  },
+  "resolutions": {
+    "bootstrap": "3.3.1",
+    "angular": "1.3.10",
+    "lodash": "3.5.0",
+    "ng-file-upload": "9.0.13",
+    "moment": "^2.10.6"
+  },
+  "overrides": {
+    "file-saver": {
+      "main": "FileSaver.js"
+    },
+    "ObjectId.js": {
+      "main": "src/main/javascript/Objectid.js"
+    },
+    "chosen": {
+      "main": "chosen.jquery.js"
+    },
+    "angular-date-time-input": {
+      "main": "src/dateTimeInput.js"
+    }
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Delete Job Description
+  .modal-body
+    p Are you sure you want to delete {{position}}?
+  .modal-footer
+    button.btn.btn-primary#okDeleteJobDescription(ng-click="deleteJobDescription()") Ok
+    button.btn.btn-warning#cancelDeleteJobDescription(ng-click="cancel()") Cancel

@@ -1,0 +1,26 @@
+div
+
+  form.form-inline(name="personnelWorkflowForm", novalidate="", role="form")
+
+    .modal-header
+      .row
+        .col-md-12
+          h3#workflowState {{ currentTitle }}
+    .modal-body
+
+      .row
+        .col-md-12(ng-include="currentTemplate")
+
+      .row
+        .col-md-12
+          h5 Comment
+
+      .row
+        .col-md-12
+          textArea(ng-model='personnelWorkflow.comments', name="personnelWorkflow.comments", rows="6", style='width: 100%', ng-mouseenter="hoverInMessage('(space)')", ng-mouseleave="hoverOut()")
+
+    .modal-footer
+      button.btn.btn-default.pull-left#previousButton(ng-click="revertWorkflow()", ng-show="previousStateName", ng-disabled="personnelWorkflowForm.$invalid") Back to {{ previousStateName }}
+      button.btn.btn-danger#cancelButton(ng-click="notProgressing()", ng-disabled="personnelWorkflowForm.$invalid") Not Progressed
+      button.btn.btn-warning#saveButton(ng-click="saveWorkflow()", ng-disabled="personnelWorkflowForm.$invalid") In Progress
+      button.btn.btn-primary#nextButton(ng-click="progressWorkflow()", ng-show="nextStateName", ng-disabled="personnelWorkflowForm.$invalid") Progress to {{ nextStateName }}

@@ -1,0 +1,25 @@
+div
+  .modal-header
+    .row
+      .col-md-12
+        h3#noteTitle Note for {{personnelData.name}} {{personnelData.surname}}
+  .modal-body
+
+    .row
+      .col-md-4
+        h5 Date Entered
+
+    .row
+      .col-md-4
+        input.form-control(ng-model='note.dateEntered', type='text', name='note.dateEntered')
+    .row
+      .col-md-12
+        h5 Comment {{shortcutKeyMessage}}
+
+    .row
+      .col-md-12
+        textArea(ng-model='note.message', name="note.message", rows="6", style='width: 100%', ng-mouseenter="hoverInMessage('(space)')", ng-mouseleave="hoverOut()")
+
+  .modal-footer
+    button.btn.btn-primary.okCommLogDone(ng-click="addNote()") Ok
+    button.btn.btn-warning(ng-click="cancel()") Cancel

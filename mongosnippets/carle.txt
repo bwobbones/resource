@@ -1,0 +1,438 @@
+{
+    "_id" : ObjectId("53f14860e0f3deead4b17874"),
+    "files" : [],
+    "name" : "Carle",
+    "surname" : "Green",
+    "dateofbirth" : "24/8/78",
+    "currentlyemployed" : true,
+    "project" : "PTTEP",
+    "hcaddress" : "1C Hallin Court, Ardross WA 6153, Australia",
+    "homeLocation" : {
+        "lat" : -32.024939,
+        "lng" : 115.839067
+    },
+    "hcmobile" : "0420619369",
+    "hcemail" : "carle_green@yahoo.co.uk",
+    "nearestairport" : "Perth, WA",
+    "emergency1" : {
+        "name" : "Jennie Green",
+        "relationship" : "Wife",
+        "phone" : "0424146803",
+        "mobile" : "0424146803",
+        "email" : "jennieannegreen@yahoo.com",
+        "address" : "1C Hallin Court, Ardross WA 6153, Australia"
+    },
+    "emergency2" : {
+        "name" : "Terence Green",
+        "relationship" : "Father",
+        "address" : "15 The Laurels, Mangotsfield, Bristol, BS19 9BS UK",
+        "email" : "Gange_2@yahoo.co.uk",
+        "mobile" : "+447796984336",
+        "phone" : "+441179047915"
+    },
+    "affiliations" : [ 
+        {
+            "name" : "Chartered Institute of Management Accountants (CIMA)",
+            "level" : "Associate",
+            "_id" : {
+                "timestamp" : 1408329056,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 0
+            }
+        }, 
+        {
+            "name" : "Association of Accounting Technicians (AAT)",
+            "_id" : {
+                "timestamp" : 1408329082,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 3
+            }
+        }, 
+        {
+            "name" : "BTEC National Certificate in Business and Finance",
+            "_id" : {
+                "timestamp" : 1408329086,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 4
+            }
+        }
+    ],
+    "roles" : [ 
+        {
+            "useGoogle" : true,
+            "roleName" : "Head of Montara project Cost Control Group",
+            "client" : "PTTEP AA",
+            "startDate" : "29/10/12",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Montara Venture FPSO",
+                    "text" : "Montara Venture FPSO",
+                    "location" : {
+                        "name" : "Perth, Western Australia"
+                    },
+                    "projectExperience" : [ 
+                        "onOG"
+                    ],
+                    "phaseExperience" : [ 
+                        "administration"
+                    ]
+                }
+            ],
+            "_id" : {
+                "timestamp" : 1408329834,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 5
+            },
+            "yearsPerformed" : "29/10/2012 to current"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Project Manager, Enterprise Infrastructure Fund (EIF)",
+            "client" : "Curtin University",
+            "startDate" : "10/3/12",
+            "endDate" : "30/4/12",
+            "responsibilities" : "Application for government infrastructure funding for the WA School of Mines.",
+            "_id" : {
+                "timestamp" : 1408329966,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 8
+            },
+            "yearsPerformed" : "2 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Head of Finance and Cost Control",
+            "client" : "Maersk & Woodside",
+            "startDate" : "10/10/10",
+            "endDate" : "30/6/11",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Ngujima-Yin  M60",
+                    "text" : "Ngujima-Yin  M60",
+                    "location" : {
+                        "name" : "Perth, Western Australia"
+                    },
+                    "projectExperience" : [ 
+                        "onOG", 
+                        "fpso"
+                    ],
+                    "phaseExperience" : [ 
+                        "commissioning"
+                    ]
+                }
+            ],
+            "responsibilities" : "Due to a fire on Maersk’s Ngujima-Yin FPSO (Floating Production Storage and Offloading) Vessel in April 2009 in the Vincent Field in North West Australia, upon which Maersk are contracted for the production of Oil and Gas for Woodside, a project team (up to 75 onshore staff) was set up to manage the completion of repairs for a project estimated to cost c.$170m.\n\nDue to a number of problems with financial controls and reporting, as well as insurance recovery issues; engaged by the Project Manager mid-way through the project in October 2010 to lead the Finance Function and Insurance Claim through to the end of the project (anticipated late 2011).\n\nFurthermore in July 2011 promoted into the role of Project Services Manager with additional responsibility for Project Management, Procurement and Planning, incorporating the project close out.\n\nLeading a team of up to ten staff the management of this engagement involved the following:\n•\tAssessment of Project Finance Team structure and roles, including restructure in line with business needs.\n•\tDesign and creation of management reports for project and maintenance financials versus budget and forecasts to completion. Further design of reporting for personnel on board (POB) vessel to be used as a key driver in cost allocation. Implementation of robust monthly and weekly reporting cycles.\n•\tResponsibility for c.$150m Insurance Claim including provision of claims to loss adjusters and the related negotiation of claims with loss adjusters and underwriters alongside group insurance.\n•\tSetting of strong financial controls and processes for project costs and procurement, to minimise exposure to unexpected costs and aid effective forecasting.\n•\tProject manpower planning across all functions to ensure skills in place to effectively execute to strict project timescales. Further planning to ensure effective close out of project and minimise project costs.\n•\tNegotiation and set up of procurement contracts with external vendors including labour, logistics and procurement.\n•\tMonthly reporting direct to Global FPSO Chief Executive Officer and Finance Director of project results, insurance recovery and forecasts.\n•\tLead external independent audit team in audit of project costs from inception to ensure correct accounting and cost allocation to satisfy insurance requirements.\n•\tAnalysis and reporting of project delays and related financial impacts.\n•\tLed the creation of project labour database incorporating all project man hours to enable effective cost allocation of labour costs between the M60 Project, Operations and Maintenance, as well as meet insurers and loss adjusters requirements.",
+            "_id" : {
+                "timestamp" : 1408345067,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 13
+            },
+            "yearsPerformed" : "9 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Review of Procurement Function",
+            "client" : "Charles Darwin University",
+            "startDate" : "10/5/10",
+            "endDate" : "30/9/10",
+            "responsibilities" : "At Charles Darwin University (CDU) I was engaged to lead a review of the Procurement Function with a view to providing advice on the business model, departmental structure, improvements to maximise efficiency and to identify savings opportunities. The management of this engagement involved the following:\n\n•\tAnalysis and assessment of current position including;\no\tReview of existing service delivery model; structure, policies, processes and methods\no\tInterview key stakeholders across the business to clarify any issues with current business model\no\tConduct workshop with business managers to identify opportunities for improvements\no\tAnalysis of spend data; trends, costs by spend categories and by supplier, on contract versus off contract spend\no\tBenchmark comparison versus best practice in sector\n•\tPreparation of detailed report to provide recommendations on:\no\tService delivery model, evaluation of options and assessment of which model best meets business needs\no\tAnalysis of strengths and weaknesses of current model, methods and processes\no\tIdentification of opportunities for savings and advice on how to implement\no\tOptimum structure, position specific with overview on responsibilities and levels of authority, and advice on succession planning\no\tKPI’s and reporting; improvements to current reporting framework to optimise performance and identify opportunities for cost savings\no\tContinually implementing and communicating strong governance framework\n\nThe review of CDU’s procurement function identified a number of significant improvement opportunities and the potential for substantial initial savings anticipated at $2.6m pa.",
+            "_id" : {
+                "timestamp" : 1408345138,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 14
+            },
+            "yearsPerformed" : "5 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Project Manager, Research Administration Project, Project Management",
+            "client" : "Edith Cowan University",
+            "startDate" : "15/6/12",
+            "endDate" : "10/8/12",
+            "responsibilities" : "Project management of nine different streams of work including system selection and improvements, process improvements, organisation structure improvements and website redesign",
+            "_id" : {
+                "timestamp" : 1408345700,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 21
+            },
+            "yearsPerformed" : "2 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "_id" : {
+                "timestamp" : 1408345854,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 23
+            },
+            "yearsPerformed" : "",
+            "deleted" : true
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Project Accountant (Contract Role)",
+            "client" : "Rio Tinto",
+            "startDate" : "30/6/6",
+            "endDate" : "30/8/6",
+            "responsibilities" : "Rio Tinto is a world leader in finding, mining and processing mineral resources. I worked for the Pilbara Iron Division within Capital Accounting based at Head Office in Perth where the annual turnover was $5.9bn AUD and the balance sheet value of assets was $5.4bn AUD.\nI played the lead role in an the 2006 asset verification project for all assets with a written down value of under $100k AUD, the assets comprised a total 64,200 assets with a written down value of $484m AUD.\nKey focus of the role involved the co-ordination of senior operational staff to drive the planning and management of asset verification audits. Much of my role was spent on site planning and managing audits through to completion and sign off ensuring that SOX 404 requirements were adhered to.\n\nResponsibilities:\n\n•\tDesign and preparation of asset verification audit listings, through download of asset details from SAP to creation of user friendly and manageable spreadsheets for operational management\n•\tDesign and communication of planning schedule for completion of audits, the drive for completion of strict weekly targets and weekly reporting of achievements against plan\n•\tAttendance on site to manage audits through to completion, providing training, advice and guidance and performing of random checks to ensure accuracy\n•\tIdentification and revision of unsuitable asset life disposal depreciation periods\n•\tIdentification of exceptional disposal levels and problematic areas identified in audits including investigation and reporting of specific circumstances\n•\tDetailed analysis and reporting of audit results by site, division and function to comply with SOX404 internal control requirements\n\nKey Achievements Include:\n\n•\tSuccessful management and completion of project - two months ahead of schedule\n•\tIdentification of need for specific asset disposal procedure through to the design and roll out of this procedure throughout Pilbara Iron, identifying specific guidelines and requirements for disposals as no specific procedures were in place\n•\tDesign and implementation of new reports to undertake asset verification audits and as a framework for future use",
+            "_id" : {
+                "timestamp" : 1408346622,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 27
+            },
+            "yearsPerformed" : "2 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Finance Manager",
+            "client" : "University of Bristol",
+            "startDate" : "12/1/2003",
+            "endDate" : "6/5/2005",
+            "responsibilities" : "As part of the senior management team I managed the finance function within the School for Policy Studies where the annual income and expenditure budget was £5.8m GBP, leading a team of eight staff.\n\nResponsibilities:\n\n•\tPreparation of detailed monthly management accounts with variance analysis and commentary.\n•\tProvision of financial guidance and advice as a member of departmental management team, research committee and school board\n•\tChairman of departmental IT committee, including implementation and design of an appropriate information systems strategy for the department\n•\tProvide financial and research information for departmental five-year plan and University ten-year plan.\n•\tRepresent department in negotiations with senior University management in setting of annual budget.\n•\tResponsibility for setting of departmental salary and revenue budgets and ensuring all contractual staff provided with correct employment contracts\n•\tPreparation of business plans, for new and existing teaching programmes and other activities as necessary\n•\tCosting and pricing of all departmental research projects, consultancy proposals and other activities, including negotiation with potential funders and advice on completion of proposals\n\nKey Achievements Include:\n\n•\tWhen initially joining the School for Policy Studies no detailed financial reporting existed, I set up a detailed management accounting reporting system with variance analysis and commentary\n•\tLead role in the selection and implementation of new internal finance system to manage all of the department’s finances\n•\tSetting of sound financial controls and appropriate audit trails throughout the finance function",
+            "_id" : {
+                "timestamp" : 1408346793,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 30
+            },
+            "yearsPerformed" : "2 years"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Accountant",
+            "client" : "KONE plc, Elevator Control Manufacturing Division",
+            "startDate" : "18/6/2001",
+            "endDate" : "31/10/2002",
+            "responsibilities" : "Kone plc is a global manufacturer and service provider in the elevator and escalator industry. In my role as accountant I formed part of the senior management team, I led and managed a finance team of five staff with an annual turnover of £12m GBP.\n\nResponsibilities:\n•\tFinancial control of Bristol manufacturing business unit's accounts and finances\n•\tPrepare and interpret monthly management accounts with variance analysis, analysing by product type and geographical sales location\n•\tManagement of capital and revenue expenditure budgets\n•\tInvestment appraisals for capital expenditure\n•\tMaintain fixed asset register\n•\tPrepare annual profit & loss and capital budgets for approval at head office\n•\tSetting and maintenance of business unit transfer pricing structures, including detailed costing for materials, labour and overheads\n•\tPrepare business plans in conjunction with design staff for new product launches\n•\tManagement of work in progress cost allocation\n•\tManagement of sales invoicing function and divisional payroll information\n•\tResponsibility for preparation of mid-range financial forecasts for three-year period\n•\tSetting and review of business controls to ensure effective systems and procedures in operation\n\nKey Achievements Include:\n\n•\tAs the first financial manager employed to work at this division my proudest achievement was the implementation of detailed management accounting reporting and budgeting processes\n•\tI also prepared detailed product profitability analysis in order to determine the profitability levels of the various products. This was also used to establish sales prices and to determine the best product mixes\n•\tLead role in applying for The Queen’s Award for Enterprise: International Trade 2002. We were successful in being awarded this prestigious award. This was a significant achievement as in over ten years of applying this was the first success",
+            "_id" : {
+                "timestamp" : 1408346872,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 31
+            },
+            "yearsPerformed" : "a year"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Assistant Faculty Accountant",
+            "client" : "University of Bristol",
+            "startDate" : "20/5/2000",
+            "endDate" : "27/6/2001",
+            "responsibilities" : "My role as Assistant Faculty Accountant was based in the Finance Department where as part of a faculty team we managed an annual income and expenditure budget of £70m GBP.\n\n•\tProvide financial management service to Faculty’s of Engineering, Law, Science and Social Science\n•\tManage five members of staff, including their training, development and appraisal\n•\tProduction of monthly management accounts with commentary and variance analysis\n•\tPrepare monthly reconciliation between management accounts and financial operating statement\n•\tPrepare annual budgets and monthly forecasting information\n•\tProvide detailed costing information for research and consultancy work tenders\n•\tReconcile monthly movements on reserves\n•\tEnsure tight deadlines met as a team and individually\n•\tTrain and co-ordinate budget managers, many of who had no previous financial experience\n•\tAct as a mentor to staff studying for financial qualifications",
+            "_id" : {
+                "timestamp" : 1408346955,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 32
+            },
+            "yearsPerformed" : "a year"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Finance Assistant",
+            "client" : "University of Bristol",
+            "startDate" : "18/8/99",
+            "endDate" : "3/5/2000",
+            "responsibilities" : "My role as Finance Assistant was based in the Finance Department where I reported to the Faculty Accountant. As part of a faculty team we managed an annual income and expenditure budget of £70m GBP.\n\n•\tManagement of all research, consultancy and other accounts for departments of Medicine, Pathology and Microbiology\n•\tMonitoring of expenditure levels in relation to budget, ensuring operation in accordance with funding regulations, producing variance analysis and raise invoices as necessary\n•\tProduction of financial reports and forecasts, both regular and ad-hoc for senior finance staff, budget managers, sponsors and customers\n•\tAuthorisation of funding requests for personnel appointments, contract extensions, advertisements and promotions\n•\tDealing with queries from departments, sponsors and customers as necessary",
+            "_id" : {
+                "timestamp" : 1408346997,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 33
+            },
+            "yearsPerformed" : "9 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "newProject" : "",
+            "roleName" : "Assistant Accountant",
+            "client" : "BCH Vehicle Management",
+            "startDate" : "14/9/98",
+            "endDate" : "31/7/99",
+            "responsibilities" : "My role at BCH was based in the accounts department where I reported to the Management Accountant. BCH at that time had an annual turnover of £7m GBP.\n\n•\tPrepare monthly management accounts\n•\tManage and maintain fixed asset register\n•\tBank reconciliations and cashbook maintenance\n•\tOversee maintenance of purchase and sales ledgers\n•\tBudgeting and forecasting\n•\tCo-ordinate maintenance of in-house accounts reporting system\n•\tManagement of capital expenditure budgets",
+            "_id" : {
+                "timestamp" : 1408347062,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 34
+            },
+            "yearsPerformed" : "11 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Ice Hockey Coach and Course Co-Ordinator",
+            "client" : "Ice Hockey Training Institute, Toronto, Canada",
+            "startDate" : "16/9/97",
+            "endDate" : "31/8/98",
+            "responsibilities" : "My role at the Ice Hockey Training Institute was undertaken in addition to playing semi-professional ice hockey in Shelburne, Ontario. I supervised and co-ordinated ice hockey youth development programmes as well as playing ice hockey.",
+            "_id" : {
+                "timestamp" : 1408347166,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 35
+            },
+            "yearsPerformed" : "a year"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Budgetary Control Officer",
+            "client" : "United Bristol Healthcare Trust",
+            "startDate" : "12/1/96",
+            "endDate" : "7/9/97",
+            "responsibilities" : "My role at UBHT was based in the management accounts department at trust HQ where I assisted the management accountant in the preparation, maintenance and monitoring of management accounts and budgets.",
+            "_id" : {
+                "timestamp" : 1408347215,
+                "machine" : 10493748,
+                "pid" : 27642,
+                "increment" : 36
+            },
+            "yearsPerformed" : "2 years"
+        }, 
+        {
+            "useGoogle" : true,
+            "client" : "Fremantle Port Authority",
+            "startDate" : "14/2/10",
+            "endDate" : "30/5/10",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Due Diligence Project - Optimisation of Export Shipping at Kwinana Bulk Terminal",
+                    "text" : "Due Diligence Project - Optimisation of Export Shipping at Kwinana Bulk Terminal",
+                    "location" : {
+                        "name" : "Perth, Western Australia"
+                    },
+                    "projectExperience" : [ 
+                        "other"
+                    ]
+                }
+            ],
+            "responsibilities" : "Fremantle Port Authority had excess shipping capacity at the Kwinana Bulk Terminal due to current customers under-utilising contracted capacity. With four proponents looking to secure capacity Deloitte was engaged along with AECOM (technical port handling advice) to provide advice on the best use of the terminal and to evaluate the four proponents to identify the best strategic fit. The project management of this engagement involved the following:\n\n•\tClear identification of Fremantle Port Authority’s strategic direction. Understanding business needs and operations. Establish selection criteria and ranking of criteria on which to measure proponents\n•\tPreparation of information request in order to assess proponent’s project finances and financial positions. Issue to proponents and meet with each to allow presentation of information on financial positions (current and forecast), business plans and related models\n•\tDetailed analysis of proponent’s financial positions, including evaluation of market data, financial business plans and models to provide a detailed understanding of the proponent’s respective current and forecast financial positions. Including evaluation of funding sources for projects and risk implications. This being in order to provide confidence in negotiating export terms with respective proponents for long term contracts\n•\tPreparation of final report for Fremantle Port Authority evaluating proponent’s project finances and financial positions. Assessment of proponent’s positions versus selection criteria, evaluation of proponent’s ability to enter into long term contracts and ability to provide guarantees. Provision of recommendations on proponent’s positions and related risk implications. Recommendation on best proponents to offer capacity and terms on which to begin negotiations",
+            "_id" : {
+                "timestamp" : 1408406414,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 1
+            },
+            "yearsPerformed" : "4 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Project Controls Manager",
+            "client" : "Maersk & Woodside",
+            "startDate" : "16/7/11",
+            "endDate" : "6/1/12",
+            "newProject" : "",
+            "projects" : [ 
+                {
+                    "id" : "Ngujima-Yin  M60",
+                    "text" : "Ngujima-Yin  M60",
+                    "location" : {
+                        "name" : "Perth, Western Australia"
+                    },
+                    "projectExperience" : [ 
+                        "onOG", 
+                        "fpso"
+                    ],
+                    "phaseExperience" : [ 
+                        "commissioning"
+                    ]
+                }
+            ],
+            "responsibilities" : "Due to a fire on Maersk’s Ngujima-Yin FPSO (Floating Production Storage and Offloading) Vessel in April 2009 in the Vincent Field in North West Australia, upon which Maersk are contracted for the production of Oil and Gas for Woodside, a project team (up to 75 onshore staff) was set up to manage the completion of repairs for a project estimated to cost c.$170m.\n\nDue to a number of problems with financial controls and reporting, as well as insurance recovery issues; engaged by the Project Manager mid-way through the project in October 2010 to lead the Finance Function and Insurance Claim through to the end of the project (anticipated late 2011).\n\nFurthermore in July 2011 promoted into the role of Project Services Manager with additional responsibility for Project Management, Procurement and Planning, incorporating the project close out.\n\nLeading a team of up to ten staff the management of this engagement involved the following:\n•\tAssessment of Project Finance Team structure and roles, including restructure in line with business needs.\n•\tDesign and creation of management reports for project and maintenance financials versus budget and forecasts to completion. Further design of reporting for personnel on board (POB) vessel to be used as a key driver in cost allocation. Implementation of robust monthly and weekly reporting cycles.\n•\tResponsibility for c.$150m Insurance Claim including provision of claims to loss adjusters and the related negotiation of claims with loss adjusters and underwriters alongside group insurance.\n•\tSetting of strong financial controls and processes for project costs and procurement, to minimise exposure to unexpected costs and aid effective forecasting.\n•\tProject manpower planning across all functions to ensure skills in place to effectively execute to strict project timescales. Further planning to ensure effective close out of project and minimise project costs.\n•\tNegotiation and set up of procurement contracts with external vendors including labour, logistics and procurement.\n•\tMonthly reporting direct to Global FPSO Chief Executive Officer and Finance Director of project results, insurance recovery and forecasts.\n•\tLead external independent audit team in audit of project costs from inception to ensure correct accounting and cost allocation to satisfy insurance requirements.\n•\tAnalysis and reporting of project delays and related financial impacts.\n•\tLed the creation of project labour database incorporating all project man hours to enable effective cost allocation of labour costs between the M60 Project, Operations and Maintenance, as well as meet insurers and loss adjusters requirements.",
+            "_id" : {
+                "timestamp" : 1408406756,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 5
+            },
+            "yearsPerformed" : "6 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Finance Manager - Devices",
+            "client" : "Orange Personal Communications Services Ltd",
+            "startDate" : "10/5/2007",
+            "endDate" : "30/11/2009",
+            "responsibilities" : "Orange is a leading global telecommunications provider and one of the top four operators in the UK, Orange is part of the France Telecom Group which has assets in excess of £76bn GBP ($136bn AUD) and an annual turnover of £38bn GBP ($68bn AUD).\nBased within Commercial Finance in the UK, I was responsible for the Financial Management of the Devices Division of the business and for the Analysis of Channel Sales Performance.\nWorking primarily alongside the Director of Devices and the Head of Finance - Sales and Devices, key focus of the role was the provision of strong financial advice and support to enable sound decision making for strategic and day to day decisions and to ensure optimum profitability. Strong focus was on challenging performance and influencing decisions at all levels as well as ensuring maximum return for investment on all Device related marketing activity.\n\nResponsibilities:\n\nDevices - Finance\n\n•\tResponsible for the provision of financial reporting, budget setting, forecasting, analytical insight and financial decision making for the Devices Directorate who were responsible for annual expenditure of £850m GBP ($1.52bn AUD)\n•\tManage the delivery of and present the Monthly Device KPI report to the UK Board of Directors. Co-ordinating inputs from several areas of the business, this covers all financial and non-financial KPI’s for which the Devices Director was accountable\n•\tResponsible for target setting and reporting on monthly device cost performance. Leading of monthly management team meetings, presenting reports and analysing achievements, and setting of quarterly and annual targets to challenge performance and drive costs down\n•\tDevelopment and provision of analytical insight to support optimisation of device range. Including device revenue generation, adoption of multimedia services, device ownership costs, calculation of ROI by device and assessment of differentiation impact for exclusive and colour devices\n•\tDevice Sales Pricing - Development & provision of analysis and advice to support the weekly tactical changing of device selling prices based on factors such as cost price changes, stock availability, cost of ownership, revenue levels and competitors prices. This included in depth analysis of talkplans and promotions\n•\tMinimisation of foreign currency exchange rate risk for device costs by design and implementation of policy on hedging risks and the ongoing management of such risks via financial markets to optimise financial position. Resulted in savings of £45m GBP ($81m AUD) in 2008\n•\tManagement of reporting on manufacturer support funds and supplier credits, £32m GBP ($57m AUD), including review of contracts and analysis of device acquisition figures to ensure optimal financial benefits obtained. Also ensuring the fair distribution of such funds and credits between the consumer and business segments to enable effective analysis of performance\n\nDevices - Marketing\n\n•\tFinance representation on Device Marketing Steering Committee, responsibility for review of all marketing device related business cases including financial review and approval of each. Return on investment analysis; payback, net present value. Annual budget £40m GBP ($72m AUD). Ensuring maximum return on investment and optimising use of marketing funds to maximise increase in customer base\n•\tQuarterly presentation to UK Board of Directors on marketing activities and financial position versus budget, forecast expenditure and associated returns on investment. Analysis of profitability and market impact for previous marketing campaigns\n•\tProactively identify investment opportunities to ensure business meets or exceeds sales targets, identify which products could have the greatest impact and the best marketing channels to promote them and make best use of available funds\n•\tDevelop and drive correct reporting frameworks to enable Device Marketing Assistant to provide business with meaningful, accurate and up to date data\n\n\nChannel Performance\n\n•\tDesign and implementation of Channel Unit Profitability report by Product type (Pre-pay, Postpay, SIM Only) to enable analysis of performance by sales outlet. Including presentation of results at monthly executive management meetings. This involved detailed modelling in Excel to build a solid framework for reporting and analysis\n•\tAuthorisation of monthly revenue share payments to external sales channels, including review of analysis provided versus contractual terms to ensure accuracy\n\nKey Achievements Include:\n\n•\tDesign of Devices Profit and Loss Management Reporting, leading a project team successfully built and implemented a reporting tool with the functionality to drill down to individual device level to assess profitability\n•\tDevice Cost Mix Challenge, led working groups in 2007, 2008 and 2009 to achieve £10.5m - £17m GBP ($18.8m - $30.4m AUD) savings in device cost versus forecast through more cost effective device range and revised sales staff commission structures. This required strong influencing skills and advice on implementation of incentives to influence sales staff behaviour\n•\tDesign and implementation of Channel Unit Profitability Reporting, a new metric I designed to report on sales performance of different sales outlets to drive profitability improvements and influence promotion and investment decisions",
+            "_id" : {
+                "timestamp" : 1408406776,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 6
+            },
+            "yearsPerformed" : "3 years"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Management Accountant (Contract Role)",
+            "client" : "Woodside Energy",
+            "startDate" : "18/8/2006",
+            "endDate" : "26/4/2007",
+            "responsibilities" : "Woodside is Australia’s largest publicly traded oil and gas exploration and production company with a market capitalisation of more than $25bn AUD, an annual turnover of $3.8bn AUD and interests in eleven countries spanning four continents.\n\nWithin the Head Office in Perth I was responsible for the Management Accounting of Corporate Finance with primary focus on Information Technology. I played a key role in financial planning, reporting and analysis activities reporting to director level. Key focus of the role was working closely alongside senior managers to assist them in understanding and managing their budgets, driving consistent and tangible cost savings and financial improvements.\n\nResponsibilities:\n\n•\tLead annual budgeting and quarterly forecasting processes, working alongside functional directors and divisional managers for the departments of Corporate Finance, Taxation, Treasury and Information Technology which have a combined annual budget of $139m AUD. Budgets and forecasts prepared for both costs and recoveries\n•\tResponsibility for preparation of monthly, quarterly and annual profit and loss accounts to relevant accounting standards including consolidation of Corporate Finance results. Reporting to directors and senior business management across a range of financial measures and key performance indicators\n•\tDetailed monthly analysis of Corporate Finance departmental performance, understanding and explaining key variances and trends. Identifying routes for improvements, recommending solutions and driving changes through to completion whilst ensuring a shift of focus from historic to future performance\n•\tRegular finance review meetings to build strong relationships with operational management to review performance, ensure a thorough understanding of costs and drive financial improvements\n•\tFinancial training of new and existing business managers, ensuring a sound understanding of purpose, structure and guidelines for cost management\n•\tFinance lead in monthly departmental management meetings, including regular presentations focusing on performance and future improvements to both Corporate Finance management teams and to senior functional management\n•\tManagement of Corporate Finance service asset cost recoveries, including setting of appropriate tariff rates, selection of appropriate drivers and clearing of residual positions each quarter. Additionally the redesign of Information Technology tariffs and drivers for 2007 ensuring tariffs were simplified yet fair and equitable, tariffs were simplified from fourteen to seven tariffs\n\nKey Achievements Include:\n\n•\tProject leadership in 2007 budget cost reduction process for Information Technology resulting in annual cost reduction of $5.8m AUD versus original budget of $72.3m AUD\n•\tReview and restructuring of Corporate Finance Management Accounts staff roles to implement consistent work practices and standardised reporting frameworks. This involved the design and implementation of new management accounting reports and rolling forecasts\n•\tKey role played in negotiation of SAP software license and maintenance contract, $40m AUD contract over 7 years\n•\tUndertook benchmarking cost comparison review for Information Technology versus leading players in market to target cost reductions and areas for improvement",
+            "_id" : {
+                "timestamp" : 1408406782,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 7
+            },
+            "yearsPerformed" : "8 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Senior Manager – Consulting",
+            "client" : "Deloitte Touche Tohmatsu",
+            "startDate" : "12/2/2010",
+            "endDate" : "30/9/2012",
+            "responsibilities" : "Deloitte is one of the ‘big four’ consulting firms providing audit, consulting, financial advisory, risk management and tax services to clients worldwide.\n\nBased within the Perth office in Australia has worked as a Manager within the Consulting Division providing Finance and Commercial Management expertise to clients in Western Australia. Leading teams on client engagements to ensure client requirements are met and project timelines adhered to.",
+            "_id" : {
+                "timestamp" : 1408407921,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 9
+            },
+            "yearsPerformed" : "3 years",
+            "deleted" : true
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Project Manager, Contract Template and Terms and Conditions Review",
+            "client" : "Woodside",
+            "startDate" : "15/8/2012",
+            "endDate" : "30/9/2012",
+            "responsibilities" : "Review, incorporating review of business contract requirements, redesign and redrafting of contract template structures and associated terms and conditions.",
+            "_id" : {
+                "timestamp" : 1408408035,
+                "machine" : 10493748,
+                "pid" : 27718,
+                "increment" : 10
+            },
+            "yearsPerformed" : "2 months"
+        }, 
+        {
+            "useGoogle" : true,
+            "roleName" : "Finance, Profitability & Analysis (FP&A) Analyst",
+            "client" : "General Electric",
+            "startDate" : "14/5/5",
+            "endDate" : "14/5/6",
+            "responsibilities" : "GE is the second largest company in the world with diverse business interests ranging from Financial Services to Aviation. I worked within the Equipment Services Europe - UK Division where the annual turnover was £45m GBP. I played a key role in financial planning, reporting and analysis activities throughout the business reporting at many levels up to European business leaders. Key focus of the role was working with operational staff at business unit and area management level to drive consistent and tangible cost savings and financial improvements across a range of measures.\n\nResponsibilities:\n\n•\tFinancial management, ownership and preparation of South West, Midlands and Piling business budgets (15 business units) in conjunction with area and business unit managers. £200m GBP assets and £22m GBP turnover. Three annual budget processes: OP, S1 & S2\n•\tResponsibility for preparation of monthly, quarterly and annual profit and loss accounts to relevant accounting standards for mentioned business units including consolidation of area totals and the completion of company total results. Reporting results to senior business management in the UK and Europe across a range of financial measures and key performance indicators\n•\tDetailed monthly analysis of business unit and UK wide business performance, reporting results to senior UK business, area and depot managers. Understanding and explaining key variances, identifying routes for improvements\n•\tProduction and development of regular management forecasts and reports on sales, pricing and expenditure levels\n•\tRegular business unit visits to build strong relationships with operational management, review performance and drive financial improvements\n•\tFinancial training of new and existing business unit and area managers\n•\tCost down projects, £140k GBP annual saving in agency staff project alone (40% of annual account activity)\n•\tAnalysis and reporting on head office costs, company utilisation, customer profitability and product profitability\n•\tOngoing ad-hoc analysis work as required by operations and senior management\n\nKey Achievements Include:\n\n•\tProject leadership in 2005 S2 and 2006 S1 budget processes in development of company wide two and four year budgets respectively\n•\tRe-design of budget templates to simplify consolidation process and develop reporting capabilities\n•\tCreation of detailed salary costing system for use in monitoring of salary costs and headcount levels for use in both monthly accounts and budgeting processes\n•\tDesign and implementation of new reports to target, monitor and benchmark key performance indicators across all UK business units including pricing and weekly performance reports",
+            "_id" : {
+                "timestamp" : 1408603785,
+                "machine" : 10493748,
+                "pid" : 15768,
+                "increment" : 22
+            },
+            "yearsPerformed" : "a year"
+        }
+    ]
+}

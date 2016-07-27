@@ -1,0 +1,84 @@
+.row
+  .form-group
+    .col-md-2(ng-class="{'has-error': pForm.company.$error.required}")
+      label.control-label(for='form.company') Client
+    .col-md-4(ng-class="{'has-error': pForm.company.$error.required}")
+      input.form-control(ng-model='form.company', type='text', name='company', required='', typeahead="j.company for j in jobDescriptions | filter: {company: $viewValue} | unique:'company' | orderBy:'company'", autocomplete='off')
+      p.help-block.text-danger(ng-show='pForm.company.$error.required') This field is required
+
+    .col-md-2(ng-class="{'has-error': pForm.position.$error.required}")
+      label.control-label(for='form.position') Position
+    .col-md-4(ng-class="{'has-error': pForm.position.$error.required}")
+      input.form-control(ng-model='form.position', type='text', name='position', required='', typeahead="j.position for j in jobDescriptions | filter: {position: $viewValue} | filter: form.company | orderBy: 'position'", autocomplete='off')
+      p.help-block.text-danger(ng-show='pForm.position.$error.required') This field is required
+        
+  .form-group
+    .col-md-2
+      label(for='form.department') Department
+    .col-md-4
+      input.form-control#departmentField(ng-model='form.department', type='text', name='form.department')
+    .col-md-2
+      label(for='form.positionnumber') Position Number
+    .col-md-4
+      input.form-control(ng-model='form.positionnumber', type='text', name='form.positionnumber')
+      
+  .form-group
+    .col-md-2
+      label(for='form.reportingname') Reporting To (Name)
+    .col-md-4
+      input.form-control(ng-model='form.reportingname', type='text', name='form.reportingname')
+    .col-md-2
+      label(for='form.reportingto') Reporting To (Title)
+    .col-md-4
+      input.form-control(ng-model='form.reportingto', type='text', name='form.reportingto', typeahead="j.reportingto for j in getJobDescriptions() | filter: {reportingto: $viewValue} | filter: form.company | orderBy: 'reportingto'", autocomplete='off')
+      
+.row
+  .col-md-12 
+    hr
+    | &nbsp;
+      
+.row
+  .form-group
+    .col-md-2
+      label(for='form.worklocation') Work Location
+    .col-md-4
+      input.form-control(ng-model='form.worklocation', type='text', name='form.worklocation', typeahead="j.worklocation for j in getJobDescriptions() | filter: {worklocation: $viewValue} | filter: form.company | orderBy: 'worklocation'", autocomplete='off')
+    .col-md-2
+      label(for='form.worktype') Work Type
+    .col-md-4
+      .btn-group
+        button.btn.btn-default(type="button", ng-model="form.worktype", btn-radio="'fulltime'", name="fulltime") Full Time
+        button.btn.btn-default(type="button", ng-model="form.worktype", btn-radio="'parttime'", name="parttime") Part Time
+        button.btn.btn-default(type="button", ng-model="form.worktype", btn-radio="'contract'", name="contract") Contract
+      
+  .form-group
+    .col-md-2(ng-class="{'has-error': pForm.datecompleted.$error.validator}")
+      label.control-label(for='form.datecompleted') Date Received
+    .col-md-4(ng-class="{'has-error': pForm.datecompleted.$error.validator}")
+      input.form-control(name="datecompleted", placeholder="dd/mm/yyyy", ng-model="form.datecompleted", ui-validate=" 'validateDate($value)' ")
+      p.help-block.text-danger#dateErrorMessage(ng-show='pForm.datecompleted.$error.validator') {{ dateValidationMessage }}
+    .col-md-2
+      label(for='form.receivedfrom') Received From
+    .col-md-4
+      input.form-control(ng-model='form.receivedfrom', type='text', name='form.receivedfrom')
+
+  .form-group
+    .col-md-2
+      label(for='form.duration') Duration
+    .col-md-4
+      input.form-control(ng-model='form.duration', type='text', name='form.duration')
+    .col-md-2
+      label(for='form.rate') Rate
+    .col-md-4
+      input.form-control(ng-model='form.rate', type='text', name='form.rate')
+    
+  .form-group    
+    .col-md-2(ng-class="{'has-error': pForm.daterequired.$error.validator}")
+      label.control-label(for='form.daterequired') Date Required
+    .col-md-4(ng-class="{'has-error': pForm.daterequired.$error.validator}")
+      input.form-control(name="daterequired", placeholder="dd/mm/yyyy", ng-model="form.daterequired", ui-validate=" 'validateDate($value)' ")
+      p.help-block.text-danger#dateErrorMessage(ng-show='pForm.daterequired.$error.validator') {{ dateValidationMessage }}
+    .col-md-2
+      label(for='form.expat') Expat Considered?
+    .col-md-4
+      input.checkbox(ng-model='form.expat', type='checkbox', name='form.expat') 

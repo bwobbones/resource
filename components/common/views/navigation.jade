@@ -1,0 +1,70 @@
+nav.navbar-default.navbar-static-side(role='navigation')
+  .sidebar-collapse
+    ul.nav.metismenu#side-menu(side-navigation='')
+      li.nav-header(style="cursor: auto;")
+        .dropdown.profile-element(dropdown='')
+          a(id='homeLink', ui-sref="index")
+            img(alt='Resource', src='/images/resource-transparent-logo.png', height='55px')
+          a.dropdown-toggle(dropdown-toggle='', href='')
+            span.clear
+              span.block.m-t-xs
+                strong.font-bold#loggedInUser {{ user.fullname }}
+                span.text-muted.text-xs.block#jobTitleLink {{ user.jobTitle }} <b class='caret'></b>
+          ul.dropdown-menu.animated.fadeInRight.m-t-xs
+            li
+              a#editProfileButton(href="#", ui-sref="resetPassword") Edit Your Profile
+            li
+              a#logoutButton(href="#", ng-click="logout()") Log Out
+        .logo-element
+          a(ui-sref="index")
+            img(alt='Resource', src='/images/logo-transparent.png', height='60px')
+            
+      li(ui-sref-active="active")
+        a#index(ui-sref="index")
+          i.fa.fa-search
+          span.nav-label Search      
+
+      li(ui-sref-active="active")
+        a#addPersonnelLink(ui-sref="personnel.addPersonnel")
+          i.fa.fa-users
+          span.nav-label Add a Personnel
+
+      li(ui-sref-active="active")
+        a#addJobLink(href="addJobDescription", ui-sref="jobDescription.addJobDescription")
+          i.fa.fa-suitcase
+          span.nav-label  Add a Job
+
+      li(ui-sref-active="active")
+        a(href="#")
+          i.fa.fa-line-chart
+          span.nav-label Analysis
+          span.fa.arrow
+          ul.nav.nav-second-level
+            li(ui-sref-active="active")
+              a#teamProjectMatrixMenu(ui-sref="teamProjectMatrix({removeFooter: true})") Team Project Matrix
+            li(ui-sref-active="active")
+              a(ui-sref="projectPairings") Co-Occurrence Matrix
+
+      li(ui-sref-active="active")
+        a(href="#")
+          i.fa.fa-file-text
+          span.nav-label Reporting
+          span.fa.arrow
+          ul.nav.nav-second-level
+            li(ui-sref-active="active")
+              a(ui-sref="qualificationReport") Qualification Report
+              
+      li(ui-sref-active="active", ng-show='queries.lastPersonnelQuery')
+        a(ng-click="loadPreviousQuery('personnel')")
+          i.fa.fa-users
+          span.nav-label Last Personnel Query  
+          span
+            .label(ng-repeat='term in queries.lastPersonnelQuery', style='margin: 5px; display:inline-block') 
+              span {{ term.searchType }}: {{ term.searchTerm }} &nbsp;
+              
+      li(ui-sref-active="active", ng-show='queries.lastJobQuery')
+        a(ng-click="loadPreviousQuery('job')")
+          i.fa.fa-users
+          span.nav-label Last Job Query  
+          span(style='margin: 5px')
+            .label(style='margin: 5px; display:inline-block') Job: {{ queries.lastJobQuery }} &nbsp;

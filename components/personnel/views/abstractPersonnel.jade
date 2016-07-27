@@ -1,0 +1,22 @@
+.row
+  .col-md-4
+    h2
+      span(ng-show="!originalPersonnel.name && !form.name") New Personnel
+      span(ng-show="originalPersonnel.name || form.name") {{form.name}} {{form.surname}}
+      span(ng-show="pForm.$dirty" style="color: red;" title="You have unsaved changes") *
+  .col-md-8
+    br
+    .pull-right(ui-view="dataPanel")
+
+.row
+  .col-md-12
+    br
+    .tabs-container
+      ng-form.form-horizontal(name="pForm", novalidate="", role="form")
+        tabset
+          tab(id='tab_{{tabPane.url}}', ng-repeat="tabPane in tabPanes", active="tabPane.active")
+            tab-heading {{tabPane.name}}
+            .tab-pane
+              ng-include(src="'partials/personnel/' + tabPane.url")
+
+.row(style="height:80px;")

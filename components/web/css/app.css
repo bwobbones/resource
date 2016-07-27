@@ -1,0 +1,237 @@
+/* Override some defaults */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 40px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+}
+
+.container > p {
+    text-align: center;
+    /* center align it with the container */
+}
+
+.container .paddedtext {
+    padding: 8px;
+}
+
+.container .unfixed-width {
+    width: 90%;
+    padding: 0 15px;
+}
+
+.container .accept {
+    border-color: #0e0;
+    background-color: #b2fab2;
+}
+
+.container .reject {
+    border-color: #f00;
+    background-color: #ffb2b2;
+}
+
+.navbar {
+    width: 100%;
+}
+
+
+/* The white background content wrapper */
+
+.content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 -20px;
+    /* negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.angular-google-map-container {
+    height: 300px;
+}
+
+.spacer {
+    margin-left: 20px;
+    display: inline;
+}
+
+/* co-currence matrix */
+
+.background {
+    fill: #eee;
+}
+
+line {
+    stroke: #fff;
+}
+
+text.active {
+    fill: red;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+h3 {
+    margin: 8px;
+}
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+.drop {
+    padding: 10px;
+    min-height: 20px;
+    text-align: center;
+}
+
+.drop.dragover-accept {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 50;
+}
+
+.drop.dragover-accept:before {
+  content: 'Drop Files Here';
+  font-size: 40px;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+
+.drop.dragover-reject {
+    background-color: #ffb2b2;
+    text-align: center;
+}
+
+.drop.dragover-reject:after {
+    content: 'Max file size: 60mb';
+    display: block;
+}
+
+.pushtoback {
+  position: relative;
+  z-index: 1;
+}
+
+.pull-left-md {
+   padding-left: 0px;
+}
+
+.inline-headers h2,
+.inline-headers h3,
+.inline-headers h4 {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.header-concat{
+   display: inline-block;  
+}
+
+.tooltip.bottom {
+    padding: 0 5px;
+    margin-left: 3px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.tooltip-inner {
+    max-width: 250px;
+    padding: 8px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000000;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 0px;
+}
+
+.background {
+    fill: #eee;
+}
+
+.columnLine {
+    stroke: #fff;
+}
+
+.rowLine {
+    stroke: #fff;
+}
+
+.rowSeparator {
+    stroke: #E085C2;
+}
+
+.columnSeparator {
+    stroke: #E085C2;
+}
+
+.st-sort-ascent:before {
+    content: '\25B2';
+}
+
+.st-sort-descent:before {
+    content: '\25BC';
+}
+
+.st-selected {
+    background: rgb(47, 164, 231) !important;
+    color: white !important;
+}
+
+.padding-left-removed {
+    padding-left: 0px;
+}
+
+.margin-left-removed {
+    margin: 0px;
+}
+
+.top-buffer {
+    margin-top: 10px;
+}
+
+.right-buffer {
+    margin-right: 10px;
+}
+
+label {
+    font-weight: 600;
+}

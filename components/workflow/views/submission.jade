@@ -1,0 +1,26 @@
+div(ng-controller="SubmissionCtrl")
+
+  //- documents
+  .row
+    .col-md-6
+      h5 Documents
+    .col-md-6
+      h5(ng-if="!shortcutKey") Method {{ shortcutKeyMethod }}
+
+  .row
+    .col-md-6
+      select.form-control(ui-select2, multiple, ng-model="personnelWorkflow.submissionDocuments", name="personnelWorkflow.submissionDocuments", data-placeholder="Select documents...")
+        option(ng-repeat="file in personnelData.files", value="file.fileId") {{ file.fileName }}
+
+    .col-md-6
+      .input-group
+        .input-group-btn(dropdown, is-open="dropDownOpen")
+          button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown") {{ personnelWorkflow.submissionMethod || 'Method' }}&nbsp;&nbsp;
+            i.fa.fa-chevron-down
+          ul.dropdown-menu(role="menu")
+            li(ng-repeat="method in methods")
+              a(ng-click="selectMethod($event, method.name)", ng-mouseenter="hoverInMethod(method.shortcutKey)", ng-mouseleave="hoverOut()") {{ method.name }}
+        input.form-control(type="text", ng-model="personnelWorkflow.submissionDetail")
+        .input-group-btn(ng-if="personnelWorkflow.submissionMethod")
+          button.btn.btn-primary(ng-repeat="method in methods", ng-click="performAction()", ng-if="personnelWorkflow.submissionMethod === method.name")
+            i.fa(class="{{method.icon}}", ng-if="personnelWorkflow.submissionMethod === method.name")

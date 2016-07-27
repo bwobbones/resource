@@ -1,0 +1,101 @@
+div(ng-controller="PreEmploymentCtrl")
+
+    .row
+      .col-md-3
+        .btn-group
+          button.btn.btn-default(type="button", ng-model="personnelWorkflow.medical", btn-checkbox, name="medical.yes", ng-mouseenter="hoverInMedical('(m)')", ng-mouseleave="hoverOut()") Medical Required? {{shortcutKeyMedical}}
+      div(ng-if="personnelWorkflow.medical")
+        .col-md-3.form-group(ng-class="{'has-error': personnelWorkflowForm.medicalDate.$error.validator}")
+          input.form-control(name="medicalDate", placeholder="dd/mm/yyyy", ng-model="personnelWorkflow.medicalDate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.medicalDate.$error.validator') {{ dateValidationMessage }}
+        .col-md-2
+          .btn-group
+            button.btn.btn-default(type="button", ng-model="personnelWorkflow.medicalComplete", btn-checkbox, name="medicalComplete.yes", ng-mouseenter="hoverInMedicalComplete('(m)')", ng-mouseleave="hoverOut()") Completed
+
+    .row
+      .col-md-12
+        hr
+
+    form.form-inline(name="personnelWorkflowForm", novalidate="", role="form")
+      .well
+        .row
+          .col-md-3
+            h4 Additional Training&nbsp;
+              i.fa.fa-refresh(ng-show="loadingTraining")
+
+          .col-md-4
+            input.form-control(ng-model='personnelWorkflow.newTraining', type='text', name="newTraining", placeholder="Add some training...{{shortcutKeyTraining}}", typeahead="t.name for t in typeAhead('training', $viewValue) | filter: {name: $viewValue} | orderBy:'name'", typeahead-loading="loadingTraining", autocomplete='off', ng-mouseenter="hoverInMedical('(t)')", ng-mouseleave="hoverOut()")
+          .col-md-2
+            button.btn.btn-default.btn-block.btn#addTrainingButton(type="submit", ng-click="addTraining()", ng-disabled="!personnelWorkflow.newTraining") Add
+          .col-md-2
+            button.btn.btn-default.btn-block.btn#editTrainingButton(ng-click="editTraining()", ng-disabled="!personnelWorkflow.additionalTraining") {{ editTrainingName || "Edit"}}
+
+        div(ng-if="personnelWorkflow.additionalTraining.length !== 0")
+          .row
+            .col-md-12
+              p &nbsp;
+
+          tabset(type="pills", justified="true")
+            tab(ng-repeat="training in personnelWorkflow.additionalTraining")
+              tab-heading
+                .row
+                  .col-md-10
+                    {{training.name}}
+                  .col-md-2
+                    a(ng-click='deleteTraining(training)', href='')
+                      i.fa.fa-times(style='color: black')
+
+                .row(collapse="!collapseTrainingEditable")
+                  .col-md-12
+
+                  .row
+                    .col-md-12
+                      p &nbsp;
+
+                  .row
+                    .col-md-offset-1.col-md-10
+                      input.form-control(ng-model='training.name', type='text', name='training.name', typeahead="t.name for t in typeAhead('training', $viewValue) | orderBy:'name'", typeahead-loading="loadingTraining", autocomplete='off')
+
+              .row
+                .col-md-12
+                  p &nbsp;
+
+              .row
+                .col-md-3
+                  h5 Institution
+                .col-md-3
+                  h5(ng-class="{'text-danger': personnelWorkflowForm.dateBooked.$error.validator}") Date Booked
+
+              .row
+                .col-md-3
+                  p.text-danger(ng-show='personnelWorkflowForm.$error.required && !training.name') Required!
+
+              .row
+                .col-md-3
+                  input.form-control(ng-model='training.institution', type='text', typeahead="t.institution for t in typeAhead('institution', $viewValue) | orderBy:'institution'", typeahead-loading="loadingInstitution", autocomplete='off')
+                .col-md-3(ng-class="{'has-error': personnelWorkflowForm.dateBooked.$error.validator}")
+                  input.form-control(name="dateBooked", placeholder="dd/mm/yyyy", ng-model="training.dateBooked", ui-validate=" 'validateDate($value)' ")
+                  p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.dateBooked.$error.validator') {{ dateValidationMessage }}
+                .col-md-2
+                  .btn-group
+                    button.btn.btn-default(type="button", ng-model="training.complete", btn-checkbox, ng-mouseenter="hoverInTrainingComplete('(c)')", ng-mouseleave="hoverOut()", ng-click="setDefaultCompletedDate(training)") Completed
+
+
+              div(collapse="!training.complete")
+                .row
+                  .col-md-3
+                    h5 Certificate Number
+                  .col-md-3
+                    h5(ng-class="{'text-danger': personnelWorkflowForm.expiryDate.$error.validator}") Certificate Expiry
+                  .col-md-3
+                    h5(ng-class="{'text-danger': personnelWorkflowForm.dateObtained.$error.validator}") Date Completed
+
+                .row
+                  .col-md-3
+                    input.form-control(type="text", ng-model="training.certificateNumber")
+                  .col-md-3(ng-class="{'has-error': personnelWorkflowForm.expiryDate.$error.validator}")
+                    input.form-control(name="expiryDate", placeholder="dd/mm/yyyy", ng-model="training.expiryDate", ui-validate=" 'validateDate($value)' ")
+                    p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.expiryDate.$error.validator') {{ dateValidationMessage }}
+                  .col-md-3(ng-class="{'has-error': personnelWorkflowForm.dateObtained.$error.validator}")
+                    input.form-control(name="dateObtained", placeholder="dd/mm/yyyy", ng-model="training.dateObtained", ui-validate=" 'validateDate($value)' ")
+                    p.help-block.text-danger#dateErrorMessage(ng-show='personnelWorkflowForm.dateObtained.$error.validator') {{ dateValidationMessage }}

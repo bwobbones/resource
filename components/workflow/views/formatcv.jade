@@ -1,0 +1,6 @@
+div(ng-controller="FormatCVCtrl")
+  .row
+    label.col-md-4.control-label(for='personnelWorkflow.cvCheckedBy') Format checked and approved by
+    .col-md-4
+      select.form-control(chosen="", ng-model="personnelWorkflow.cvCheckedBy", name="personnelWorkflow.cvCheckedBy", ng-options="u.fullname for u in contacts")
+

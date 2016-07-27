@@ -1,0 +1,44 @@
+div
+  .modal-header
+    .row
+      .col-md-12
+        h3 Qualifications for {{personnelName}}
+
+  .modal-body
+
+    form(name="qualificationForm", novalidate="", role="form")
+
+      .row
+        .col-md-4
+          h5 Qualification
+            i.icon-refresh(ng-show="loadingQualification")
+        .col-md-2
+          h5(ng-class="{'text-danger': qualificationForm.dateObtained.$error.validator}") Date Obtained
+        .col-md-2
+          h5(ng-class="{'text-danger': qualificationForm.expiryDate.$error.validator}") Expiry Date
+        .col-md-2
+          h5 Certificate Number
+        .col-md-2
+          h5 Institution
+
+      .row
+        .col-md-4
+          input.form-control(ng-model='qualification.name', type='text', name='qualification.name', typeahead="q.name for q in typeAheadQualifications($viewValue) | orderBy:'name'", typeahead-loading="loadingQualification", autocomplete='off')
+        .col-md-2.form-group(ng-class="{'has-error': qualificationForm.dateObtained.$error.validator}")
+          input.form-control(name="dateObtained", placeholder="dd/mm/yyyy", ng-model="qualification.dateObtained", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='qualificationForm.dateObtained.$error.validator') {{ dateValidationMessage }}
+        .col-md-2.form-group(ng-class="{'has-error': qualificationForm.expiryDate.$error.validator}")
+          input.form-control(name="expiryDate", placeholder="dd/mm/yyyy", ng-model="qualification.expiryDate", ui-validate=" 'validateDate($value)' ")
+          p.help-block.text-danger#dateErrorMessage(ng-show='qualificationForm.expiryDate.$error.validator') {{ dateValidationMessage }}
+        .col-md-2
+          input.form-control(ng-model='qualification.certificateNumber', type='text', name='qualification.certificateNumber')
+        .col-md-2
+          input.form-control(ng-model='qualification.institution', type='text', name='qualification.institution')
+
+    .row
+      p &nbsp;
+
+  .modal-footer
+    button.btn.btn-primary.saveAndNewButton(ng-click="saveAndNew()") Save & New
+    button.btn.btn-primary.okQualificationDone(ng-click="ok()") Ok
+    button.btn.btn-warning(ng-click="cancel()") Cancel

@@ -1,0 +1,61 @@
+.row
+  .col-md-12
+    .well
+
+      .row
+        .col-md-8.padding-left-removed
+          label.padding-left-removed.control-label(for='jobName')
+            h3(name="jobName") {{ selectedJob.position }} - {{ selectedJob.company }}
+        .col-md-4
+          span.btn-group.pull-right
+            button.btn.btn-primary.btn-sm#sliderEditJob(type="submit", ng-click='editSelected()') Edit
+            button.btn.btn-primary.btn-sm(type="submit", ng-click='clearSelected()') Clear
+      
+      .row
+        .col-md-12
+          
+          .row
+            .col-md-12
+              p &nbsp;
+          
+          .row
+            .col-md-4
+              strong Position Number
+            .col.md-8
+              p {{ selectedJob.positionnumber }}
+              
+          .row
+            .col-md-4
+              strong Department
+            .col.md-8
+              p {{ selectedJob.department }}
+              
+          .row
+            .col-md-4
+              strong Reporting to 
+            .col.md-8
+              p {{ selectedJob.reportingname }} ({{ selectedJob.reportingto }})
+              
+          .row
+            .col-md-4
+              strong Date Received
+            .col.md-8
+              p {{ selectedJob.datecompleted }} 
+              
+          .row
+            .col-md-4
+              strong Term
+            .col.md-8
+              p {{ selectedJob.term }} 
+              
+          .row(ng-repeat="file in selectedJob.files")
+            .col-md-4
+              strong(ng-if="$index === 0") Files
+            .col.md-8
+              p {{ file }}
+              
+          .row
+            .col-md-4
+              strong Applicant List
+            .col-md-8
+              a#applicantLink(ng-click='openWorkflow()') {{ selectedJob.personnels.length || 0}} applicants

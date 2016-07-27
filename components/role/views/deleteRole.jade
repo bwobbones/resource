@@ -1,0 +1,8 @@
+div
+  .modal-header
+    h3 Delete Role
+  .modal-body
+    p Are you sure you want to delete {{role.roleName}}?
+  .modal-footer
+    button.btn.btn-primary.okDeletePersonnel#deleteRoleButton(ng-click="deleteRole()") Ok
+    button.btn.btn-warning.cancelDeletePersonnel(ng-click="cancel()") Cancel

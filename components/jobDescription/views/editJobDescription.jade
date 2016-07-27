@@ -1,0 +1,4 @@
+.btn-group
+  button.btn.btn-default(ng-if="form.personnels.length === 0") Manage Workflow
+  button.btn.btn-primary#editJobDescriptionButton(type="submit",ng-click="saveJobDescription()") Save
+  button.btn.btn-primary#deleteJobDescriptionButton(type="submit",ng-click="openDeleteMessageBox()") Delete

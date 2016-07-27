@@ -1,0 +1,5 @@
+.btn-group
+  button.btn.btn-primary#addCommLogButton(type="submit", ng-click="addNote()", ng-mouseenter="hoverIn('(h)')", ng-mouseleave="hoverOut()") Add Note {{shortcutKey === '(h)' ? shortcutKey : ''}}
+  button.btn.btn-primary#generateCVButton(type="submit", ng-click="generateCV()", ng-mouseenter="hoverIn('(g)')", ng-mouseleave="hoverOut()") Generate CV {{shortcutKey === '(g)' ? shortcutKey : ''}}
+  button.btn.btn-primary#deletePersonnelButton(type="submit", ng-click="openDeleteMessageBox()") Delete
+  button.btn.btn-primary#editPersonnelButton(type="submit", ng-click="savePersonnel()") Save

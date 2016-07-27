@@ -1,0 +1,56 @@
+.panel-body
+  .col-md-12
+    button.btn.btn-primary.pull-right(ng-controller="PersonnelDocumentationCtrl", ngf-select='onFileSelect($files)', ngf-accept="{{ uploadableMimeTypes }}", ngf-multiple="true") Attach Files
+
+  .row
+    .col-md-12
+      p &nbsp;
+
+  .col-md-12
+    .ibox.float-e-margins.pushtoback
+      .ibox-content(ng-controller="PersonnelDocumentationCtrl", ngf-drop="true", ngf-change='onFileSelect($files)',
+        ngf-accept="{{ uploadableMimeTypes }}", class="drop", ngf-multiple="true",
+        ngf-drag-over-class="{ accept:'dragover-accept', reject:'dragover-reject', delay:100 }")
+        
+        .row(ng-repeat="file in form.files")
+          .col-md-12(ng-if="form.uploadValue[file.fileId] > 0")
+            progressbar(max="100", value="form.uploadValue[file.fileId]", ng-show="!uploadComplete" )
+              span {{ file.fileName}} - {{form.uploadValue[file.fileId]}}%
+
+        .row(ng-show="form.files.length === 0")
+          .col-md-12
+            br
+            p No documents have been uploaded
+
+        .row(ng-show="form.files.length !== 0")
+          .col-md-12
+            .row
+              .col-md-1 &nbsp
+              .col-md-6
+                strong.pull-left File Name
+              .col-md-1
+                strong File Size
+              .col-md-3
+                strong Document Type
+              .col-md-1
+                strong Delete
+
+            .row
+              .col-md-12
+                hr
+
+            .row(ng-repeat="file in form.files", style='line-height: 35px;')
+              .col-md-1
+                document-type-icon.pull-left(doctype="file.fileType")
+              .col-md-6
+                a.pull-left(download="{{file.fileName}}", href="", ng-click="downloadFile(file.fileId)") {{file.fileName}}      
+              .col-md-1
+                p {{ file.fileSize / 1000  | number:0 }} KB
+              .col-md-3
+                .input-group(style='margin-left: 50px;')
+                  select.chosen-select.block(chosen='', ng-model='file.documentationType', style='width: 130px',
+                      disable-search='true', ng-options='doc.type as doc.displayName for doc in documentationTypes')
+              .col-md-1
+                button.btn.btn-primary(type='button', ng-click="openDeleteFileMessageBox(file.fileId)", style='margin-top: 2px;')
+                    i.fa.fa-times
+           
