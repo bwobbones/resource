@@ -17,6 +17,7 @@ var express = require('express'),
   typeAheadFieldData = require('./routes/api/typeAheadFieldData'),
   generatecv = require('./routes/api/generatecv'),
   login = require('./routes/api/login'),
+  matrix = require('./routes/api/matrix'),
   registration = require('./routes/api/registration'),
   personnel = require('./routes/api/personnel'),
   workflow = require('./routes/api/workflow'),
@@ -146,6 +147,7 @@ app.use('/api', login);
 app.use('/', registration);
 app.use('/api', search);
 app.use('/api', personnel);
+app.use('/api', matrix);
 app.use('/api', workflow);
 app.use('/api', generatecv);
 app.use('/api', typeAheadFieldData);
