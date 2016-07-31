@@ -11,6 +11,92 @@ var router = express.Router();
 var db = dbDriver.connectDefault();
 //router.get('/personnelPairings', router.personnelPairings, callback);
 
+router.get('/skillsMatrix', function (req, res) {
+  db.personnels.find((err, personnels) => {
+    if (err) {
+      log.error(err);
+      res.sendStatus(500);
+      return;
+    }
+    personnels = _.filter(personnels, p => !p.deleted);
+    personnels.sort();
+
+    var names = [];
+    var skillsByType = {
+      'Roles': {},
+      'Qualifications': {},
+      'Training': {},
+    };
+    for (var personnel of personnels) {
+        for (var role of personnel.roles) {
+          addSkill(role.roleName, skillsByType['Roles'], names.length);
+        }
+        for (var qualification of personnel.qualifications) {
+          addSkill(qualification.name, skillsByType['Qualifications'], names.length);
+        }
+        for (var training of personnel.trainings) {
+          addSkill(training.name, skillsByType['Training'], names.length);
+        }
+        names.push(personnel.name + ' ' + personnel.surname);
+    }
+
+    var data = [];
+    var skills = [];
+    for (var type of ['Roles', 'Qualifications', 'Training']) {
+      var coords = [];
+      _.forEach(skillsByType[type], (personnelIndicies, skill) => {
+        for (var personnelIndex of personnelIndicies) {
+          coords.push({x: skills.length, y: personnelIndex});
+        }
+        skills.push(skill);
+      });
+      data.push({
+        name: type,
+        x: _.map(coords, c => c.x),
+        y: _.map(coords, c => c.y),
+        mode: 'markers',
+        type: 'scatter',
+      });
+    }
+
+    res.json({
+      data: data,
+      layout: {
+        xaxis: {
+          tickvals: _.range(skills.length),
+          ticktext: skills,
+          zeroline: false,
+          side: 'top',
+        },
+        yaxis: {
+          tickvals: _.range(names.length),
+          ticktext: names,
+          gridwidth: 5,
+          zeroline: false,
+        },
+        margin: {
+          l: 150,
+          t: 150,
+          b: 0,
+        },
+        hovermode: 'closest',
+      },
+      config: {
+        modeBarButtonsToRemove: ['hoverCompareCartesian'],
+      },
+    });
+  });
+});
+
+function addSkill(skillName, skillsOfType, personnelIndex) {
+  var entry = skillsOfType[skillName];
+  if (entry === undefined) {
+    entry = [];
+    skillsOfType[skillName] = entry;
+  }
+  entry.push(personnelIndex);
+}
+
 router.get('/personnelPairings', function(req, res, callback) { 
   router.personnelPairings(req, res, callback);
 });

@@ -1,0 +1,11 @@
+.row(ng-if='!showFull')
+  .col-md-9
+    h2 Skills Matrix
+  .col-md-3
+    .btn-group
+      button.btn.btn-primary(type='button' ng-click='fullScreen()') Full Screen
+
+.row
+  .col-md-12
+    skills-matrix
+      div#graphDiv
