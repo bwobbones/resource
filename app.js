@@ -95,7 +95,7 @@ apiRoutes.use(function(req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, 'iwouldreallylikeanewbike', function(err, decoded) {
+    jwt.verify(token, process.env.SECRET, function(err, decoded) {
       if (err) {
         return res.status(403).send({ 
           success: false, 

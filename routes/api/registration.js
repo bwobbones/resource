@@ -38,7 +38,7 @@ router.registerUser = function (req, res, callback) {
     if (err) {
       console.log(err);
     } else {
-      var token = jwt.sign(user, 'iwouldreallylikeanewbike', {
+      var token = jwt.sign(user, process.env.SECRET, {
         expiresIn: 86400 // expires in 24 hours
       });
 
