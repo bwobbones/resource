@@ -5,17 +5,19 @@ var mongojs = require('mongojs');
 var dbDriver = require('../database');
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
-var jwt = require('jsonwebtoken')
+var jwt = require('jsonwebtoken');
 
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.connectDefault();
 
 router.post('/login', function (req, res, callback) {
   router.loginUser(req, res, callback);
 });
 
 router.loginUser = function (req, res, callback) {
+
+  console.log('calling connectUser');
+  var db = dbDriver.getConnection(req.body.username);
 
   db.users.findOne({ username: req.body.username }, function (err, user) {
     if (err) throw err;
@@ -34,8 +36,9 @@ router.loginUser = function (req, res, callback) {
             expiresIn: 86400 // expires in 24 hours
           });
 
-          // return the information including token as JSON
+          // return the information including token as JSON, with passwords removed
           user.password = undefined;
+          user.confirm = undefined
 
           res.json({
             success: true,
@@ -57,6 +60,9 @@ router.post('/resetPassword', function (req, res, callback) {
 });
 
 router.resetPassword = function (req, res, callback) {
+
+  var db = dbDriver.getConnection(req.body.username);
+
   makeSalt((saltErr, salt) => {
     if (saltErr) {
       log.err('Got error while creating salt');
@@ -165,7 +171,7 @@ router.get('/users', function (req, res, callback) {
 
 
 router.users = function (req, res, callback) {
-  db.users.find({}, { username: 1, fullname: 1 }, function (err, docs) {
+  req.db.users.find({}, { username: 1, fullname: 1 }, function (err, docs) {
     if (err) {
       log.error(err);
     } else {

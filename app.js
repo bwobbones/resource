@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies
- */
-
 var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
@@ -14,6 +9,7 @@ var express = require('express'),
   search = require('./routes/api/search'),
   util = require('./routes/api/util'),
   file = require('./routes/api/file'),
+  audit = require('./routes/api/audit'),
   typeAheadFieldData = require('./routes/api/typeAheadFieldData'),
   generatecv = require('./routes/api/generatecv'),
   login = require('./routes/api/login'),
@@ -27,16 +23,9 @@ var express = require('express'),
   morgan = require('morgan'),
   jwt = require('jsonwebtoken'),
   _ = require('lodash');
-//   db = require('./routes/database');
+  db = require('./routes/database');
 
 var app = module.exports = express();
-
-
-/**
- * Configuration
- */
-
-// all environments
 
 // development only
 if (app.get('env') === 'development') {
@@ -54,9 +43,6 @@ app.set('view engine', 'jade');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false, limit: 500000 }));
 app.use(bodyParser.json());
-
-//app.use(express.json());
-//app.use(express.urlencoded({ extended: false, limit: 500000 }));
 app.use(multer({ dest: './uploads/' }));
 
 app.use(methodOverride());
@@ -75,15 +61,7 @@ if (app.get('env') === 'production') {
   // TODO
 }
 
-var apiRoutes = express.Router(); 
-
-
-/*
-app.post('/login', function (req, res, next) {
-  login.loginUser(req, res);
-});
-*/
-
+var apiRoutes = express.Router();
 
 apiRoutes.use(function(req, res, next) {
 
@@ -95,7 +73,7 @@ apiRoutes.use(function(req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, 'iwouldreallylikeanewbike', function(err, decoded) {
+    jwt.verify(token, process.env.SECRET, function(err, decoded) {
       if (err) {
         return res.status(403).send({ 
           success: false, 
@@ -103,7 +81,7 @@ apiRoutes.use(function(req, res, next) {
         });   
       } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
+        req.decoded = decoded;
         next();
       }
     });
@@ -118,6 +96,13 @@ apiRoutes.use(function(req, res, next) {
     });
     
   }
+});
+
+// note that the order of these middlewares is important, 
+// they are executed one after the other
+apiRoutes.use(function(req, res, next) {
+  req.db = db.getConnection(req.decoded.username);
+  next();
 });
 
 /**
@@ -142,8 +127,8 @@ app.get('/api/loggedin', function(req, res) {
 
 
 app.use('/', login);
-app.use('/api', login);
 app.use('/', registration);
+app.use('/api', login);
 app.use('/api', search);
 app.use('/api', personnel);
 app.use('/api', workflow);
@@ -153,12 +138,10 @@ app.use('/api', job);
 app.use('/api', file);
 app.use('/api', util);
 app.use('/api', report);
-
-
+app.use('/api', audit);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
-
 
 /**
  * Start Server

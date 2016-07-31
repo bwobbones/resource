@@ -1,7 +1,6 @@
 var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
 
@@ -10,8 +9,6 @@ var personnel = require( path.resolve( __dirname, "./personnel.js" ) );
 
 var express = require('express');
 var router = express.Router();
-
-var db = dbDriver.connectDefault();
 
 router.get('/jobDescriptions', function(req, res, callback) {
   router.jobDescriptions(req, res, callback);
@@ -39,7 +36,7 @@ router.jobDescriptions = function(req, res, callback) {
         {'position': { $regex: '.*' + searchKey + '.*', $options: 'i' } },
       ]};
   
-  db.jobDescriptions.find(query, function(err, docs) {
+  req.db.jobDescriptions.find(query, function(err, docs) {
     if (err) {
       log.error("error! " + err.stack);
     } else {
@@ -56,7 +53,7 @@ router.jobDescriptions = function(req, res, callback) {
 router.jobDescription = function(req, res, callback) {
   var id = personnel.fixId(req.params.id);
 
-  db.jobDescriptions.find({
+  req.db.jobDescriptions.find({
     "_id": id
   }, function(err, doc) {
     if (err) {
@@ -82,7 +79,7 @@ router.saveJobDescription = function(req, res, callback) {
     jobDescriptionQuery = req.body;
   }
 
-  db.jobDescriptions.findAndModify({
+  req.db.jobDescriptions.findAndModify({
     query: jobDescriptionQuery,
     update: req.body,
     upsert: true,
@@ -100,7 +97,7 @@ router.saveJobDescription = function(req, res, callback) {
 
 // job
 router.deleteJobDescription = function(req, res, callback) {
-  db.jobDescriptions.remove({
+  req.db.jobDescriptions.remove({
     "_id": personnel.fixId(req.params.id)
   }, function(err, doc) {
     if (err) {

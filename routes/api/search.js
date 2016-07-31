@@ -42,10 +42,6 @@ winston.loggers.add('performance', {
 var log = winston.loggers.get('normal');
 var performanceLog = winston.loggers.get('performance');
 
-var dbDriver = require('../database');
-var db = dbDriver.connectDefault();
-var gs = gridjs(db);
-
 var ObjectId = mongojs.ObjectId;
 var successReturnCode = 200;
 var errorReturnCode = 500;
@@ -118,7 +114,6 @@ router.searchPersonnel = function(req, res, callback) {
         } 
 
         var documentPersonnel = [];
-         console.log("xx personnel " + personnel);
         _.each(response.hits.hits, function(hit) { 
           if (hit._source.personnelId) {
             documentPersonnel.push(personnel.fixId(hit._source.personnelId));
@@ -128,14 +123,14 @@ router.searchPersonnel = function(req, res, callback) {
         andList.push({_id: { $in: documentPersonnel } });
 
         var startQuery = now();
-        executeSearchQuery(res, callback, orList, andList);
+        executeSearchQuery(req, res, callback, orList, andList);
         var endQuery = now();
         performanceLog.info('whole search timing: ' + (endQuery-startQuery).toFixed(3));
 
       });
     } else {
       var startQuery = now();
-      executeSearchQuery(res, callback, orList, andList);
+      executeSearchQuery(req, res, callback, orList, andList);
       var endQuery = now();
       performanceLog.info('normal search timing: ' + (endQuery-startQuery).toFixed(3));
     }
@@ -147,7 +142,7 @@ router.searchPersonnel = function(req, res, callback) {
 };
 
 // search
-function executeSearchQuery(res, callback, orList, andList) {
+function executeSearchQuery(req, res, callback, orList, andList) {
   var orString;
   if (orList.length !== 0) {
     orString = { $or: orList };
@@ -162,7 +157,7 @@ function executeSearchQuery(res, callback, orList, andList) {
 
     // log.info(JSON.stringify(query));
 
-    db.personnels.find(query, function(err, docs) {
+    req.db.personnels.find(query, function(err, docs) {
       if (err) {
         log.error("error! " + err.stack);
       } else {

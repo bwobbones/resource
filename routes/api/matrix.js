@@ -2,13 +2,12 @@ var _ = require('lodash');
 var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
 
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.connectDefault();
+var db = dbDriver.getConnection();
 //router.get('/personnelPairings', router.personnelPairings, callback);
 
 router.get('/personnelPairings', function(req, res, callback) { 
@@ -27,7 +26,7 @@ router.assembleProjectTeamData = function(req, res, callback) {
     personnel: []
   }
 
-  db.personnels.find(function(err, personnels) {
+  req.db.personnels.find(function(err, personnels) {
 
     if (err) {
       log.error("error! " + err.stack);
@@ -80,7 +79,7 @@ router.assembleProjectTeamData = function(req, res, callback) {
 router.personnelPairings = function(req, res, callback) {
 
  // var docs;
-  db.personnels.find(function(err, docs) {
+  req.db.personnels.find(function(err, docs) {
 
     var nodeValues = [];
     var linkValues = [];

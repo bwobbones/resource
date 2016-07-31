@@ -2,13 +2,11 @@
 var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
 
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.connectDefault();
 
 router.post('/qualificationReport', function(req, res, callback) { 
   router.qualificationReport(req, res, callback);
@@ -18,7 +16,7 @@ router.qualificationReport = function(req, res, callback) {
 
  // var docs;
   var qualifications = [];
-  db.personnels.find(function(err, docs) {
+  req.db.personnels.find(function(err, docs) {
 
     var onlyExpired = req.body !== undefined ? req.body.onlyExpired : false;
 

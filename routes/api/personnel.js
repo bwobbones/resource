@@ -2,14 +2,11 @@ var winston = require('winston');
 var _ = require('lodash');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
  var callback = function() {
    // noop
  };
-
- var db = dbDriver.connectDefault();
 
 //eval(fs.readFileSync('apicommon.js')+'');
 winston.loggers.add('normal', {
@@ -51,7 +48,7 @@ router.get('/personnels', function (req, res) {
 
 router.personnels = function (req, res, callback) {
   // var docs;
-  db.personnels.find({ deleted: { $ne: true } }, function (err, docs) {
+  req.db.personnels.find({ deleted: { $ne: true } }, function (err, docs) {
     if (err) {
       log.error(err);
     } else {
@@ -72,7 +69,7 @@ router.get('/personnelsNameOnly', function (req, res) {
 router.personnelsNameOnly = function (req, res, callback) {
 
   // var docs;
-  db.personnels.find({ deleted: { $ne: true } }, { name: 1, surname: 1 }, function (err, docs) {
+  req.db.personnels.find({ deleted: { $ne: true } }, { name: 1, surname: 1 }, function (err, docs) {
     if (err) {
       log.error(err);
     } else {
@@ -93,7 +90,7 @@ router.get('/personnel/:id', function (req, res) {
 router.personnel = function (req, res, callback) {
   var id = router.fixId(req.params.id);
 
-  db.personnels.find({
+  req.db.personnels.find({
     "_id": id
   }, function (err, doc) {
     if (err) {
@@ -117,7 +114,7 @@ router.post('/personnel', function (req, res) {
 
 router.addPersonnel = function (req, res, callback) {
 
-  db.personnels.findAndModify({
+  req.db.personnels.findAndModify({
     query: { _id: new ObjectId() },
     update: { $set: req.body },
     new: true,
@@ -143,7 +140,7 @@ router.updatePersonnel = function (req, res, callback) {
   var personnelId = _.clone(req.body._id);
   delete req.body._id;
 
-  db.personnels.findAndModify({
+  req.db.personnels.findAndModify({
     query: { _id: new ObjectId(personnelId) },
     update: { $set: req.body },
     new: true
@@ -164,7 +161,7 @@ router.delete('/personnel/:id', function (req, res) {
 });
 
 router.deletePersonnel = function (req, res, callback) {
-  db.personnels.update({
+  req.db.personnels.update({
     "_id": router.fixId(req.params.id)
   },
     {
@@ -181,7 +178,7 @@ router.deletePersonnel = function (req, res, callback) {
 
 // personnel
 router.restorePersonnel = function (req, res, callback) {
-  db.personnels.update({
+  req.db.personnels.update({
     "_id": router.fixId(req.params.id)
   },
     {
@@ -198,7 +195,7 @@ router.restorePersonnel = function (req, res, callback) {
 
 // personnel
 router.reallyDeletePersonnel = function (req, res, callback) {
-  db.personnels.remove({ _id: req.params.id }, true, function (err, doc) {
+  req.db.personnels.remove({ _id: req.params.id }, true, function (err, doc) {
     if (err) {
       log.error("error! " + err.stack);
       return res.json(false);

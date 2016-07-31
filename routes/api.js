@@ -42,8 +42,6 @@ winston.loggers.add('performance', {
 var log = winston.loggers.get('normal');
 var performanceLog = winston.loggers.get('performance');
 
-var gs = gridjs(db.connectDefault());
-
 var ObjectId = mongojs.ObjectId;
 var successReturnCode = 200;
 var errorReturnCode = 500;

@@ -9,7 +9,6 @@ var path = require('path');
 var personnel = require( path.resolve( __dirname, "./personnel.js" ) );
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.connectDefault();
 
 router.get('/manageWorkflow/:id', function(req, res, callback) { 
   router.manageWorkflow(req, res, callback);
@@ -21,7 +20,7 @@ router.manageWorkflow = function(req, res, workflowCallback) {
   async.waterfall([
 
     function(callback) {
-      db.jobDescriptions.findOne({_id: personnel.fixId(req.params.id)}, function(err, jobDescription) {
+      req.db.jobDescriptions.findOne({_id: personnel.fixId(req.params.id)}, function(err, jobDescription) {
 
         if (!jobDescription) {
           jobDescription = {
@@ -50,7 +49,7 @@ router.manageWorkflow = function(req, res, workflowCallback) {
             };
 
             var jobDescriptionPersonnel = jobDescription.personnels[count];
-            db.personnels.findOne({_id: personnel.fixId(jobDescriptionPersonnel._id)}, function(err, personnel) {
+            req.db.personnels.findOne({_id: personnel.fixId(jobDescriptionPersonnel._id)}, function(err, personnel) {
 
               // these fields are merged with the jobdescription, but not saved with it
               var personnelInfo;

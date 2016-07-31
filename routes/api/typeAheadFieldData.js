@@ -2,14 +2,12 @@
 var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
 // typeahead
 
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.connectDefault();
 
 router.get('/typeAheadFieldData', function(req, res, callback) { 
   router.typeAheadFieldData(req, res, callback);
@@ -76,7 +74,7 @@ router.typeAheadFieldData = function(req, res, callback) {
         ],
   };
   
-  db.personnels.aggregate(aggregateQuery[fieldName], function(err, docs) {
+  req.db.personnels.aggregate(aggregateQuery[fieldName], function(err, docs) {
     if (err) {
       log.error(err);
     } else {

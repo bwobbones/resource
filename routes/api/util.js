@@ -2,12 +2,8 @@ var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');
 var gridjs = require('gridjs');
-var dbDriver = require('../database')
 var moment = require('moment');
 var ObjectId = mongojs.ObjectId;
-var db = dbDriver.connectDefault();
-
-var gs = gridjs(db);
 
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
@@ -36,7 +32,7 @@ router.get('/indexFiles', function(req, res, callback) {
 // util
 router.indexFiles = function(req, res) {
 
-  db.personnels.find(function(err, personnels) {
+  req.db.personnels.find(function(err, personnels) {
 
     _.each(personnels, function(personnel) {
       if (personnel.files && personnel.files.length > 0) {
@@ -72,15 +68,5 @@ function indexFile(data, fileId, personnelId) {
   });
 
 }
-
-
-// util
-router.logEvent = function(req, res, callback) {
-  req.body.logTime = new Date();
-  db.eventLog.save(req.body);
-  res.json(req.body);
-  callback();
-};
-
 
 module.exports = router;
