@@ -40,6 +40,7 @@ module.exports = function(config) {
       'components/bower_components/metisMenu/dist/metisMenu.js',
       'components/bower_components/angular-aside/dist/js/angular-aside.js',
       'components/bower_components/angular-jwt/dist/angular-jwt.js',
+      'components/bower_components/plotly.js/dist/plotly.min.js',
       // endbower
 
       'components/utils/string-utils.js',
@@ -50,8 +51,10 @@ module.exports = function(config) {
       'components/affiliation/controller/affiliationController.js',
       'components/affiliation/controller/deleteAffiliationController.js',
       'components/analytics/controller/analyticsController.js',
+      'components/analytics/controller/skillsMatrixController.js',
       'components/analytics/controller/teamProjectMatrixController.js',
       'components/analytics/directive/pairingsDirective.js',
+      'components/analytics/directive/skillsMatrixDirective.js',
       'components/analytics/directive/teamProjectMatrixDirective.js',
       'components/analytics/service/matrixDataService.js',
       'components/analytics/service/matrixService.js',
