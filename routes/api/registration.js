@@ -59,7 +59,7 @@ router.registerUser = function (req, res, callback) {
 
     delete req.body.confirm;
 
-    req.db.users.findAndModify({
+    db.users.findAndModify({
       query: { username: username },
       update: { $set: req.body },
       new: true,
