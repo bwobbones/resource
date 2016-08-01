@@ -7,11 +7,9 @@ var ObjectId = mongojs.ObjectId;
 
 var express = require('express');
 var router = express.Router();
-var db = dbDriver.getConnection();
-//router.get('/personnelPairings', router.personnelPairings, callback);
 
 router.get('/skillsMatrix', function (req, res) {
-  db.personnels.find((err, personnels) => {
+  req.db.personnels.find((err, personnels) => {
     if (err) {
       log.error(err);
       res.sendStatus(500);
