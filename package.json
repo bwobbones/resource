@@ -56,6 +56,7 @@
     "grunt-jade-usemin": "^0.11.0",
     "grunt-jasmine-node": "git://github.com/lotsabackscatter/grunt-jasmine-node#master",
     "grunt-karma": "^0.9.0",
+    "grunt-mongo-drop": "git+https://github.com/IOKI/grunt-mongo-drop.git",
     "grunt-mongoimport": "^0.1.6",
     "grunt-newer": "^0.8.0",
     "grunt-ng-annotate": "^0.10.0",
@@ -85,6 +86,7 @@
     "karma-phantomjs-launcher": "0.1.0",
     "karma-requirejs": "0.1.0",
     "karma-script-launcher": "0.1.0",
+    "mongoose": "^4.5.8",
     "phantomjs": "^1.9.17",
     "time-grunt": "^1.0.0"
   }

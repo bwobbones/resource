@@ -3,6 +3,7 @@ var LoginPage = (function () {
     this.usernameField = by.model('loginForm.username');
     this.passwordField = by.model('loginForm.password');
     this.loginButton = by.id('loginButton');
+    this.registerLink = by.id('registerLink');
   }
 
   LoginPage.prototype.visitPage = function () {
@@ -20,6 +21,10 @@ var LoginPage = (function () {
   LoginPage.prototype.login = function () {
     element(this.loginButton).click();
   };
+
+  LoginPage.prototype.clickRegisterLink = function() {
+    element(this.registerLink).click();
+  }
 
   LoginPage.prototype.enterCredentials = function (username, password) {
     this.enterUsername(username);

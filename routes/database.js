@@ -9,10 +9,10 @@ var log = winston.loggers.get('normal');
 app.locals.connection = app.locals.connection || [];
 
 var connectionString;
-if (app.get('env') === 'development') {
-  connectionString = 'mongodb://localhost:27017/resource';
-} else if (app.get('env') === 'production') {
+if (app.get('env') === 'production') {
   connectionString = 'mongodb://mongo:27017/resource';
+} else {
+  connectionString = 'mongodb://localhost:27017/resource';
 }
 
 getConnection = function getConnection(user) {

@@ -2,10 +2,10 @@
 
 var path = require('path');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Capture jasmine_node stack traces, see https://gist.github.com/badsyntax/7769526
-  process.on('uncaughtException', function(e) {
+  process.on('uncaughtException', function (e) {
     grunt.log.error(e.stack);
   });
 
@@ -15,12 +15,21 @@ module.exports = function(grunt) {
     express: 'grunt-express-server',
     injector: 'grunt-asset-injector',
     protractor: 'grunt-protractor-runner',
+    'mongo-drop': 'grunt-mongo-drop-task'
   });
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
   grunt.initConfig({
+
+    'mongo-drop': {
+      options: {
+        dbname: 'resourcetestuser1',
+        host: 'localhost'
+      }
+    },
+
     // Project settings
     yeoman: {
       // configurable paths
@@ -57,13 +66,13 @@ module.exports = function(grunt) {
           '!components/**/*.mock.js',
           'api/**/*.js'
         ],
-        tasks: [ /*'newer:jshint:all', 'injector:scripts'*/ ]
+        tasks: [ /*'newer:jshint:all', 'injector:scripts'*/]
       },
       injectCss: {
         files: [
           'components/**/*.css'
         ],
-        tasks: [ /*'injector:css'*/ ]
+        tasks: [ /*'injector:css'*/]
       },
       mochaTest: {
         files: ['server/**/*.spec.js'],
@@ -137,29 +146,29 @@ module.exports = function(grunt) {
 
     mongoimport: {
       options: {
-        db : 'minhr_test',
-        stopOnError : false,
-        collections : [
-          { 
-            name : 'users', 
-            type : 'json', 
-            file : 'test/data/users.json', 
-            jsonArray : true,
-            upsert : true,
-            drop : true 
-          }, 
-          { 
-            name : 'personnels',
-            type :'json',
-            file : 'test/data/personnels1.json',
-            jsonArray : true,
-            drop : true
-          }, 
-          { 
-            name : 'personnels', 
-            type :'json', 
-            file : 'test/data/personnels2.json', 
-            jsonArray : true
+        db: 'minhr_test',
+        stopOnError: false,
+        collections: [
+          {
+            name: 'users',
+            type: 'json',
+            file: 'test/data/users.json',
+            jsonArray: true,
+            upsert: true,
+            drop: true
+          },
+          {
+            name: 'personnels',
+            type: 'json',
+            file: 'test/data/personnels1.json',
+            jsonArray: true,
+            drop: true
+          },
+          {
+            name: 'personnels',
+            type: 'json',
+            file: 'test/data/personnels2.json',
+            jsonArray: true
           }
         ]
       }
@@ -276,58 +285,58 @@ module.exports = function(grunt) {
             '!layout.jade'
           ]
         }, {
-          expand: true,
-          dot: true,
-          cwd: 'scripts',
-          dest: '<%= yeoman.dist %>/scripts',
-          src: [
-            'upload.groovy'
-          ]
-        }, {
-          expand: true,
-          dot: true,
-          cwd: 'templates',
-          dest: '<%= yeoman.dist %>/templates',
-          src: [
-            '*.docx'
-          ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/public/assets/images',
-          src: ['generated/*']
-        }, {
-          expand: true,
-          dest: '<%= yeoman.dist %>',
-          src: [
-            'components/web/**/*',
-            'routes/**/*',
-            'migrations/*',
-            'app.js',
-          ]
-        }, {
-          expand: true,
-          cwd: '<%= yeoman.client %>/bower_components/open-sans/',
-          dest: '<%= yeoman.dist %>/components/web/',
-          src: [
-            'fonts/**/*',
-          ]
-        }, {
-          expand: true,
-          flatten: true,
-          dest: '<%= yeoman.dist %>/components/web/fonts/',
-          src: [
-            'components/bower_components/**/*.woff',
-            'components/bower_components/**/*.ttf',
-            '!**/open-sans/**/*',
-            '!**/underscore/**/*',
-          ]
-        }, {
-          dest: '<%= yeoman.dist %>/.env',
-          src: [
-            'config/.env.prod'
-          ]
-        }]
+            expand: true,
+            dot: true,
+            cwd: 'scripts',
+            dest: '<%= yeoman.dist %>/scripts',
+            src: [
+              'upload.groovy'
+            ]
+          }, {
+            expand: true,
+            dot: true,
+            cwd: 'templates',
+            dest: '<%= yeoman.dist %>/templates',
+            src: [
+              '*.docx'
+            ]
+          }, {
+            expand: true,
+            cwd: '.tmp/images',
+            dest: '<%= yeoman.dist %>/public/assets/images',
+            src: ['generated/*']
+          }, {
+            expand: true,
+            dest: '<%= yeoman.dist %>',
+            src: [
+              'components/web/**/*',
+              'routes/**/*',
+              'migrations/*',
+              'app.js',
+            ]
+          }, {
+            expand: true,
+            cwd: '<%= yeoman.client %>/bower_components/open-sans/',
+            dest: '<%= yeoman.dist %>/components/web/',
+            src: [
+              'fonts/**/*',
+            ]
+          }, {
+            expand: true,
+            flatten: true,
+            dest: '<%= yeoman.dist %>/components/web/fonts/',
+            src: [
+              'components/bower_components/**/*.woff',
+              'components/bower_components/**/*.ttf',
+              '!**/open-sans/**/*',
+              '!**/underscore/**/*',
+            ]
+          }, {
+            dest: '<%= yeoman.dist %>/.env',
+            src: [
+              'config/.env.prod'
+            ]
+          }]
       },
       styles: {
         expand: true,
@@ -394,7 +403,7 @@ module.exports = function(grunt) {
       // Inject application script files into index.html (doesn't include bower)
       scripts: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components/', '');
             filePath = filePath.replace('/.tmp/', '');
             return 'script(src=\'' + filePath + '\')';
@@ -419,7 +428,7 @@ module.exports = function(grunt) {
 
       scriptsForTests: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components', 'components');
             filePath = filePath.replace('/node_modules', 'node_modules');
             return '\'' + filePath + '\',';
@@ -445,7 +454,7 @@ module.exports = function(grunt) {
 
       tests: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components', 'components');
             return '\'' + filePath + '\',';
           },
@@ -461,7 +470,7 @@ module.exports = function(grunt) {
 
       e2eTests: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components', 'components');
             return '\'../' + filePath + '\',';
           },
@@ -478,7 +487,7 @@ module.exports = function(grunt) {
       // Inject component less into app.less
       less: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components/', '');
             return '@import \'' + filePath + '\';';
           },
@@ -495,12 +504,12 @@ module.exports = function(grunt) {
       // Inject component css into index.html
       css: {
         options: {
-          transform: function(filePath) {
+          transform: function (filePath) {
             filePath = filePath.replace('/components/', '');
             filePath = filePath.replace('/.tmp/', '');
             return 'link(rel=\'stylesheet\', href=\'' + filePath + '\')';
           },
-          sort: function(a, b) {
+          sort: function (a, b) {
             if (a.indexOf('app.css') !== -1) {
               return 1;
             }
@@ -564,9 +573,9 @@ module.exports = function(grunt) {
           dest: '<%= yeoman.dist %>/<%= yeoman.client %>/index.jade',
           src: '<%= yeoman.client %>/index.jade'
         }, {
-          dest: '<%= yeoman.dist %>/<%= yeoman.client %>/layout.jade',
-          src: '<%= yeoman.client %>/layout.jade'
-        }]
+            dest: '<%= yeoman.dist %>/<%= yeoman.client %>/layout.jade',
+            src: '<%= yeoman.client %>/layout.jade'
+          }]
       }
     },
 
@@ -659,22 +668,22 @@ module.exports = function(grunt) {
   });
 
   // Used for delaying livereload until after server has restarted
-  grunt.registerTask('wait', function() {
+  grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
 
     var done = this.async();
 
-    setTimeout(function() {
+    setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       done();
     }, 1500);
   });
 
-  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
+  grunt.registerTask('express-keepalive', 'Keep grunt running', function () {
     this.async();
   });
 
-  grunt.registerTask('serve', function(target) {
+  grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
@@ -721,7 +730,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target) {
+  grunt.registerTask('test', function (target) {
     if (target === 'server') {
       return grunt.task.run([
         'build',
@@ -735,6 +744,7 @@ module.exports = function(grunt) {
       return grunt.task.run([
         'injector',
         'env:test',
+        'mongo-drop',
         'mongoimport',
         'karma:unit',
         'jasmine_node',
@@ -762,6 +772,7 @@ module.exports = function(grunt) {
       ]);
     } else if (target === 'phantom') {
       return grunt.task.run([
+        'mongo-drop',
         'mongoimport',
         'env:test',
         'express:dev',
@@ -774,6 +785,7 @@ module.exports = function(grunt) {
     } else if (target === 'chrome') {
       return grunt.task.run([
         'injector',
+        'mongo-drop',
         'mongoimport',
         'env:test',
         'express:dev',
@@ -799,14 +811,14 @@ module.exports = function(grunt) {
     'packageModules',
   ]);
 
-  grunt.registerTask('testWatch', 'Runs tests when files change', function() {
+  grunt.registerTask('testWatch', 'Runs tests when files change', function () {
     var tasks = ['test', 'watch'];
 
     grunt.option('force', true);
     grunt.task.run(tasks);
   });
 
-  grunt.registerTask('jshintWatch', 'Runs jshint when files change', function() {
+  grunt.registerTask('jshintWatch', 'Runs jshint when files change', function () {
     var tasks = ['newer:jshint', 'watch'];
     grunt.task.run(tasks);
   });

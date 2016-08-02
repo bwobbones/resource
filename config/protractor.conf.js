@@ -25,6 +25,7 @@ exports.config = {
   '../components/index/test/e2e/index.spec.js',
   '../components/jobDescription/test/e2e/jobDescription.create.spec.js',
   '../components/login/test/e2e/login.spec.js',
+  '../components/login/test/e2e/registration.spec.js',
   '../components/personnel/test/e2e/personnel.create.spec.js',
   '../components/personnel/test/e2e/personnel.delete.spec.js',
   '../components/personnel/test/e2e/personnel.maps.spec.js',
