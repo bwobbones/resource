@@ -38,6 +38,16 @@ var RegistrationPage = (function () {
     element(this.confirmField).clear();
   }
 
+  RegistrationPage.prototype.registerUser = function(fullname, username, password) {
+    this.enterFullName(fullname);
+    this.enterUsername(username);
+    this.enterPassword(password || 'password');
+    this.enterConfirm(password || 'password');
+    this.register();
+
+    expect(element(by.id('loggedInUser')).getText()).toBe(fullname);
+  }
+
   return RegistrationPage;
 
 })();

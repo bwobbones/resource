@@ -1,4 +1,5 @@
 var LoginPage = require('../../../common/test/e2e/pages/loginPage.js');
+var RegistrationPage = require('../../../common/test/e2e/pages/registrationPage.js');
 var MainPage = require('../../../common/test/e2e/pages/mainPage.js');
 var PersonnelPage = require('../../../common/test/e2e/pages/personnelPage.js');
 var PersonnelContactPage = require('../../../common/test/e2e/pages/personnelContactPage.js');
@@ -10,9 +11,16 @@ describe('personnel', function() {
   describe('maps', function () {
     
     var loginPage = new LoginPage();
+    var registrationPage = new RegistrationPage();
     var mainPage = new MainPage();
     var personnelPage = new PersonnelPage();
     var personnelContactPage = new PersonnelContactPage();
+
+    beforeAll(function() {
+      loginPage.visitPage();
+      loginPage.clickRegisterLink();
+      registrationPage.registerUser('greg', 'greg', 'greg');
+    });
 
     beforeEach(function () {
       loginPage.visitPage();

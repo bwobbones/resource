@@ -22,24 +22,13 @@ describe('resource', function() {
     });
 
     it('should be possible to register a new user', function() {
-      registrationPage.enterFullName('Test User');
-      registrationPage.enterUsername('testuser1');
-      registrationPage.enterPassword('password');
-      registrationPage.enterConfirm('password');
-      registrationPage.register();
-
-      expect(element(by.id('loggedInUser')).getText()).toBe('Test User');
+      registrationPage.registerUser('Test User 1', 'testuser1');
     });
 
     it('should be possible to register a 2 new users and have their data segregated', function(done) {
 
       // register the first user
-      registrationPage.enterFullName('Test User 1');
-      registrationPage.enterUsername('testuser1');
-      registrationPage.enterPassword('password');
-      registrationPage.enterConfirm('password');
-      registrationPage.register();
-      expect(element(by.id('loggedInUser')).getText()).toBe('Test User 1');
+      registrationPage.registerUser('Test User 1', 'testuser1');
 
       // create a personnel
       element(by.id('addPersonnelLink')).click();
@@ -53,12 +42,7 @@ describe('resource', function() {
       // register the second user
       mainPage.logout();
       loginPage.clickRegisterLink();
-      registrationPage.enterFullName('Test User 2');
-      registrationPage.enterUsername('testuser2');
-      registrationPage.enterPassword('password');
-      registrationPage.enterConfirm('password');
-      registrationPage.register();
-      expect(element(by.id('loggedInUser')).getText()).toBe('Test User 2');
+      registrationPage.registerUser('Test User 2', 'testuser2');
 
       // create a personnel
       element(by.id('addPersonnelLink')).click();

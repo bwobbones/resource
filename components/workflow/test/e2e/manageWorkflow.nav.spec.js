@@ -1,6 +1,7 @@
 var _ = require('../../../bower_components/lodash/lodash.js')
 
 var LoginPage = require('../../../common/test/e2e/pages/loginPage.js');
+var RegistrationPage = require('../../../common/test/e2e/pages/registrationPage.js');
 var MainPage = require('../../../common/test/e2e/pages/mainPage.js');
 var MainJobPage = require('../../../common/test/e2e/pages/mainPage.job.js');
 var JobCommentPage = require('../../../common/test/e2e/pages/jobCommentPage.js');
@@ -19,6 +20,7 @@ describe('manage workflow', function() {
   describe('nav', function () {
     
     var loginPage = new LoginPage();
+    var registrationPage = new RegistrationPage();
     var mainPage = new MainPage();
     var mainJobPage = new MainJobPage();
     var jobCommentPage = new JobCommentPage();
@@ -27,6 +29,12 @@ describe('manage workflow', function() {
     var jobQualificationsPage = new JobQualificationsPage();
     var jobSummaryPage = new JobSummaryPage();
     var manageWorkflowPage = new ManageWorkflowPage();
+
+    beforeAll(function() {
+      loginPage.visitPage();
+      loginPage.clickRegisterLink();
+      registrationPage.registerUser('greg', 'greg', 'greg');
+    })
     
     beforeEach(function () {
       loginPage.visitPage();

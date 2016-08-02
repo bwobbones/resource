@@ -1,6 +1,7 @@
 var _ = require('../../../bower_components/lodash/lodash.js')
 
 var LoginPage = require('../../../common/test/e2e/pages/loginPage.js');
+var RegistrationPage = require('../../../common/test/e2e/pages/registrationPage.js');
 var MainPage = require('../../../common/test/e2e/pages/mainPage.js');
 var MainPersonnelPage = require('../../../common/test/e2e/pages/mainPage.personnel.js');
 var PersonnelContactPage = require('../../../common/test/e2e/pages/personnelContactPage.js');
@@ -17,12 +18,19 @@ describe('personnel', function() {
   describe('create', function () {
     
     var loginPage = new LoginPage();
+    var registrationPage = new RegistrationPage();
     var mainPage = new MainPage();
     var mainPersonnelPage = new MainPersonnelPage();
     var personnelContactPage = new PersonnelContactPage();
     var personnelEmergencyPage = new PersonnelEmergencyPage();
     var personnelPage = new PersonnelPage();
-    var personnelPersonalPage = new PersonnelPersonalPage();
+    var personnelPersonalPage = new PersonnelPersonalPage();  
+
+    beforeAll(function() {
+      loginPage.visitPage();
+      loginPage.clickRegisterLink();
+      registrationPage.registerUser('greg', 'greg', 'greg');
+    });
     
     beforeEach(function () {
       loginPage.visitPage();

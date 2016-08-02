@@ -33,6 +33,10 @@ module.exports = function (grunt) {
         {
           dbname: 'resourcetestuser2',
           host: 'localhost'
+        },
+        {
+          dbname: 'resourcegreg',
+          host: 'localhost'
         }]
       }
     },

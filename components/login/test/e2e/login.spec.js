@@ -1,4 +1,5 @@
 var LoginPage = require('../../../common/test/e2e/pages/loginPage.js');
+var RegistrationPage = require('../../../common/test/e2e/pages/registrationPage.js');
 var EditProfilePage = require('../../../common/test/e2e/pages/editProfilePage.js');
 var MainPage = require('../../../common/test/e2e/pages/mainPage.js');
 
@@ -7,8 +8,15 @@ describe('resource', function() {
   describe('login', function() {
     
     var loginPage = new LoginPage();
+    var registrationPage = new RegistrationPage();
     var editProfilePage = new EditProfilePage();
     var mainPage = new MainPage();
+
+    beforeAll(function() {
+      loginPage.visitPage();
+      loginPage.clickRegisterLink();
+      registrationPage.registerUser('greg', 'greg', 'greg');
+    });
 
     beforeEach(function () {
       loginPage.visitPage();
