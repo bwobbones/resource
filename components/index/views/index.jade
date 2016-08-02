@@ -37,7 +37,7 @@ script(type="text/ng-template" id="customTemplate.html")
           span Job: {{ jobQuery }} &nbsp;
 
 .ibox(ng-if="matchingPersonnel.length <= 0 && matchingJobs.length <= 0", style='margin: 10px')
-  .ibox-content There are no search results...
+  .ibox-content#searchResults There are no search results...
 
 .ibox.float-e-margins(ng-if="searchType === 'personnel' && matchingPersonnel.length > 0", style='margin: 10px')
   .ibox-content

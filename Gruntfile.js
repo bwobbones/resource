@@ -25,8 +25,15 @@ module.exports = function (grunt) {
 
     'mongo-drop': {
       options: {
-        dbname: 'resourcetestuser1',
-        host: 'localhost'
+        databases: [
+        {
+          dbname: 'resourcetestuser1',
+          host: 'localhost'
+        },
+        {
+          dbname: 'resourcetestuser2',
+          host: 'localhost'
+        }]
       }
     },
 
@@ -791,7 +798,7 @@ module.exports = function (grunt) {
         'express:dev',
         'shell:webdriver_update',
         'protractor:chrome',
-        'env:dev',
+        'env:dev'
       ]);
     } else grunt.task.run([
       //'test:server',
