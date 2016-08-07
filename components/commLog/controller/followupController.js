@@ -9,7 +9,7 @@ function FollowupCtrl($scope, $modalInstance, AlertService, PersonnelService, Us
   $scope.commLog = commLogData;
 
   $scope.followup = {
-    dateDue: new moment().add('d', 1).format('DD/MM/YYYY HH:mm'),
+    dateDue: new moment().add(1, 'd').format('DD/MM/YYYY HH:mm'),
     completed: false
   };
 

@@ -29,7 +29,7 @@ function SkillsMatrixCtrl($rootScope, $scope, $stateParams, $window, $http) {
 
     this.init = function (directiveElement) {
         $http.get('/api/skillsMatrix')
-            .then(res => {
+            .then(function(res) {
                 var resData = res.data;
                 if ($rootScope.showFull) {
                     resData.layout.height = $window.innerHeight - 30;
@@ -41,7 +41,7 @@ function SkillsMatrixCtrl($rootScope, $scope, $stateParams, $window, $http) {
                 var numRows = tickvals[tickvals.length - 1];
                 updateNameFontSize(0, numRows, resData, graphDiv);
 
-                graphDiv.on('plotly_relayout', (event, eventdata) => {
+                graphDiv.on('plotly_relayout', function(event, eventdata) {
                     if (event['yaxis.autorange'] === true) {
                         updateNameFontSize(0, numRows, resData, graphDiv);
                     }

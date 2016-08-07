@@ -39,7 +39,7 @@ function QualificationReportCtrl($scope, $rootScope, $http) {
   } 
 
   $scope.isNearExpiry = function(expiryDate) {
-    var upcomingMonth = moment().add('months', 1);
+    var upcomingMonth = moment().add(1, 'months');
     if(moment(expiryDate).isAfter(moment()) && moment(expiryDate).isBefore(upcomingMonth)) {
       return true;
     }

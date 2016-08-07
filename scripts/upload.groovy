@@ -11,10 +11,10 @@ import groovy.json.JsonBuilder
 
 //def mongoURI = new MongoClientURI("mongodb://ip-172-31-20-5:27017/minhr_test")
 //def mongoURI = new MongoClientURI("mongodb://minhr:minhr@ds041178.mongolab.com:41178/minhr")
-def mongoURI = new MongoClientURI("mongodb://mongo:27017/minhr")
+def mongoURI = new MongoClientURI("mongodb://mongo:27017/resourcegreg")
 def client = new GMongoClient(mongoURI)
 
-def db = client.getDB("minhr")
+def db = client.getDB("resourcegreg")
 
 println "clearing the database...";
 db.personnels.remove([:])
