@@ -13,6 +13,7 @@ var login = require('../../../../routes/api/login');
 var typeaheadfielddata = require('../../../../routes/api/typeAheadFieldData');
 var matrix = require('../../../../routes/api/matrix');
 var rewire = require('rewire');
+var db = require('../../../../routes/database')
 
 var elasticMock = {
   search: function(params, cb) {
@@ -44,7 +45,7 @@ describe("Personnel Suite", function() {
   var req;
 
   beforeEach(function() {
-    req = null;
+    req = {db: db.getConnectionWithString('mongodb://localhost:27017/minhr_test')};
     res = jasmine.createSpyObj(res,['json', 'download']);
     api.__set__('client', elasticMock);
   });
@@ -74,7 +75,7 @@ describe("Personnel Suite", function() {
   // personnel
   it("should only return one personnel", function(done) {
 
-    var req = {params:{id: testId}};
+    req.params = {id: testId};
 
     personnel.personnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].surname).toEqual(testSurname);
@@ -87,7 +88,7 @@ describe("Personnel Suite", function() {
   // personnel
   it("should return empty for invalid id's", function(done) {
 
-    var req = {params:{id:'20'}};
+    req.params = {id:'20'};
 
     personnel.personnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].length).toEqual(0);
@@ -99,14 +100,14 @@ describe("Personnel Suite", function() {
   // personnel
   it("should add a new personnel", function(done) {
 
-    var req = {body:{name:'Jack', hchomephone:'33333333'}};
+    req.body ={name:'Jack', hchomephone:'33333333'};
 
     personnel.addPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].name).toEqual('Jack');
       expect(res.json.mostRecentCall.args[0].hchomephone).toEqual('33333333');
       
       // undelete
-      var req = {params:{id: res.json.mostRecentCall.args[0]._id }};
+      req.params = {id: res.json.mostRecentCall.args[0]._id };
       personnel.reallyDeletePersonnel(req, res, function() {
         personnel.personnels(req, res, function() {
           expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(16);
@@ -120,13 +121,15 @@ describe("Personnel Suite", function() {
   // personnel
   it("should return an edited version of the personnel", function(done) {
 
-    req = { params:{ _id: testId }, body:{ _id: testId, surname: testSurname + 'edited' }};
+    req.params = { _id: testId };
+    req.body = { _id: testId, surname: testSurname + 'edited' };
 
     personnel.updatePersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].surname).toEqual(testSurname + 'edited');
       
       // put it back
-      req = { params:{ _id: testId }, body:{ _id: testId, surname: testSurname }};
+      req.params = { _id: testId }
+      req.body = { _id: testId, surname: testSurname };
       personnel.updatePersonnel(req, res, function() {
         expect(res.json.mostRecentCall.args[0].surname).toEqual(testSurname);
         done();
@@ -141,7 +144,7 @@ describe("Personnel Suite", function() {
     personnel.personnels(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(16);
       
-      req = {params:{id: testId }};
+      req.params = {id: testId };
       personnel.deletePersonnel(req, res, function() {
   
         personnel.personnels(req, res, function() {
@@ -167,19 +170,19 @@ describe("Personnel Suite", function() {
     var ids = [];
 
     // create one jack
-    var req = {body:{name:'jack', surname:'lucas'}};
+    req.body = {name:'jack', surname:'lucas'};
     personnel.addPersonnel(req, res, function() {
       ids.push(res.json.mostRecentCall.args[0]._id);
       
       // create two jacks
-      var req2 = {body:{name:'jack', surname:'lucas'}};
-      personnel.addPersonnel(req2, res, function() {
+      req.body = {name:'jack', surname:'lucas'};
+      personnel.addPersonnel(req, res, function() {
         ids.push(res.json.mostRecentCall.args[0]._id);
         
         // search for him
         var query = {};
         query.personnelName = 'lucas';
-        var req = {body:query};
+        req.body = query;
     
         // should be 2 of him
         search.searchPersonnel(req, res, function() {
@@ -187,7 +190,7 @@ describe("Personnel Suite", function() {
           
           var count = 0;
           _.each(ids, function(jackId) {
-            var req = {params:{id: jackId }};
+            req.params = {id: jackId };
             personnel.reallyDeletePersonnel(req, res, function() {
               personnel.personnels(req, res, function() {
                 count = count +1;
@@ -212,7 +215,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.similarPosition = "Jumbo Operator";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(6);
@@ -228,7 +231,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.personnelName = testSurname;
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
@@ -244,7 +247,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.personnelName = testFirstname;
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(2);
@@ -259,7 +262,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.personnelName = testFirstname + ' ' + testSurname;
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(2);
@@ -274,7 +277,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.personnelName = 'Jeffjeff';
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
@@ -290,7 +293,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.occupation = "Railway Electrician";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(7);
@@ -306,7 +309,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.similarPosition = "Invalid position";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(0);
@@ -321,7 +324,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.occupation = "Railway";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(7);
@@ -337,7 +340,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.similarPosition = "jumbo operator";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(6);
@@ -354,7 +357,7 @@ describe("Personnel Suite", function() {
     query.qualifications = [];
     query.qualifications.push({"name" : "Maritime"});
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(5);
@@ -371,7 +374,7 @@ describe("Personnel Suite", function() {
     query.qualifications = [];
     query.qualifications.push({"name" : "Invalid"});
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(0);
@@ -387,7 +390,7 @@ describe("Personnel Suite", function() {
     query.qualifications = [];
     query.qualifications.push({"name" : "Mari"});
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(5);
@@ -404,7 +407,7 @@ describe("Personnel Suite", function() {
     query.qualifications = [];
     query.qualifications.push({"name" : "maritime"});
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(5);
@@ -422,7 +425,7 @@ describe("Personnel Suite", function() {
     query.qualifications.push({"name" : "Electrical"});
     query.qualifications.push({"name" : "Confined"});
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
@@ -438,7 +441,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.offshore = true;
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
@@ -453,7 +456,7 @@ describe("Personnel Suite", function() {
     var query = {};
     query.eeha = true;
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(15);
@@ -469,7 +472,7 @@ describe("Personnel Suite", function() {
     query.offshore = true;
     query.position = "Jumbo Operator";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
@@ -487,7 +490,7 @@ describe("Personnel Suite", function() {
     query.qualifications.push({"name" : "Maritime"});
     query.similarPosition = "Jumbo Operator";
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(2);
@@ -501,7 +504,7 @@ describe("Personnel Suite", function() {
 
     var query = {};
 
-    var req = {body:query};
+    req.body = query;
 
     search.searchPersonnel(req, res, function() {
       expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(0);
@@ -512,7 +515,7 @@ describe("Personnel Suite", function() {
 
   it('should find a user with a keyword match', function(done) {
 
-    var req = {body: {keywords: 'Greg2'}};
+    req.body = {keywords: 'Greg2'};
 
     search.__set__('client', elasticMock);
 
@@ -527,23 +530,23 @@ describe("Personnel Suite", function() {
   // search
   it('should not return deleted personnel', function(done) {
     
-    var req = {params:{id: testId }};
+    req.params = {id: testId };
     personnel.deletePersonnel(req, res, function() {
 
       var query = {};
       query.personnelName = testSurname;
   
-      var req = {body:query};
+      req.body = query;
       search.searchPersonnel(req, res, function() {
         expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(0);
         
         // undelete
-        var req = {params:{id: testId }};
+        req.params = {id: testId };
         personnel.restorePersonnel(req, res, function() {
           
           var query = {};
           query.personnelName = testSurname;
-          req = {body:query};
+          req.body = query;
           search.searchPersonnel(req, res, function() {
             expect(res.json.mostRecentCall.args[0].personnels.length).toEqual(1);
             done();
@@ -556,73 +559,10 @@ describe("Personnel Suite", function() {
 
   });
 
-  // login
-  it('should be possible to reset the user password', function(done) {
-
-    var req = {body:{username: 'greg', password: 'changedgreg'}};
-
-    login.resetPassword(req, res, function() {
-      expect(res.json.mostRecentCall.args[0].password).toBe('changedgreg');
-      
-      var req = {body:{username: 'greg', password: 'greg'}};
-      login.resetPassword(req, res, function() {
-        expect(res.json.mostRecentCall.args[0].password).toBe('greg');
-        done();
-      });
-    });
-
-  });
-
-  // login
-  it('should be possible to login with good credentials', function(done) {
-
-    var req = {body:{username: 'greg', password: 'greg'}};
-    login.loginUser(req, res, function() {
-      expect(res.json.mostRecentCall.args[0].success).toBe(true);
-      expect(res.json.mostRecentCall.args[0].user.username).toBe('greg');
-      done();
-    });
-
-  });
-
-  // login
-  it('should not be possible to login with a bad username', function(done) {
-
-    var req = {body:{username: 'badUser', password: 'badPassword'}};
-    login.loginUser(req, res, function() {
-      expect(res.json.mostRecentCall.args[0].success).toBe(false);
-      expect(res.json.mostRecentCall.args[0].message).toBe('Authentication failed. User not found.');
-      done();
-    });
-    
-  });
-
-  // login
-  it('should not be possible to login with a bad password', function(done) {
-
-    var req = {body:{username: 'greg', password: 'badPassword'}};
-    login.loginUser(req, res, function() {
-      expect(res.json.mostRecentCall.args[0].success).toBe(false);
-      expect(res.json.mostRecentCall.args[0].message).toBe('Authentication failed. Wrong password.');
-      done();
-    });
-
-  });
-  
-  // login
-  it('returns all users', function(done) {
-
-    login.users(req, res, function() {
-      expect(res.json.mostRecentCall.args[0].users.length).toBe(2);
-      done();
-    });
-
-  });
-
   // typeaheads
   it("aggregates all of the role names", function(done) {
 
-    var req = {params:{fieldName: "roleName", searchKey: "Jumbo"} };
+    req.params = {fieldName: "roleName", searchKey: "Jumbo"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData[0].roleName).toBe('Jumbo Operator');
@@ -634,7 +574,7 @@ describe("Personnel Suite", function() {
   // typeahead
   it("aggregates all of the projects", function(done) {
 
-    var req = {params:{fieldName: "projects", searchKey: "Tingold"}};
+    req.params = {fieldName: "projects", searchKey: "Tingold"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(1);
@@ -647,7 +587,7 @@ describe("Personnel Suite", function() {
   // typeaheads
   it("aggregates all of the projects even when they only differ by a number at the end", function(done) {
 
-    var req = {params:{fieldName: "projects", searchKey: "Tin"}};
+    req.params = {fieldName: "projects", searchKey: "Tin"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(14);
@@ -659,7 +599,7 @@ describe("Personnel Suite", function() {
   // typeaheads
   it("aggregates all of the clients", function(done) {
 
-    var req = {params:{fieldName: "client", searchKey: "BHP"}};
+    req.params = {fieldName: "client", searchKey: "BHP"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(1);
@@ -672,7 +612,7 @@ describe("Personnel Suite", function() {
   // typeahrads
   it("aggregates all of the qualification names", function(done) {
 
-    var req = {params:{fieldName: "qualification", searchKey: "Maritime"}};
+    req.params = {fieldName: "qualification", searchKey: "Maritime"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(1);
@@ -684,7 +624,7 @@ describe("Personnel Suite", function() {
   // typeaheads 
   it("aggregates all of the training names", function(done) {
 
-    var req = {params:{fieldName: "training", searchKey: "Plant Operator Licensing"}};
+    req.params = {fieldName: "training", searchKey: "Plant Operator Licensing"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(1);
@@ -696,7 +636,7 @@ describe("Personnel Suite", function() {
   // typeaheads
   it("aggregates all of the training institutions", function(done) {
 
-    var req = {params:{fieldName: "institution", searchKey: "Edith Cowan University"}};
+    req.params = {fieldName: "institution", searchKey: "Edith Cowan University"};
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.mostRecentCall.args[0].typeAheadData.length).toBe(1);

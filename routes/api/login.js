@@ -16,7 +16,6 @@ router.post('/login', function (req, res, callback) {
 
 router.loginUser = function (req, res, callback) {
 
-  console.log('calling connectUser');
   var db = dbDriver.getConnection(req.body.username);
 
   db.users.findOne({ username: req.body.username }, function (err, user) {
@@ -25,6 +24,7 @@ router.loginUser = function (req, res, callback) {
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
+
       encryptPassword(req.body.password, user.salt, (err, encrypted) => {
         // check if password matches
         if (encrypted !== user.password) {

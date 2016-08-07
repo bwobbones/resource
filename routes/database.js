@@ -15,6 +15,10 @@ if (app.get('env') === 'production') {
   connectionString = 'mongodb://localhost:27017/resource';
 }
 
+getConnectionWithString = function getConnectionWithString(providedConnectionString) {
+  return mongojs(providedConnectionString, ['personnels', 'jobDescriptions', 'users', 'eventLog']);
+}
+
 getConnection = function getConnection(user) {
   var userConnection = _.find(app.locals.connection, ['user', user]);
 
@@ -38,5 +42,6 @@ connectUser = function connect(user) {
 }
 
 module.exports = {
-  getConnection: getConnection
+  getConnection: getConnection,
+  getConnectionWithString: getConnectionWithString
 };

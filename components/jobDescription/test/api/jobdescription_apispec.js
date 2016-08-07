@@ -9,7 +9,7 @@ xdescribe('Job Description Suite', function() {
   var req;
 
   beforeEach(function() {
-    req = null;
+    req = {db: db.getConnectionWithString('mongodb://localhost:27017/minhr_test')};
     res = jasmine.createSpyObj(res,['json']);
   });
 

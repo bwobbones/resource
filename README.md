@@ -1,15 +1,15 @@
 # resource
 A production ready Human Resourcing and Recruitment application
 
-# Resource set-up instructions: Windows 
+## Resource set-up instructions: Windows 
 
-## Clone the repo
+### Clone the repo
 
 on the command line: `git clone https://github.com/bwobbones/resource.git`
 
-## Install Mongo
+### Install Mongo
 
-### Installation
+#### Installation
 
 Download the Windows version of MongoDB
 https://www.mongodb.org/downloads#production
@@ -28,7 +28,7 @@ logpath=c:\{Mongodir}\log\mongo.log
 diaglog=3
 ```
 
-### Mongo as a Windows Service
+#### Mongo as a Windows Service
 
 Run MongoDB server: `mongod.exe --config c:\{Mongodir}\mongo.config`  
  
@@ -38,16 +38,16 @@ To start MongoDB Service: `net start MongoDB`
 
 To stop MongoDB Service: `net stop MongoDB`
 
-### Mongo GUI
+#### Mongo GUI
 
 MongoChef is an awesome front-end interface for your database. 
 
 Install it from here:
 http://3t.io/mongochef/
 
-## Dependency Management
+### Dependency Management
 
-### Node.js
+#### Node.js
 
 Currently Resource requires Node v4, download from here:
 
@@ -55,7 +55,7 @@ https://nodejs.org/en/download/
 
 `npm install`
 
-### Bower
+#### Bower
 
 We use Bower for front end dependency management (note that this will be removed in favour of npm soon):
     
@@ -63,15 +63,15 @@ We use Bower for front end dependency management (note that this will be removed
 
 `bower install`
     
-## Build Management - Grunt
+### Build Management - Grunt
 
 `npm install -g grunt-cli`
 
-## Running Resource
+### Running Resource
 
 `grunt serve`
 
-## Demo data
+### Demo data
 
 Resource creates a database per user so to be able to create demo data a user needs to be registered first
 
@@ -97,7 +97,7 @@ Update the `./scripts/upload.groovy` file with your new database name and then p
 
 `groovy ./scripts/upload.groovy`
 
-## Testing
+### Testing
 
 Testing is through karma and jasmine:
 
