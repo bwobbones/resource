@@ -10,3 +10,4 @@ uploads/*
 performance.log
 libpeerconnection.log
 npm-debug.log
+unit.xml

@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var api = require('../../../../routes/api');
+var db = require('../../../../routes/database');
 
 xdescribe('Job Description Suite', function() {
 
@@ -17,11 +18,12 @@ xdescribe('Job Description Suite', function() {
 
     databaseWrapper(function() {
       
-      var req = {params:{}, param:function() {}};
+      req.params = {};
+      req.param = function() {};
       
       api.jobDescriptions(req, res, function() {
-        expect(res.json.mostRecentCall.args[0].jobDescriptions.length).toBe(3);
-        expect(_.find(res.json.mostRecentCall.args[0].jobDescriptions, { company : 'Company 1'})).
+        expect(res.json.calls.mostRecent().args[0].jobDescriptions.length).toBe(3);
+        expect(_.find(res.json.calls.mostRecent().args[0].jobDescriptions, { company : 'Company 1'})).
           toEqual(jasmine.objectContaining({ company: 'Company 1' }));
         done();
       });
@@ -36,7 +38,7 @@ xdescribe('Job Description Suite', function() {
 
     databaseWrapper(function() {
       api.jobDescription(req, res, function() {
-        expect(res.json.mostRecentCall.args[0]).toEqual(expectedData);
+        expect(res.json.calls.mostRecent().args[0]).toEqual(expectedData);
         done();
       });
     });
@@ -47,7 +49,7 @@ xdescribe('Job Description Suite', function() {
 
     databaseWrapper(function() {
       api.jobDescription(req, res, function() {
-        expect(res.json.mostRecentCall.args[0].length).toEqual(0);
+        expect(res.json.calls.mostRecent().args[0].length).toEqual(0);
         done();
       });
     });
@@ -59,8 +61,8 @@ xdescribe('Job Description Suite', function() {
 
     databaseWrapper(function() {
       api.saveJobDescription(req, res, function() {
-        expect(res.json.mostRecentCall.args[0].company).toEqual(expectedData.company);
-        expect(res.json.mostRecentCall.args[0].position).toEqual(expectedData.position);
+        expect(res.json.calls.mostRecent().args[0].company).toEqual(expectedData.company);
+        expect(res.json.calls.mostRecent().args[0].position).toEqual(expectedData.position);
         done();
       });
     });
@@ -71,7 +73,7 @@ xdescribe('Job Description Suite', function() {
 
     databaseWrapper(function() {
       api.saveJobDescription(req, res, function() {
-        expect(res.json.mostRecentCall.args[0]).toEqual({ _id: 0, position : 'Position 4' });
+        expect(res.json.calls.mostRecent().args[0]).toEqual({ _id: 0, position : 'Position 4' });
         done();
       });
     });
@@ -84,13 +86,13 @@ xdescribe('Job Description Suite', function() {
       var req = {params:{}, param:function() {}};
       
       api.jobDescriptions(req, res, function() {
-        expect(res.json.mostRecentCall.args[0].jobDescriptions.length).toBe(3);
+        expect(res.json.calls.mostRecent().args[0].jobDescriptions.length).toBe(3);
 
         var deleteReq = {params:{id:0}};
         api.deleteJobDescription(deleteReq, res);
 
         api.jobDescriptions(req, res, function() {
-          expect(res.json.mostRecentCall.args[0].jobDescriptions.length).toBe(2);
+          expect(res.json.calls.mostRecent().args[0].jobDescriptions.length).toBe(2);
           done();
         });
 

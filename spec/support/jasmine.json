@@ -1,0 +1,6 @@
+{
+    "spec_dir": "components",
+    "spec_files": [
+        "**/*apispec.js"
+    ]
+}
