@@ -4,7 +4,7 @@ var format = require('util').format;
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
-require('jasmine-expect');
+var jasmineexpect = require('jasmine-expect');
 var moment = require('moment');
 var api = require('../../../../routes/api');
 var personnel = require('../../../../routes/api/personnel');

@@ -598,23 +598,36 @@ module.exports = function (grunt) {
       }
     },
 
-    jasmine_node: {
-      options: {
-        forceExit: false,
-        match: 'apispec',
-        matchall: false,
-        extensions: 'js',
-        specNameMatcher: '',
-        includeStackTrace: true,
-        verbose: true,
-        jUnit: {
-          report: true,
-          savePath: "./report/",
-          useDotNotation: true,
-          consolidate: false
+    jasmine_nodejs: {
+        options: {
+            specNameSuffix: "apispec.js", 
+            useHelpers: false,
+            random: false,
+            seed: null,
+            defaultTimeout: null, // defaults to 5000
+            stopOnFailure: false,
+            traceFatal: true,
+
+            reporters: {
+                console: {
+                    colors: true,       
+                    cleanStack: 1,      
+                    verbosity: 4,       
+                    listStyle: "indent", 
+                    activity: false
+                },
+                junit: {
+                    savePath: "./report/",
+                    consolidate: false,
+                    useDotNotation: true
+                }
+            }
+        },
+        rsc: {
+            specs: [
+                "components/**/*"
+            ]
         }
-      },
-      all: ['components/']
     },
 
     protractor: {
@@ -758,14 +771,14 @@ module.exports = function (grunt) {
         'mongo-drop',
         'mongoimport',
         'karma:unit',
-        'jasmine_node',
+        // 'jasmine_nodejs',
         'env:dev',
       ]);
     } else if (target === 'build') {
       return grunt.task.run([
         'env:build',
         'karma:unit',
-        'jasmine_node',
+        // 'jasmine_nodejs',
         'env:dev',
       ]);
     } else if (target === 'e2e') {
@@ -842,4 +855,5 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-selenium-webdriver');
+  grunt.loadNpmTasks('grunt-jasmine-nodejs');
 };
