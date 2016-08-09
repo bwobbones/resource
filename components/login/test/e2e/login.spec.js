@@ -58,7 +58,7 @@ describe('resource', function() {
       editProfilePage.clearFields();
       editProfilePage.updatePassword('greg', 'greg');
       
-      expect(element(by.id('loggedInUser')).getText()).toContain("Greg Lucas-Smith");
+      expect(element(by.id('loggedInUser')).getText()).toContain("greg");
       mainPage.logout();
     });
     

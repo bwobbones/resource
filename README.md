@@ -7,6 +7,12 @@ A production ready Human Resourcing and Recruitment application
 
 on the command line: `git clone https://github.com/bwobbones/resource.git`
 
+### Set a SECRET
+
+To actually log in, you'll need to set a SECRET environment variable, something like:
+
+`set SECRET=blahblah`
+
 ### Install Mongo
 
 #### Installation
@@ -104,3 +110,13 @@ Testing is through karma and jasmine:
 `grunt test` runs all of the unit and node api tests
 
 `grunt test:chrome` runs all of the protractor based e2e tests
+
+## Run on docker
+
+* run the containers: `./scripts/start_docker.sh`
+* attach to the running resource container: `./scripts/edit_docker.sh`
+* see the logs of the running resource container:
+** find the container id: `docker ps`
+** view the logs: `docker logs <containerId>`
+* stop the containers: `./scripts/stop_docker.sh`
+

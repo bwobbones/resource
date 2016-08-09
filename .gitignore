@@ -6,6 +6,7 @@ typings/*
 coverage/*
 report/*
 uploads/*
+dist/*
 
 performance.log
 libpeerconnection.log

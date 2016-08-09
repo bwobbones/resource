@@ -9,7 +9,6 @@ module.exports = function(config) {
       'http://maps.googleapis.com/maps/api/js?sensor=false',
 
       // bower:js
-      'components/bower_components/jquery/dist/jquery.js',
       'components/bower_components/angular/angular.js',
       'components/bower_components/angular-animate/angular-animate.js',
       'components/bower_components/angular-mocks/angular-mocks.js',
@@ -18,6 +17,7 @@ module.exports = function(config) {
       'components/bower_components/angular-ui-router/release/angular-ui-router.js',
       'components/bower_components/angular-ui-utils/ui-utils.js',
       'components/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+      'components/bower_components/jquery/dist/jquery.js',
       'components/bower_components/bootstrap/dist/js/bootstrap.js',
       'components/bower_components/d3/d3.js',
       'components/bower_components/moment/moment.js',
