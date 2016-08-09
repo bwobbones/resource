@@ -120,3 +120,7 @@ Testing is through karma and jasmine:
 ** view the logs: `docker logs <containerId>`
 * stop the containers: `./scripts/stop_docker.sh`
 
+Or...
+
+* start with docker-compose: `docker-compose up`
+

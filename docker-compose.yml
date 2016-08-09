@@ -1,0 +1,11 @@
+version: "2"
+services:
+  mongo:
+    image: mongo
+  web:
+    image: bwobsandbox/resource-app
+    command: node app.js
+    ports:
+      - "9200:9200"
+    volumes:
+      - .:/opt/resource
