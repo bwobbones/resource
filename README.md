@@ -122,5 +122,6 @@ Testing is through karma and jasmine:
 
 Or...
 
-* start with docker-compose: `docker-compose up`
+* start with docker-compose: `docker-compose up -d`
+* and stop: `docker-compose stop`
 
