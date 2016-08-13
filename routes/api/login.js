@@ -152,11 +152,11 @@ function encryptPassword(password, salt, callback) {
   var salt = new Buffer(salt, 'base64');
 
   if (!callback) {
-    return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength)
+    return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength, 'sha1')
       .toString('base64');
   }
 
-  return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, (err, key) => {
+  return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, 'sha1', (err, key) => {
     if (err) {
       callback(err);
     } else {
