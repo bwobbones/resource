@@ -10,7 +10,7 @@
     "cookie-parser": "^1.4.1",
     "dockerode": "^2.2.10",
     "docxtemplater": "^1.0.5",
-    "dotenv": "0.0.3",
+    "dotenv": "2.0.0",
     "elasticsearch": "8.2.0",
     "errorhandler": "^1.4.3",
     "express": "4.13.3",

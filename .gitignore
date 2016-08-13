@@ -12,3 +12,6 @@ performance.log
 libpeerconnection.log
 npm-debug.log
 unit.xml
+
+# Environment configuration for the server
+.env 

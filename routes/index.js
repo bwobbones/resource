@@ -1,5 +1,4 @@
-//var dotenv = require('dotenv')();
-//dotenv.load();
+var dotenv = require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
