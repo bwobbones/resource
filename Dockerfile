@@ -7,7 +7,7 @@ ADD . /opt/resource
 WORKDIR /opt/resource/dist
 
 # expose port
-EXPOSE 9000
+EXPOSE 9200
 
 ENV NODE_ENV=production
 ENV SECRET=iloveagoodsecret
