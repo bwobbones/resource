@@ -3,7 +3,7 @@
     div
       img.logo-name(alt='Resource', src='/images/resource-transparent-logo.png', width='400px')
     h3 Welcome to Resource
-    p People, beautifully.
+    p People, beautifully
     form.m-t(name='form', ng-submit="login()", role='form', ng-class="{'animated shake': error}")
       div(class='form-group', ng-class="{'has-error' : error}")
         input.form-control(ng-model='loginForm.username', ng-focus='resetError()', name='username', type='text', placeholder='Username', required='')
@@ -14,6 +14,6 @@
 
   .middle-box.text-center
     p Don't have an account yet? 
-    a#registerLink(ui-sref='register') Register
+    a#registerLink(ui-sref='register') Register Now
 
     toaster-container(toaster-options="{'time-out': 2000, 'position-class': 'toast-bottom-right'}")
