@@ -57,7 +57,6 @@ router.searchPersonnel = function(req, res, callback) {
 // var docs;
   var andList = [];
   var orList = [];
-  var inExperienceList = [];
 
   try {
 
@@ -72,20 +71,8 @@ router.searchPersonnel = function(req, res, callback) {
       andList.push({ 'roles.roleName': { $regex: '.*' + req.body.similarPosition + '.*', $options: 'i' } });
     }
 
-    if (req.body.eeha) {
-      inExperienceList.push('eeha');
-    }
-
-    if (req.body.offshore) {
-      inExperienceList.push('offOG');
-    }
-
     if (req.body.occupation) {
       andList.push({ 'occupation': { $regex: '.*' + req.body.occupation + '.*', $options: 'i' } });
-    }
-
-    if (inExperienceList.length > 0) {
-      andList.push({ 'roles.projects.projectExperience': { $in: inExperienceList } });
     }
 
     if (req.body.qualifications) {

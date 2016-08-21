@@ -30,14 +30,6 @@ router.typeAheadFieldData = function(req, res, callback) {
           { "$match": { "roleName": matcher } },
           { "$sort" : { "roleName" : 1 } }
         ],
-    'projects': [
-          { "$unwind": "$roles" },
-          { "$unwind": "$roles.projects" },
-          { "$group": { "_id" : "$roles.projects.text" } },
-          { "$project" : { "text": "$_id" } },
-          { "$match": { "text": matcher } },
-          { "$sort" : { "text" : 1 } }
-        ],        
     'client': [ 
           { "$unwind": "$roles" },
           { "$group": { "_id" : "$roles.client" } },

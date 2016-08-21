@@ -8,35 +8,8 @@ function RoleCtrl($scope, $modalInstance, $http, $q, $filter, AlertService, Date
 
   $scope.role = roleData;
 
-  $scope.collapseResponsibilities = true;
-
   $scope.showLocationOptions = false;
   $scope.role.useGoogle = true;
-
-  $scope.addProject = function() {
-
-    if (!$scope.role.projects) {
-      $scope.role.projects = [];
-    }
-
-    var newProject = {
-      id: $scope.role.newProject,
-      text: $scope.role.newProject
-    };
-
-    $scope.role.projects.push(newProject);
-
-    $scope.role.newProject = "";
-  };
-
-  $scope.editProject = function() {
-    $scope.collapseProjectEditable = !$scope.collapseProjectEditable;
-    if (!$scope.collapseProjectEditable) {
-      $scope.editProjectName = "Edit";
-    } else {
-      $scope.editProjectName = "End Edit";
-    }
-  };
 
   $scope.cancel = function() {
     $modalInstance.close(1);
@@ -135,22 +108,4 @@ function RoleCtrl($scope, $modalInstance, $http, $q, $filter, AlertService, Date
         return locations;
       });
   };
-
-  $scope.updateLocation = function(location, projectIndex) {
-    var project = $scope.role.projects[projectIndex];
-    if (!location.position) {
-      project.location = location;
-      project.googleLocation = undefined;
-    } else {
-      project.googleLocation = location;
-      project.location = undefined;
-    }
-    project.position = location.position;
-  };
-
-  $scope.removeTab = function(index) {
-    $scope.role.projects.splice(index, 1);
-  };
-
 }
-

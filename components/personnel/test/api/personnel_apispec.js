@@ -570,31 +570,6 @@ describe("Personnel Suite", function() {
 
   });
 
-  // typeahead
-  it("aggregates all of the projects", function(done) {
-
-    req.params = {fieldName: "projects", searchKey: "Tingold"};
-
-    typeaheadfielddata.typeAheadFieldData(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].typeAheadData.length).toBe(1);
-      expect(res.json.calls.mostRecent().args[0].typeAheadData[0].text).toBe('Tingold');
-      done();
-    });
-
-  });
-
-  // typeaheads
-  it("aggregates all of the projects even when they only differ by a number at the end", function(done) {
-
-    req.params = {fieldName: "projects", searchKey: "Tin"};
-
-    typeaheadfielddata.typeAheadFieldData(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].typeAheadData.length).toBe(14);
-      done();
-    });
-
-  });
-
   // typeaheads
   it("aggregates all of the clients", function(done) {
 

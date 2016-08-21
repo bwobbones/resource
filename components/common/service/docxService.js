@@ -60,24 +60,11 @@ appServices.factory('DocxService', function($http, GoogleLocationService, RoleSe
       _.each(roles, function(role) {
 
         if (role.deleted !== true) {
-          var projectText = '';
-          if (role.projects && role.projects.length > 0) {
-            _.each(role.projects, function (project) {
-              projectText = project.text;
-              if (project.googleLocation) {
-                projectText = projectText + ' ' + project.googleLocation.name;
-              } else if (project.location) {
-                projectText = projectText + ' ' + project.location.name;
-              }
-            });
-          }
-
           var role = {
             startDate: role.startDate,
             endDate: role.endDate ? role.endDate : 'Current',
             client: role.client,
             roleName: role.roleName,
-            project: projectText,
             responsibilities: role.responsibilities ? splitByCR(role.responsibilities) : [{
               text: 'Responsibilities not supplied'
             }]

@@ -29,16 +29,6 @@ function HiredCtrl($scope, GoogleLocationService, PersonnelService, hotkeys) {
   $scope.$on('postWorkflowSave', function() {
     role.roleName = $scope.jobDescription.position;
     role.startDate = $scope.personnelWorkflow.hiredStartDate;
-    role.projects = [];
-    role.projects.push({
-      id: $scope.jobDescription.project,
-      text: $scope.jobDescription.project,
-      projectExperience: $scope.jobDescription.projectExperience,
-      phaseExperience: $scope.jobDescription.phaseExperience,
-      location: {
-        name: $scope.personnelWorkflow.roleLocation
-      }
-    });
     role.responsibilities = $scope.jobDescription.rolesResponsibilities;
     role.client = $scope.jobDescription.company;
     PersonnelService.saveRole($scope, $scope.personnelData._id, role);
