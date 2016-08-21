@@ -1,10 +1,16 @@
 .panel-body
   .col-md-12
     div(ng-controller="PersonnelRoleCtrl")
-      div(ng-show="!hasRoles()")
-        span#noRoles No roles have been entered&nbsp;
-        span
-          a#addRoleButton(href="", ng-click="updateRole()", ng-show="pForm.$valid") - add a role
+      div.row
+        .col-md-4.pull-left-md
+           h3 Roles
+        .col-md-8
+           button.btn.btn-primary.pull-right#addRoleButton(type="submit", ng-click="updateRole()") Add Role
+      div.row 
+         br     
+      div.header-concat(ng-show="!hasRoles()")
+        span#noRoles &nbsp;&nbsp; No roles&nbsp;
+        br
       div(ng-show="hasRoles()")
         .row
           .table-responsive
@@ -24,5 +30,4 @@
                   td(ng-click="updateRole(role._id)") {{ role.endDate }}
                   td
                     i.fa.fa-2x.fa-times(id="deleteRoleMessageBox-{{role.roleName}}",ng-click="openDeleteRoleMessageBox(role._id, role.roleName)")
-        .row
-          a.pull-right#addRoleButton(href="", ng-click="updateRole()") Add more roles...
+br

@@ -28,7 +28,7 @@ describe('TabService', function() {
 
   it('should return the personnel tabs', function() {
     var personnelTabs = tabService.getTabs('personnelTabs');
-    expect(personnelTabs.length).toEqual(7);
+    expect(personnelTabs.length).toEqual(6);
   });
 
   it('should return the job tabs', function() {
