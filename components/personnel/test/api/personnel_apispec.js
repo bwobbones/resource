@@ -435,53 +435,6 @@ describe("Personnel Suite", function() {
   });
 
   // search
-  it('should match one person with offshore experience', function(done) {
-
-    var query = {};
-    query.offshore = true;
-
-    req.body = query;
-
-    search.searchPersonnel(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].personnels.length).toEqual(1);
-      done();
-    });
-
-  });
-
-  // search
-  it('should match one person with eeha experience', function(done) {
-
-    var query = {};
-    query.eeha = true;
-
-    req.body = query;
-
-    search.searchPersonnel(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].personnels.length).toEqual(15);
-      done();
-    });
-
-  });
-  
-  // search
-  it('should match one person with offshore experience and a particular role', function(done) {
-
-    var query = {};
-    query.offshore = true;
-    query.position = "Jumbo Operator";
-
-    req.body = query;
-
-    search.searchPersonnel(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].personnels.length).toEqual(1);
-      expect(res.json.calls.mostRecent().args[0].personnels).toContain(jasmine.objectContaining({surname: testSurname}));
-      done();
-    });
-
-  });
-
-  // search
   it('should match personnel on position and qualification', function(done) {
 
     var query = {};
