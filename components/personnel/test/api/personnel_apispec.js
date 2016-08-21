@@ -11,7 +11,6 @@ var personnel = require('../../../../routes/api/personnel');
 var search = require('../../../../routes/api/search');
 var login = require('../../../../routes/api/login');
 var typeaheadfielddata = require('../../../../routes/api/typeAheadFieldData');
-var matrix = require('../../../../routes/api/matrix');
 var rewire = require('rewire');
 var db = require('../../../../routes/database');
 
@@ -640,18 +639,6 @@ describe("Personnel Suite", function() {
 
     typeaheadfielddata.typeAheadFieldData(req, res, function() {
       expect(res.json.calls.mostRecent().args[0].typeAheadData.length).toBe(1);
-      done();
-    });
-
-  });
-
-  // matrix
-  it('assembles the projects and personnels', function(done) {
-
-    matrix.assembleProjectTeamData(req, res, function() {
-      expect(res.json.calls.mostRecent().args[0].teamProjectData.projects.length).toBe(220);
-      expect(res.json.calls.mostRecent().args[0].teamProjectData.projects).toContain(jasmine.objectContaining({name: 'Quetin'}));
-      expect(_.find(res.json.calls.mostRecent().args[0].teamProjectData.projects, { name : 'Quetin'}).personnel.length).toBe(1);
       done();
     });
 

@@ -50,14 +50,8 @@ module.exports = function(config) {
       // injector:js
       'components/affiliation/controller/affiliationController.js',
       'components/affiliation/controller/deleteAffiliationController.js',
-      'components/analytics/controller/analyticsController.js',
       'components/analytics/controller/skillsMatrixController.js',
-      'components/analytics/controller/teamProjectMatrixController.js',
-      'components/analytics/directive/pairingsDirective.js',
       'components/analytics/directive/skillsMatrixDirective.js',
-      'components/analytics/directive/teamProjectMatrixDirective.js',
-      'components/analytics/service/matrixDataService.js',
-      'components/analytics/service/matrixService.js',
       'components/commLog/controller/followupController.js',
       'components/commLog/controller/noteController.js',
       'components/commLog/service/commLogService.js',
@@ -139,9 +133,6 @@ module.exports = function(config) {
       // endinjector
 
       // injector:testJs
-      'components/analytics/test/unit/matrixDataServiceSpec.js',
-      'components/analytics/test/unit/matrixServiceSpec.js',
-      'components/analytics/test/unit/teamProjectMatrixCtrlSpec.js',
       'components/commLog/test/unit/followupCtrlSpec.js',
       'components/commLog/test/unit/noteCtrlSpec.js',
       'components/common/test/unit/doctypeSpec.js',

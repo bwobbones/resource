@@ -107,14 +107,6 @@ appServices.factory('PersonnelService', function ($http, $rootScope, $filter, $m
         personnelService.save(scope, personnel, { $valid: true });
       });
     },
-
-    assembleProjectTeamData: function () {
-      var promise = $http.post('/api/assembleProjectTeamData').success(function (data) {
-        return data;
-      });
-      return promise;
-    }
-
   };
 
   return personnelService;

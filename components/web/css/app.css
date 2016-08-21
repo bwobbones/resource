@@ -77,20 +77,6 @@ body {
     display: inline;
 }
 
-/* co-currence matrix */
-
-.background {
-    fill: #eee;
-}
-
-line {
-    stroke: #fff;
-}
-
-text.active {
-    fill: red;
-}
-
 .strike {
     text-decoration: line-through;
 }
@@ -181,26 +167,6 @@ h3 {
 input[type="radio"],
 input[type="checkbox"] {
     margin: 0px;
-}
-
-.background {
-    fill: #eee;
-}
-
-.columnLine {
-    stroke: #fff;
-}
-
-.rowLine {
-    stroke: #fff;
-}
-
-.rowSeparator {
-    stroke: #E085C2;
-}
-
-.columnSeparator {
-    stroke: #E085C2;
 }
 
 .st-sort-ascent:before {
