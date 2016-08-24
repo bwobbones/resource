@@ -22,16 +22,26 @@ router.get('/skillsMatrix', function (req, res) {
       'Training': {},
     };
     for (var personnel of personnels) {
-        for (var role of personnel.roles) {
-          addSkill(role.roleName, skillsByType['Roles'], names.length);
+        if (personnel.roles) {
+          for (var role of personnel.roles) {
+            addSkill(role.roleName, skillsByType['Roles'], names.length);
+          }
         }
-        for (var qualification of personnel.qualifications) {
-          addSkill(qualification.name, skillsByType['Qualifications'], names.length);
+        if (personnel.qualifications) {
+          for (var qualification of personnel.qualifications) {
+            addSkill(qualification.name, skillsByType['Qualifications'], names.length);
+          }
         }
-        for (var training of personnel.trainings) {
-          addSkill(training.name, skillsByType['Training'], names.length);
+        if (personnel.trainings) {
+          for (var training of personnel.trainings) {
+            addSkill(training.name, skillsByType['Training'], names.length);
+          }
         }
-        names.push(personnel.name + ' ' + personnel.surname);
+        var name = personnel.name;
+        if (personnel.surname) {
+          name += ' ' + personnel.surname;
+        }
+        names.push(name);
     }
 
     var data = [];
@@ -83,12 +93,14 @@ router.get('/skillsMatrix', function (req, res) {
 });
 
 function addSkill(skillName, skillsOfType, personnelIndex) {
-  var entry = skillsOfType[skillName];
-  if (entry === undefined) {
-    entry = [];
-    skillsOfType[skillName] = entry;
+  if (skillName) {
+    var entry = skillsOfType[skillName];
+    if (entry === undefined) {
+      entry = [];
+      skillsOfType[skillName] = entry;
+    }
+    entry.push(personnelIndex);
   }
-  entry.push(personnelIndex);
 }
 
 module.exports = router;
