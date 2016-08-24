@@ -2,19 +2,20 @@ nav.navbar-default.navbar-static-side(role='navigation')
   .sidebar-collapse
     ul.nav.metismenu#side-menu(side-navigation='')
       li.nav-header(style="cursor: auto;")
-        .dropdown.profile-element(dropdown='')
+        .profile-element
           a(id='homeLink', ui-sref="index")
             img(alt='Resource', src='/images/resource-transparent-logo.png', height='55px')
-          a.dropdown-toggle(dropdown-toggle='', href='')
-            span.clear
-              span.block.m-t-xs
-                strong.font-bold#loggedInUser {{ user.fullname }}
-                span.text-muted.text-xs.block#jobTitleLink {{ user.jobTitle }} <b class='caret'></b>
-          ul.dropdown-menu.animated.fadeInRight.m-t-xs
-            li
-              a#editProfileButton(href="#", ui-sref="resetPassword") Edit Your Profile
-            li
-              a#logoutButton(href="#", ng-click="logout()") Log Out
+          .dropdown(dropdown='')
+            a.dropdown-toggle(dropdown-toggle='', href='')
+              span.clear
+                span.block.m-t-xs
+                  strong.font-bold#loggedInUser {{ user.fullname }}
+                  span.text-muted.text-xs.block#jobTitleLink {{ user.jobTitle }} <b class='caret'></b>
+            ul.dropdown-menu.animated.fadeInRight.m-t-xs
+              li
+                a#editProfileButton(href="#", ui-sref="resetPassword") Edit Your Profile
+              li
+                a#logoutButton(href="#", ng-click="logout()") Log Out
         .logo-element
           a(ui-sref="index")
             img(alt='Resource', src='/images/logo-transparent.png', height='60px')
