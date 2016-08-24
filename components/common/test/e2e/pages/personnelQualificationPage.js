@@ -13,7 +13,7 @@ var PersonnelQualificationPage = (function () {
 
     function PersonnelQualificationPage() {
 
-		this.qualTab = by.css('#tab_personnel_qualifications_combined a');
+		this.qualTab = by.css('#tab_personnel_experience a');
 		this.doCancel = by.css('.btn-warning');
 
 		this.addQualificationButton = by.css('#addQualificationButton');
