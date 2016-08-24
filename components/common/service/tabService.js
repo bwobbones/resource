@@ -27,6 +27,9 @@ appServices.factory("TabService", function(localStorageService) {
     name: 'Contact Details',
     url: 'personnel_contact',
   }, {
+    name: 'Skills',
+    url: 'personnel_skills',
+  }, {
     name: 'Experience',
     url: 'personnel_experience',
   }, {

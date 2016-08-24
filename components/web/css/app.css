@@ -201,3 +201,13 @@ input[type="checkbox"] {
 label {
     font-weight: 600;
 }
+
+/* Personnel skills */
+
+.skills-col {
+    text-align: center;
+}
+
+.skills-radio {
+    display: inline-block;
+}
