@@ -1,8 +1,11 @@
 #!/bin/bash
-source .env
+source .env_aws
 
 # build resource dist
 grunt build
+
+# copy the environment vars
+cp ~/.env dist/.env
 
 # build the flask container
 docker build -t bwobsandbox/resource-app .

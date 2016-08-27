@@ -10,7 +10,6 @@ WORKDIR /opt/resource/dist
 EXPOSE 9200
 
 ENV NODE_ENV=production
-ENV SECRET=iloveagoodsecret
 
 # start app
 CMD [ "node", "./app.js" ]

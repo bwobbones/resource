@@ -342,11 +342,6 @@ module.exports = function (grunt) {
               '!**/open-sans/**/*',
               '!**/underscore/**/*',
             ]
-          }, {
-            dest: '<%= yeoman.dist %>/.env',
-            src: [
-              'config/.env.prod'
-            ]
           }]
       },
       styles: {

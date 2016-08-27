@@ -33,7 +33,7 @@ describe('TabService', function() {
 
   it('should return the job tabs', function() {
     var jobTabs = tabService.getTabs('jobTabs');
-    expect(jobTabs.length).toEqual(6);
+    expect(jobTabs.length).toEqual(7);
   });
   
   it('should remember the last selected tab', function() {

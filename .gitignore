@@ -15,3 +15,4 @@ unit.xml
 
 # Environment configuration for the server
 .env 
+.env_aws
