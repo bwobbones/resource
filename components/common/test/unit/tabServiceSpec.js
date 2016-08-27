@@ -28,12 +28,12 @@ describe('TabService', function() {
 
   it('should return the personnel tabs', function() {
     var personnelTabs = tabService.getTabs('personnelTabs');
-    expect(personnelTabs.length).toEqual(6);
+    expect(personnelTabs.length).toEqual(7);
   });
 
   it('should return the job tabs', function() {
     var jobTabs = tabService.getTabs('jobTabs');
-    expect(jobTabs.length).toEqual(7);
+    expect(jobTabs.length).toEqual(6);
   });
   
   it('should remember the last selected tab', function() {
