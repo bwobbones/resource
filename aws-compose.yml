@@ -1,10 +1,5 @@
-mongo:
-  image: mongo
-  mem_limit: 262144000
 web:
   image: bwobsandbox/resource-app
   mem_limit: 262144000
   ports:
     - "80:9200"
-  links:
-    - mongo

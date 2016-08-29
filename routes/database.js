@@ -10,7 +10,7 @@ app.locals.connection = app.locals.connection || [];
 
 var connectionString;
 if (app.get('env') === 'production') {
-  connectionString = 'mongodb://mongo:27017/resource';
+  connectionString = 'mongodb://' + process.env.PROD_SERVER + ':27017/resource';
 } else {
   connectionString = 'mongodb://localhost:27017/resource';
 }
