@@ -31,7 +31,8 @@ getConnection = function getConnection(user) {
 }
 
 connectUser = function connect(user) {
-  log.info('Connecting to database for user ' + user);
+  log.info('Connecting for user ' + user);
+  log.info('Connecting to ' + connectionString)
 
   var connection = mongojs(connectionString + user, ['personnels', 'jobDescriptions', 'users', 'eventLog']);
 
