@@ -6,9 +6,11 @@
     p People, beautifully
     form.m-t(name='form', ng-submit="register()", role='form', ng-class="{'animated shake': error}")
       div(class='form-group')
+        input.form-control(ng-model='registrationForm.username', name='username', type='text', placeholder='Username', required='')
+      div(class='form-group')
         input.form-control(ng-model='registrationForm.fullname', name='fullname', type='text', placeholder='Full Name', required='')
       div(class='form-group')
-        input.form-control(ng-model='registrationForm.username', name='username', type='text', placeholder='Username', required='')
+        input.form-control(ng-model='registrationForm.email', name='email', type='email', placeholder='Email Address', required='')
       div(class='form-group')
         input.form-control(ng-model='registrationForm.password', name='password', type='password', placeholder='Password', required='')
       div(class='form-group')
