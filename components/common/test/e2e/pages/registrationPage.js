@@ -3,6 +3,7 @@ var RegistrationPage = (function () {
     this.fullNameField = by.model('registrationForm.fullname');
     this.usernameField = by.model('registrationForm.username');
     this.passwordField = by.model('registrationForm.password');
+    this.emailField = by.model('registrationForm.email');
     this.confirmField = by.model('registrationForm.confirm');
     this.registerButton = by.id('registerButton');
   }
@@ -17,6 +18,10 @@ var RegistrationPage = (function () {
 
   RegistrationPage.prototype.enterUsername = function (username) {
     element(this.usernameField).sendKeys(username);
+  };
+
+  RegistrationPage.prototype.enterEmail = function (email) {
+    element(this.emailField).sendKeys(email);
   };
 
   RegistrationPage.prototype.enterPassword = function (password) {
@@ -38,11 +43,12 @@ var RegistrationPage = (function () {
     element(this.confirmField).clear();
   }
 
-  RegistrationPage.prototype.registerUser = function(fullname, username, password) {
+  RegistrationPage.prototype.registerUser = function(fullname, username, password, email) {
     this.enterFullName(fullname);
     this.enterUsername(username);
     this.enterPassword(password || 'password');
     this.enterConfirm(password || 'password');
+    this.enterEmail(email || 'greg@greg.com');
     this.register();
 
     expect(element(by.id('loggedInUser')).getText()).toBe(fullname);
