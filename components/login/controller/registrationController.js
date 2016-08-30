@@ -17,6 +17,8 @@ function RegistrationCtrl($http, $rootScope, $scope, $state, localStorageService
   $scope.registrationForm = {};
   
   $scope.register = function() {
+
+    $scope.registrationForm.jobTitle = 'Administrator';
     
     $http.post('/register', $scope.registrationForm).then(function(user, status, headers, config) {
       EventLogService.log("login", $scope.loginForm.username, "login");
