@@ -32,13 +32,13 @@
  */
 function pageTitle($rootScope, $timeout) {
     return {
-        link: function(scope, element) {
-            var listener = function(event, toState, toParams, fromState, fromParams) {
+        link: function (scope, element) {
+            var listener = function (event, toState, toParams, fromState, fromParams) {
                 // Default title - load on Dashboard 1
                 var title = 'INSPINIA | Responsive Admin Theme';
                 // Create your own title pattern
                 if (toState.data && toState.data.pageTitle) title = 'INSPINIA | ' + toState.data.pageTitle;
-                $timeout(function() {
+                $timeout(function () {
                     element.text(title);
                 });
             };
@@ -53,12 +53,10 @@ function pageTitle($rootScope, $timeout) {
 function sideNavigation($timeout) {
     return {
         restrict: 'A',
-        link: function(scope, element) {
-            // Call the metsiMenu plugin and plug it to sidebar navigation
-            $timeout(function(){
-                element.metisMenu({toggle:false});
-
-            });
+        link: function (scope, element) {
+            setTimeout(function () {
+                $(element).metisMenu();
+            }, 1);
         }
     };
 };
@@ -69,7 +67,7 @@ function sideNavigation($timeout) {
 function responsiveVideo() {
     return {
         restrict: 'A',
-        link:  function(scope, element) {
+        link: function (scope, element) {
             var figure = element;
             var video = element.children();
             video
@@ -78,7 +76,7 @@ function responsiveVideo() {
                 .removeAttr('width')
 
             //We can use $watch on $window.innerWidth also.
-            $(window).resize(function() {
+            $(window).resize(function () {
                 var newWidth = figure.width();
                 video
                     .width(newWidth)
@@ -138,7 +136,7 @@ function minimalizaSidebar($timeout) {
                         function () {
                             $('#side-menu').fadeIn(500);
                         }, 100);
-                } else if ($('body').hasClass('fixed-sidebar')){
+                } else if ($('body').hasClass('fixed-sidebar')) {
                     $('#side-menu').hide();
                     setTimeout(
                         function () {
@@ -217,7 +215,7 @@ function sparkline() {
             scope.$watch(scope.sparkData, function () {
                 render();
             });
-            scope.$watch(scope.sparkOptions, function(){
+            scope.$watch(scope.sparkOptions, function () {
                 render();
             });
             var render = function () {
@@ -234,12 +232,12 @@ function icheck($timeout) {
     return {
         restrict: 'A',
         require: 'ngModel',
-        link: function($scope, element, $attrs, ngModel) {
-            return $timeout(function() {
+        link: function ($scope, element, $attrs, ngModel) {
+            return $timeout(function () {
                 var value;
                 value = $attrs['value'];
 
-                $scope.$watch($attrs['ngModel'], function(newValue){
+                $scope.$watch($attrs['ngModel'], function (newValue) {
                     $(element).iCheck('update');
                 })
 
@@ -247,18 +245,18 @@ function icheck($timeout) {
                     checkboxClass: 'icheckbox_square-green',
                     radioClass: 'iradio_square-green'
 
-                }).on('ifChanged', function(event) {
-                        if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
-                            $scope.$apply(function() {
-                                return ngModel.$setViewValue(event.target.checked);
-                            });
-                        }
-                        if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
-                            return $scope.$apply(function() {
-                                return ngModel.$setViewValue(value);
-                            });
-                        }
-                    });
+                }).on('ifChanged', function (event) {
+                    if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
+                        $scope.$apply(function () {
+                            return ngModel.$setViewValue(event.target.checked);
+                        });
+                    }
+                    if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
+                        return $scope.$apply(function () {
+                            return ngModel.$setViewValue(value);
+                        });
+                    }
+                });
             });
         }
     };
@@ -283,23 +281,23 @@ function ionRangeSlider() {
  * dropZone - Directive for Drag and drop zone file upload plugin
  */
 function dropZone() {
-    return function(scope, element, attrs) {
+    return function (scope, element, attrs) {
         element.dropzone({
             url: "/upload",
             maxFilesize: 100,
             paramName: "uploadfile",
             maxThumbnailFilesize: 5,
-            init: function() {
-                scope.files.push({file: 'added'});
-                this.on('success', function(file, json) {
+            init: function () {
+                scope.files.push({ file: 'added' });
+                this.on('success', function (file, json) {
                 });
-                this.on('addedfile', function(file) {
-                    scope.$apply(function(){
+                this.on('addedfile', function (file) {
+                    scope.$apply(function () {
                         alert(file);
-                        scope.files.push({file: 'added'});
+                        scope.files.push({ file: 'added' });
                     });
                 });
-                this.on('drop', function(file) {
+                this.on('drop', function (file) {
                     alert('file');
                 });
             }
@@ -313,8 +311,8 @@ function dropZone() {
 function chatSlimScroll($timeout) {
     return {
         restrict: 'A',
-        link: function(scope, element) {
-            $timeout(function(){
+        link: function (scope, element) {
+            $timeout(function () {
                 element.slimscroll({
                     height: '234px',
                     railOpacity: 0.4
@@ -328,18 +326,18 @@ function chatSlimScroll($timeout) {
 /**
  * customValid - Directive for custom validation example
  */
-function customValid(){
+function customValid() {
     return {
         require: 'ngModel',
-        link: function(scope, ele, attrs, c) {
-            scope.$watch(attrs.ngModel, function() {
+        link: function (scope, ele, attrs, c) {
+            scope.$watch(attrs.ngModel, function () {
 
                 // You can call a $http method here
                 // Or create custom validation
 
                 var validText = "Inspinia";
 
-                if(scope.extras == validText) {
+                if (scope.extras == validText) {
                     c.$setValidity('cvalid', true);
                 } else {
                     c.$setValidity('cvalid', false);
@@ -354,11 +352,11 @@ function customValid(){
 /**
  * fullScroll - Directive for slimScroll with 100%
  */
-function fullScroll($timeout){
+function fullScroll($timeout) {
     return {
         restrict: 'A',
-        link: function(scope, element) {
-            $timeout(function(){
+        link: function (scope, element) {
+            $timeout(function () {
                 element.slimscroll({
                     height: '100%',
                     railOpacity: 0.9
@@ -375,8 +373,8 @@ function fullScroll($timeout){
 function clockPicker() {
     return {
         restrict: 'A',
-        link: function(scope, element) {
-                element.clockpicker();
+        link: function (scope, element) {
+            element.clockpicker();
         }
     };
 };
@@ -385,7 +383,7 @@ function clockPicker() {
 /**
  * landingScrollspy - Directive for scrollspy in landing page
  */
-function landingScrollspy(){
+function landingScrollspy() {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -400,10 +398,10 @@ function landingScrollspy(){
 /**
  * fitHeight - Directive for set height fit to window height
  */
-function fitHeight(){
+function fitHeight() {
     return {
         restrict: 'A',
-        link: function(scope, element) {
+        link: function (scope, element) {
             element.css("height", $(window).height() + "px");
             element.css("min-height", $(window).height() + "px");
         }
