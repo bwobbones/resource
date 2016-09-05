@@ -29,12 +29,98 @@ div
       .col-md-12
         p &nbsp;
 
-    .row
+    form.form-horizontal(name="projectForm", novalidate="", role="form")
+      .well
+        .row
+          .col-md-2
+            h4 Projects
+              i.fa.fa-refresh(ng-show="loadingProjects")
+          .col-md-4
+            input.form-control(ng-model='role.newProject', type='text', name='role.newProject', placeholder="Add a project...", typeahead="r.text for r in typeAhead('projects', $viewValue) | filter: {text: $viewValue} | orderBy:'text'", typeahead-loading="loadingProjects", autocomplete='off')
+          .col-md-2
+            button.btn.btn-default.btn-block.btn#addProjectButton(type="submit", ng-click="addProject()", ng-disabled="!role.newProject") Add
+          .col-md-2
+            button.btn.btn-default.btn-block.btn#editProjectButton(ng-click="editProject()", ng-disabled="!role.projects") {{ editProjectName || "Edit"}}
+
+        .row
+          .col-md-12
+            p &nbsp;
+
+        tabset(type="pills", justified="true")
+          tab(ng-repeat="project in role.projects")
+            tab-heading(id="project-{{project.text}}")
+              .row
+                .col-md-10
+                  {{project.text}}
+                .col-md-2
+                  a(ng-click='removeTab($index)', href='')
+                    i.fa.fa-times(style='color: black')
+
+              .row(collapse="!collapseProjectEditable")
+                .col-md-12
+
+                .row
+                  .col-md-12
+                    p &nbsp;
+
+                .row
+                  .col-md-offset-1.col-md-10
+                    input.form-control(ng-model='project.text', type='text', name='project.text', typeahead="r.text for r in typeAhead('projects', $viewValue) | filter: {text: $viewValue} | orderBy:'text'", typeahead-loading="loadingProjects", autocomplete='off')
+
+            .row
+              .col-md-12
+                p &nbsp;
+
+            .row
+              .col-md-4 Location
+                i.fa.fa-refresh(ng-show="loadingLocation")
+              .col-md-4 Project Experience
+              .col-md-4 Phase Experience
+
+            .row
+              .col-md-4
+                script(type="text/ng-template", id="customTemplate.jade")
+                  a
+                    i.fa.fa-map-marker(ng-show="match.model.position") &nbsp;
+                    span(bind-html-unsafe="match.label | typeaheadHighlight:query")
+                input.form-control(ng-show="!project.googleLocation", ng-model='project.location.name', type='text', name='project.location', typeahead="location.name for location in getLocation($viewValue) | filter:$viewValue", typeahead-on-select="updateLocation($item, $index)", typeahead-loading="loadingLocation", typeahead-template-url="customTemplate.jade", autocomplete="off")
+                input.form-control(ng-show="project.googleLocation", ng-model='project.googleLocation.name', type='text', name='project.location', typeahead="location.name for location in getLocation($viewValue) | filter:$viewValue", typeahead-on-select="updateLocation($item, $index)", typeahead-loading="loadingLocation", typeahead-template-url="customTemplate.jade", autocomplete="off")
+
+              .col-md-4
+                select.form-control(ui-select2, multiple, ng-model="project.projectExperience", name="project.projectExperience")
+                  option(value="offOG") Offshore Oil & Gas
+                  option(value="onOG") Onshore Oil & Gas
+                  option(value="onGas") Onshore Gas
+                  option(value="offGas") Offshore Gas
+                  option(value="fpso") FPSO
+                  option(value="lng") LNG
+                  option(value="eeha") EEHA
+                  option(value="rpn") Refinery/Petrochem/Nuclear
+                  option(value="other") Other
+
+              .col-md-4
+                select.form-control(ui-select2, multiple, ng-model="project.phaseExperience", name="project.phaseExperience")
+                  option(value="administration") Administration
+                  option(value="engineering") Engineering
+                  option(value="procurement") Procurement
+                  option(value="construction") Construction
+                  option(value="installation") Installation
+                  option(value="commissioning") Commissioning
+                  option(value="opsmaint") Operations & Maintenance
+                  option(value="decommissioning") Decommissioning
+                  option(value="shutdown") Shutdown
+
+    .row(ng-click="collapseResponsibilities = !collapseResponsibilities")
       .col-md-12
         h4 Roles and Responsibilities
+          i.fa.fa-chevron-circle-down(ng-if="collapseResponsibilities")
+          i.fa.fa-chevron-circle-up(ng-if="!collapseResponsibilities")
+
+    .row(collapse="collapseResponsibilities")
+      .col-md-12
         textArea.form-control(ng-model='role.responsibilities', name="role.responsibilities", rows="7", style='width: 100%')
 
   .modal-footer
-    button.btn.btn-primary.saveAndNewButton(ng-click="saveAndNew()") Save & New
-    button.btn.btn-primary.okRolesDone(ng-click="ok()") Ok
-    button.btn.btn-warning(ng-click="cancel()") Cancel
+    button.btn.btn-primary.saveAndNewButton#saveAndNewButton(ng-click="saveAndNew()") Save & New
+    button.btn.btn-primary.okRolesDone#okRolesDone(ng-click="ok()") Ok
+    button.btn.btn-warning#cancelAddRole(ng-click="cancel()") Cancel
