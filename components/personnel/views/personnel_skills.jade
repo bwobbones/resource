@@ -1,118 +1,23 @@
 .panel-body
   .col-md-12
-    .form-group
-      h2 Basic Skills
-      .row
-        .col-md-8
-        .col-md-1.skills-col
-          | 0
-        .col-md-1.skills-col
-          | 1
-        .col-md-1.skills-col
-          | 2
-        .col-md-1.skills-col
-          | 3
-      .row(ng-repeat="skill in ['Read, Write, Speak English', 'Basic Math']")
-        .col-md-2
-        .col-md-6
-          label {{skill}}
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-      h2 Soft Skills
-      .row
-        .col-md-8
-        .col-md-1.skills-col
-          | 0
-        .col-md-1.skills-col
-          | 1
-        .col-md-1.skills-col
-          | 2
-        .col-md-1.skills-col
-          | 3
-      .row(ng-repeat="skill in ['Working effectively with others', 'Time Management', 'Motivation & empowerment', 'Manangement & supervision', 'Root Cause Problem Solving']")
-        .col-md-2
-        .col-md-6
-          label {{skill}}
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-      h2 Quality System
-      .row
-        .col-md-8
-        .col-md-1.skills-col
-          | 0
-        .col-md-1.skills-col
-          | 1
-        .col-md-1.skills-col
-          | 2
-        .col-md-1.skills-col
-          | 3
-      .row(ng-repeat="skill in ['Quality System', 'Documentation', 'Manangment Responsibility', 'Human Resources', 'Customer-Related processes', 'Design & Development', 'Purchasing', 'Production & Service', 'Monitor & Measure Devices', 'Measurement', 'Internal Audit', 'Control of Nonconforming', 'Corrective & Preventive']")
-        .col-md-2
-        .col-md-6
-          label {{skill}}
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-      h2 Hard Skills
-      .row
-        .col-md-8
-        .col-md-1.skills-col
-          | 0
-        .col-md-1.skills-col
-          | 1
-        .col-md-1.skills-col
-          | 2
-        .col-md-1.skills-col
-          | 3
-      .row(ng-repeat="skill in ['Blueprint reading', 'Safety Awareness', 'Measuring & Gaging', 'Customer Product Knowledge', 'Product design skills', 'Advanced Math', 'Statistical Techniques']")
-        .col-md-2
-        .col-md-6
-          label {{skill}}
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-      h2 Computer Skills
-      .row
-        .col-md-8
-        .col-md-1.skills-col
-          | 0
-        .col-md-1.skills-col
-          | 1
-        .col-md-1.skills-col
-          | 2
-        .col-md-1.skills-col
-          | 3
-      .row(ng-repeat="skill in ['MRP', 'CAD', 'Windows', 'Word', 'Excel', 'Access', 'Outlook email', 'Internet Explorer Internet']")
-        .col-md-2
-        .col-md-6
-          label {{skill}}
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
-        .col-md-1.skills-col
-          input.skills-radio(type='radio')
+    .form-group(ng-controller="PersonnelSkillsCtrl")
+      div(ng-repeat="category in skills.categories")
+        h2 {{category.name}}
+        .row.personnel-skill-entries(ng-repeat="entry in category.entries")
+          .col-md-2
+          .col-md-6
+            label {{entry.name}}
+          .col-md-3
+            fieldset.rating
+              input(type="radio" ng-model="form.skills.ratings[entry.id]" id="{{entry.id}}-5" value="5")
+              label(for="{{entry.id}}-5" title="Master") 5 rating
+              input(type="radio" ng-model="form.skills.ratings[entry.id]" id="{{entry.id}}-4" value="4")
+              label(for="{{entry.id}}-4" title="Expert") 4 rating
+              input(type="radio" ng-model="form.skills.ratings[entry.id]" id="{{entry.id}}-3" value="3")
+              label(for="{{entry.id}}-3" title="Proficient") 3 rating
+              input(type="radio" ng-model="form.skills.ratings[entry.id]" id="{{entry.id}}-2" value="2")
+              label(for="{{entry.id}}-2" title="Familiar") 2 rating
+              input(type="radio" ng-model="form.skills.ratings[entry.id]" id="{{entry.id}}-1" value="1")
+              label(for="{{entry.id}}-1" title="Beginner") 1 rating
+          .col-md-1
+            i.fa.fa-times.delete(ng-show="form.skills.ratings[entry.id]" ng-click="deselect(entry.id)")

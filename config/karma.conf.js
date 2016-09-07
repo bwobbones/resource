@@ -101,6 +101,7 @@ module.exports = function(config) {
       'components/personnel/controller/personnelNotesController.js',
       'components/personnel/controller/personnelQualificationController.js',
       'components/personnel/controller/personnelRoleController.js',
+      'components/personnel/controller/personnelSkillsController.js',
       'components/personnel/service/emailService.js',
       'components/personnel/service/fileService.js',
       'components/personnel/service/followupService.js',
