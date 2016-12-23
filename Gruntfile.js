@@ -630,6 +630,7 @@ module.exports = function (grunt) {
         keepAlive: false,
         noColor: false,
         configFile: "config/protractor.conf.js",
+        webdriverManagerUpdate: true
       },
       chrome: {
         options: {
