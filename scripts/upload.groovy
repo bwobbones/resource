@@ -1,17 +1,19 @@
 @Grab(group='com.gmongo', module='gmongo', version='1.3')
 @Grab(group='org.mongodb', module='mongo-java-driver', version='2.12.2')
+@Grab(group='com.github.javafaker', module='javafaker', version='0.12')
 import com.gmongo.GMongoClient
 import com.mongodb.MongoCredential
 import com.mongodb.MongoClientURI
 import com.mongodb.ServerAddress
 import com.mongodb.BasicDBObject
 import org.bson.types.ObjectId;
+import com.github.javafaker.Faker;
 
 import groovy.json.JsonBuilder
 
 //def mongoURI = new MongoClientURI("mongodb://ip-172-31-20-5:27017/minhr_test")
 //def mongoURI = new MongoClientURI("mongodb://minhr:minhr@ds041178.mongolab.com:41178/minhr")
-def mongoURI = new MongoClientURI("mongodb://mongo:27017/resourcegreg")
+def mongoURI = new MongoClientURI("mongodb://localhost:27017/resourcegreg")
 def client = new GMongoClient(mongoURI)
 
 def db = client.getDB("resourcegreg")
@@ -25,12 +27,23 @@ println("Sample objectId: " + ObjectId.get());
 
 println "creating personnel"
 
-(0..30).each() {
+(0..50).each() {
 
   List roles = []
   def numRoles = new Random().nextInt(3)
   (0..numRoles).each {
-    roles << [_id: ObjectId.get(), roleName: randomRole(), client: randomClient(), projects: [randomProject(), randomProject(), randomProject(), randomProject(), randomProject()]]
+    roles << [
+      _id: ObjectId.get(), 
+      roleName: randomRole(), 
+      client: randomClient(), 
+      projects: [
+        randomProject(), 
+        randomProject(), 
+        randomProject(), 
+        randomProject(), 
+        randomProject()
+      ]
+    ]
   }
 
   List qualifications = []
@@ -45,9 +58,21 @@ println "creating personnel"
     trainings << [_id: ObjectId.get(), name: randomTraining(), certificateNumber: randomNumber(),  institution: randomInstitution()]
   }  
 
-  def personnelName = personnelName()
+  def faker = new Faker();
 
-  def person = [name: personnelName[0], surname: personnelName[1], roles: roles, qualifications: qualifications, trainings: trainings, occupation: randomOccupation()] as BasicDBObject
+  def person = [
+    name: faker.name().firstName(), 
+    surname: faker.name().lastName(), 
+    hcaddress: faker.address().streetAddress(),
+    hchomephone: faker.phoneNumber().phoneNumber(),
+    hcmobile: faker.phoneNumber().cellPhone(),
+    hcemail: faker.internet().emailAddress(),
+    nearestairport: faker.address().city(),
+    roles: roles, 
+    qualifications: qualifications, 
+    trainings: trainings, 
+    occupation: randomOccupation()
+  ] as BasicDBObject
 
   println "adding: ${person.surname}, ${person.name}"
 
@@ -73,15 +98,6 @@ db.users << greg
 db.users << dylan
 
 // functions
-
-def personnelName() {
-  def p = 'bob and marc son bert wick ness ton shire step ley ing sley jeff er'.split()
-
-  def firstName = (0..1).collect { p[rand(p.size())] }.join('').capitalize();
-  def surname = (0..2).collect { p[rand(p.size())] }.join('').capitalize();
-
-  return [firstName, surname]
-}
 
 def projectName() {
   def p = 'mine site que fort es okha frank lin tin gold rould'.split()

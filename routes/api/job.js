@@ -36,13 +36,14 @@ router.jobDescriptions = function(req, res, callback) {
         {'position': { $regex: '.*' + searchKey + '.*', $options: 'i' } },
       ]};
   
-  req.db.jobDescriptions.find(query, function(err, docs) {
+  var finder = req.db.jobDescriptions.find(query, function(err, docs) {
     if (err) {
       log.error("error! " + err.stack);
     } else {
       res.json({
         jobDescriptions: docs
       });
+      return finder;
       callback();
     }
   });
@@ -53,7 +54,7 @@ router.jobDescriptions = function(req, res, callback) {
 router.jobDescription = function(req, res, callback) {
   var id = personnel.fixId(req.params.id);
 
-  req.db.jobDescriptions.find({
+  var finder = req.db.jobDescriptions.find({
     "_id": id
   }, function(err, doc) {
     if (err) {
@@ -64,6 +65,7 @@ router.jobDescription = function(req, res, callback) {
       } else {
         res.json(doc);
       }
+      return finder;
       callback();
     }
   });
@@ -79,7 +81,7 @@ router.saveJobDescription = function(req, res, callback) {
     jobDescriptionQuery = req.body;
   }
 
-  req.db.jobDescriptions.findAndModify({
+  var saver = req.db.jobDescriptions.findAndModify({
     query: jobDescriptionQuery,
     update: req.body,
     upsert: true,
@@ -90,6 +92,7 @@ router.saveJobDescription = function(req, res, callback) {
       return res.json(500, { error: 'Error editing' });
     }
     res.json(doc);
+    return saver;
     callback();
   });
 

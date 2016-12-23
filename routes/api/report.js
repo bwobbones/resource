@@ -1,4 +1,4 @@
-
+var _ = require('lodash');
 var winston = require('winston');
 var log = winston.loggers.get('normal');
 var mongojs = require('mongojs');

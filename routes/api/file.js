@@ -53,13 +53,34 @@ router.uploadFile = function (req, res, callback) {
           log.error("error! " + error.stack);
           res.json(errorReturnCode);
         }
+        res.json(successReturnCode);
         //indexFile( data.toString('base64'), req.body.fileId, req.body.personnelId );
       });
     });
 
-    res.json(successReturnCode);
     callback();
 
+  });
+
+}
+
+function indexFile(data, fileId, personnelId) {
+
+  var args = {
+    content: data,
+    personnelId: personnelId
+  };
+
+  client.index({
+    index: 'personnel',
+    type: 'document',
+    id: fileId,
+    refresh: true,
+    body: args
+  }, function (error) {
+    if (error) {
+      log.error("error! " + error.stack);
+    }
   });
 
 }
@@ -71,19 +92,24 @@ router.post('/downloadFile', function (req, res, callback) {
 // file
 router.downloadFile = function (req, res, callback) {
   var gs = gridjs(req.db);
-  gs.read(req.body.fileId, function (err, buffer) {
+  var reader = gs.read(req.body.fileId, function (err, buffer) {
     temp.open('minhr', function (err, tmpDownload) {
       if (!_.isNil(err)) {
         log.error(err.stack);
       }
+      console.log(tmpDownload.path);
       fs.writeFile(tmpDownload.path, buffer, function () {
         fs.close(tmpDownload.fd, function (err) {
           if (!_.isNil(err)) {
             log.error(err.stack);
           }
-          res.download(tmpDownload.path, req.body.fileName, function () {
-            temp.cleanup();
+          res.download(tmpDownload.path, req.body.fileName, function (err) {
+            if (!_.isNil(err)) {
+              console.log(err.stack);
+            }
+            // temp.cleanup();
           });
+          return reader;
           callback();
         });
       });

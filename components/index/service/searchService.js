@@ -62,7 +62,7 @@ appServices.factory('SearchService', function($http, $q, RoleService, _) {
       
       return $http.post('/api/searchPersonnel', queryTerms).then(function(matchingPersonnels) {
           
-        _.each(matchingPersonnels.personnels, function(personnel) {
+        _.each(matchingPersonnels.data.personnels, function(personnel) {
           personnel.currentRole = RoleService.latestRole(personnel);
         });
         
